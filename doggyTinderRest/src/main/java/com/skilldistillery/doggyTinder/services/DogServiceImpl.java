@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.doggyTinder.entities.Dog;
+import com.skilldistillery.doggyTinder.entities.User;
 import com.skilldistillery.doggyTinder.repositories.DogRepo;
 import com.skilldistillery.doggyTinder.repositories.UserRepo;
 
@@ -17,7 +18,6 @@ public class DogServiceImpl implements DogService {
 
 	@Autowired
 	private DogRepo dRepo;
-	
 	@Autowired
 	private UserRepo uRepo;
 	
@@ -56,13 +56,26 @@ public class DogServiceImpl implements DogService {
 	@Override
 	public Dog create(Dog dog, int userId) {
 		dog.setActive(true);
-		dRepo.saveAndFlush(dog);
-		return dog;
+		Optional<User> op = uRepo.findById(userId);
+		try {
+		if(op.isPresent()) {
+			dog.setUser(op.get());
+			dog.setPreferences(null);
+			dRepo.saveAndFlush(dog);
+			return dog;
+		}
+			System.out.println("invalid user");
+			return null;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public Dog update(Dog dog) {
-		// TODO Auto-generated method stub
+		Dog managed = dRepo.findById(dog.getId()).get();
+		
 		return null;
 	}
 

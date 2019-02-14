@@ -14,6 +14,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Message {
+	
+	//Fields
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
@@ -27,6 +29,8 @@ public class Message {
 	@Column(name="time_sent")
 	@CreationTimestamp
 	private Date date;
+	
+	//Methods
 	public Integer getId() {
 		return id;
 	}

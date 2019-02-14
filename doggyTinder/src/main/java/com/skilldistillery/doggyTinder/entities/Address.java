@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Address {
 
+	//Fields
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
@@ -18,8 +19,12 @@ public class Address {
 	private String city;
 	private String state;
 	private String zip;
+	
+	//maybe need this maybe not?
 	@OneToMany(mappedBy="address")
 	private List<User> users;
+	
+	//Methods
 	public Integer getId() {
 		return id;
 	}

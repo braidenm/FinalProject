@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Photo {
+	
+	//Fields
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
@@ -17,6 +19,7 @@ public class Photo {
 	private Dog dog;
 	private String url;
 	
+	//Methods
 	
 	public Integer getId() {
 		return id;

@@ -1,5 +1,6 @@
 package com.skilldistillery.doggyTinder.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Dog {
+	//Feilds
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -30,7 +32,7 @@ public class Dog {
 	private Preferences preferences;
 	@OneToMany(mappedBy="thisDog")
 	private List<Like> likes;
-	@OneToMany(mappedBy="dog")
+	@OneToMany(mappedBy="thisDog")
 	private List<Message> messages;
 	@OneToMany(mappedBy="dog")
 	private List<Photo> photos;
@@ -38,6 +40,8 @@ public class Dog {
 	private List<Dislike> dislikes;
 	@OneToMany(mappedBy="thisDog")
 	private List<Match> matches;
+	
+	//Methods
 	public Integer getId() {
 		return id;
 	}
@@ -249,6 +253,116 @@ public class Dog {
 	}
 	public Dog() {
 		super();
+	}
+	
+	public List<Like> addTodo( Like like){
+		if(likes == null) {
+			likes = new ArrayList<Like>();
+		}
+		if(!likes.contains(like) && like != null) {
+			likes.add(like);
+		}
+		
+		return likes;
+	}
+	
+	public boolean removeTodo(Like like) {
+		if(!likes.isEmpty()) {
+			if(likes.contains(like)) {
+				likes.remove(like);
+				return true;
+			}
+			
+		}
+		return false;
+	}
+	
+	public List<Message> addTodo( Message message){
+		if(messages == null) {
+			messages = new ArrayList<Message>();
+		}
+		if(!messages.contains(message) && message != null) {
+			messages.add(message);
+		}
+		
+		return messages;
+	}
+	
+	public boolean removeTodo(Message message) {
+		if(!messages.isEmpty()) {
+			if(messages.contains(message)) {
+				messages.remove(message);
+				return true;
+			}
+			
+		}
+		return false;
+	}
+	
+	public List<Dislike> addTodo( Dislike dislike){
+		if(dislikes == null) {
+			dislikes = new ArrayList<Dislike>();
+		}
+		if(!dislikes.contains(dislike) && dislike != null) {
+			dislikes.add(dislike);
+		}
+		
+		return dislikes;
+	}
+	
+	public boolean removeTodo(Dislike dislike) {
+		if(!dislikes.isEmpty()) {
+			if(dislikes.contains(dislike)) {
+				dislikes.remove(dislike);
+				return true;
+			}
+			
+		}
+		return false;
+	}
+	
+	public List<Photo> addTodo( Photo photo){
+		if(photos == null) {
+			photos = new ArrayList<Photo>();
+		}
+		if(!photos.contains(photo) && photo != null) {
+			photos.add(photo);
+		}
+		
+		return photos;
+	}
+	
+	public boolean removeTodo(Photo photo) {
+		if(!photos.isEmpty()) {
+			if(photos.contains(photo)) {
+				photos.remove(photo);
+				return true;
+			}
+			
+		}
+		return false;
+	}
+	
+	public List<Match> addTodo( Match match){
+		if(matches == null) {
+			matches = new ArrayList<Match>();
+		}
+		if(!matches.contains(match) && match != null) {
+			matches.add(match);
+		}
+		
+		return matches;
+	}
+	
+	public boolean removeTodo(Match todo) {
+		if(!matches.isEmpty()) {
+			if(matches.contains(todo)) {
+				matches.remove(todo);
+				return true;
+			}
+			
+		}
+		return false;
 	}
 	
 }

@@ -1,5 +1,6 @@
 package com.skilldistillery.doggyTinder.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,6 +14,8 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class User {
+	
+	//Fields
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
@@ -249,5 +252,27 @@ public class User {
 	}
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	
+	public List<Dog> addTodo( Dog dog){
+		if(dogs == null) {
+			dogs = new ArrayList<Dog>();
+		}
+		if(!dogs.contains(dog) && dog != null) {
+			dogs.add(dog);
+		}
+		
+		return dogs;
+	}
+	
+	public boolean removeTodo(Dog Dog) {
+		if(!dogs.isEmpty()) {
+			if(dogs.contains(Dog)) {
+				dogs.remove(Dog);
+				return true;
+			}
+			
+		}
+		return false;
 	}
 }

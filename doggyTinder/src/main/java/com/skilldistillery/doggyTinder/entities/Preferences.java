@@ -8,6 +8,8 @@ import javax.persistence.OneToOne;
 @Entity
 public class Preferences {
 	
+	//Fields
+	
 	@OneToOne
 	@JoinColumn(name="dog_id")
 	private Dog	dog;
@@ -23,6 +25,9 @@ public class Preferences {
 	private Integer minAge;
 	@Column(name="max_age")
 	private Integer maxAge;
+	
+	
+	//Methods
 	public Dog getDog() {
 		return dog;
 	}

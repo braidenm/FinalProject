@@ -1,6 +1,6 @@
-package com.skilldistillery.doggyTinder;
+package com.skilldistillery.doggyTinder.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,9 +12,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.doggyTinder.entities.User;
+import com.skilldistillery.doggyTinder.entities.Dislike;
 
-class userTest {
+class DislikeTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
@@ -42,15 +42,12 @@ class userTest {
 	}
 
 	@Test
-	void test_connection() {
+	void test_dislike_connection() {
 		
-		User u = em.find(User.class, 1);
+		Dislike d = em.find(Dislike.class, 1);
 		
-		assertEquals("", "username");
-		assertEquals("", "email");
-		assertEquals("", "address");
-		assertEquals("", "dogs");
-		
+		assertEquals("1", d.getThisDog().getId().toString());
+		assertEquals("4", d.getThatDog().getId().toString());
 		
 	}
 

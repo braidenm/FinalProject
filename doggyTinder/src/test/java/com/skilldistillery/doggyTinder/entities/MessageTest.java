@@ -1,4 +1,4 @@
-package com.skilldistillery.doggyTinder;
+package com.skilldistillery.doggyTinder.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,9 +12,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.doggyTinder.entities.Match;
+import com.skilldistillery.doggyTinder.entities.Dog;
+import com.skilldistillery.doggyTinder.entities.Message;
 
-class MatchTest {
+class MessageTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
@@ -42,12 +43,16 @@ class MatchTest {
 	}
 
 	@Test
-	void test_connection() {
+	void test_message_connection() {
 		
-		Match m = em.find(Match.class, 1);
+		Message m = em.find(Message.class, 1);
+		Dog senderDog = em.find(Dog.class, m.getThisDog().getId());
+		Dog receiverDog = em.find(Dog.class, m.getThatDog().getId());
 		
-		assertEquals("", "thisdog");
-		assertEquals("", "thatDog");
+		assertEquals("The Revolution", senderDog.getName());
+		assertEquals("Little Dude", receiverDog.getName());
+		assertEquals("Hi little dude!", m.getText());
+//		assertEquals("2019-02-11 15:02:55", m.getDate().toString());
 		
 	}
 

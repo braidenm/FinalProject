@@ -3,7 +3,7 @@ package com.skilldistillery.doggyTinder.services;
 import java.util.List;
 
 import com.skilldistillery.doggyTinder.entities.Dog;
-import com.skilldistillery.doggyTinder.entities.Like;
+import com.skilldistillery.doggyTinder.entities.Likes;
 
 public interface DogService {
 	

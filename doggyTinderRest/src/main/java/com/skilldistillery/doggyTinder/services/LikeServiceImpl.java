@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.doggyTinder.entities.Dog;
-import com.skilldistillery.doggyTinder.entities.Like;
+import com.skilldistillery.doggyTinder.entities.Likes;
 import com.skilldistillery.doggyTinder.repositories.DogRepo;
 import com.skilldistillery.doggyTinder.repositories.LikeRepo;
 
@@ -25,7 +25,7 @@ public class LikeServiceImpl implements LikeService{
 	public Dog addlike(Integer thisDog, Integer thatDog) {
 		Optional<Dog> op = dRepo.findById(thisDog);
 		Optional<Dog> op2 = dRepo.findById(thatDog);
-		Like like = new Like();
+		Likes like = new Likes();
 		if(op.isPresent() && op2.isPresent()) {
 			like.setThatDog(op2.get());
 			like.setThisDog(op.get());
@@ -37,13 +37,13 @@ public class LikeServiceImpl implements LikeService{
 	}
 
 	@Override
-	public List<Like> getAllLikes(Integer thisDog) {
+	public List<Likes> getAllLikes(Integer thisDog) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Like> findByThatDogId(Integer thatDog) {
+	public List<Likes> findByThatDogId(Integer thatDog) {
 		// TODO Auto-generated method stub
 		return null;
 	}

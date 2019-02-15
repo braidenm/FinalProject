@@ -75,6 +75,7 @@ CREATE TABLE IF NOT EXISTS `dog` (
   `age` INT NULL,
   `about` VARCHAR(500) NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
+  `sex` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_dog_to_user_idx` (`user_id` ASC),
   CONSTRAINT `fk_dog_to_user`
@@ -105,11 +106,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `like`
+-- Table `likes`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `like` ;
+DROP TABLE IF EXISTS `likes` ;
 
-CREATE TABLE IF NOT EXISTS `like` (
+CREATE TABLE IF NOT EXISTS `likes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `this_dog` INT NOT NULL,
   `that_dog` INT NOT NULL,
@@ -154,11 +155,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `match`
+-- Table `matches`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `match` ;
+DROP TABLE IF EXISTS `matches` ;
 
-CREATE TABLE IF NOT EXISTS `match` (
+CREATE TABLE IF NOT EXISTS `matches` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `dog1_id` INT NOT NULL,
   `dog2_id` INT NOT NULL,
@@ -191,6 +192,7 @@ CREATE TABLE IF NOT EXISTS `preferences` (
   `max_energy` INT NULL,
   `min_age` INT NULL,
   `max_age` INT NULL,
+  `sex` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_to_dog`
     FOREIGN KEY (`dog_id`)
@@ -283,18 +285,18 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `doggytinderdb`;
-INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`) VALUES (1, 1, 'Spot', 'Mutt', 50, 5, 3, 'I am spot, see me run.', 1);
-INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`) VALUES (2, 2, 'The Revolution', 'Chihuahua', 4, 8, 7, 'Yip! Yip!', 1);
-INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`) VALUES (3, 3, 'Little Dude', 'Bulldog', 45, 2, 4, 'I abide.', 1);
-INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`) VALUES (4, 4, 'Bo', 'Portuguese Water Dog', 35, 4, 10, 'Much president much wow.', 1);
-INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`) VALUES (5, 5, 'Kissy', 'Toy Fox Terrier', 15, 8, 6, 'Lick lick lick lick lick.', 1);
-INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`) VALUES (6, 6, 'Andy', 'Fox Terrier', 18, 7, 3, 'I\'m a cool dog.', 1);
-INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`) VALUES (7, 7, 'Daisy', 'Labrador Retriever', 60, 6, 6, 'I\'m not a wolf, but I could be.', 1);
-INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`) VALUES (8, 8, 'Daddy', 'American Pit Bull Terrier', 49, 3, 16, 'I\'m very well behaved.', 1);
-INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`) VALUES (9, 9, 'Snoop', 'Staffordshire Bull Terrier', 70, 5, 4, 'I was an unlucky dog, now I\'m lucky though', 1);
-INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`) VALUES (10, 10, 'Oprah', 'Schnauzer', 4, 7, 10, 'Apparently 50 cent doesn\'t love mrs. winfrey.', 1);
-INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`) VALUES (11, 11, 'Poppy Raymond', 'Goldendoodle', 40, 6, 8, 'Yeah!', 1);
-INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`) VALUES (12, 12, 'Vincent the Dog', 'Black Lab', 65, 7, 6, 'I\'m a wiz for a dog. Or dog for a wiz??', 1);
+INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (1, 1, 'Spot', 'Mutt', 50, 5, 3, 'I am spot, see me run.', 1, 'Male');
+INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (2, 2, 'The Revolution', 'Chihuahua', 4, 8, 7, 'Yip! Yip!', 1, 'Male');
+INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (3, 3, 'Little Dude', 'Bulldog', 45, 2, 4, 'I abide.', 1, 'Male');
+INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (4, 4, 'Bo', 'Portuguese Water Dog', 35, 4, 10, 'Much president much wow.', 1, 'Male');
+INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (5, 5, 'Kissy', 'Toy Fox Terrier', 15, 8, 6, 'Lick lick lick lick lick.', 1, 'Female');
+INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (6, 6, 'Andy', 'Fox Terrier', 18, 7, 3, 'I\'m a cool dog.', 1, 'Male');
+INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (7, 7, 'Daisy', 'Labrador Retriever', 60, 6, 6, 'I\'m not a wolf, but I could be.', 1, 'Female');
+INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (8, 8, 'Daddy', 'American Pit Bull Terrier', 49, 3, 16, 'I\'m very well behaved.', 1, 'Male');
+INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (9, 9, 'Snoop', 'Staffordshire Bull Terrier', 70, 5, 4, 'I was an unlucky dog, now I\'m lucky though', 1, 'Male');
+INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (10, 10, 'Oprah', 'Schnauzer', 4, 7, 10, 'Apparently 50 cent doesn\'t love mrs. winfrey.', 1, 'Female');
+INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (11, 11, 'Poppy Raymond', 'Goldendoodle', 40, 6, 8, 'Yeah!', 1, 'Male');
+INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (12, 12, 'Vincent the Dog', 'Black Lab', 65, 7, 6, 'I\'m a wiz for a dog. Or dog for a wiz??', 1, 'Male');
 
 COMMIT;
 
@@ -321,20 +323,20 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `like`
+-- Data for table `likes`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `doggytinderdb`;
-INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 1, 2);
-INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 3, 2);
-INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 2, 3);
-INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 5, 6);
-INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 6, 5);
-INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 3, 8);
-INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 8, 3);
-INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 2, 5);
-INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 9, 2);
-INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 2, 9);
+INSERT INTO `likes` (`id`, `this_dog`, `that_dog`) VALUES (1, 1, 2);
+INSERT INTO `likes` (`id`, `this_dog`, `that_dog`) VALUES (2, 3, 2);
+INSERT INTO `likes` (`id`, `this_dog`, `that_dog`) VALUES (3, 2, 3);
+INSERT INTO `likes` (`id`, `this_dog`, `that_dog`) VALUES (4, 5, 6);
+INSERT INTO `likes` (`id`, `this_dog`, `that_dog`) VALUES (5, 6, 5);
+INSERT INTO `likes` (`id`, `this_dog`, `that_dog`) VALUES (6, 3, 8);
+INSERT INTO `likes` (`id`, `this_dog`, `that_dog`) VALUES (7, 8, 3);
+INSERT INTO `likes` (`id`, `this_dog`, `that_dog`) VALUES (8, 2, 5);
+INSERT INTO `likes` (`id`, `this_dog`, `that_dog`) VALUES (9, 9, 2);
+INSERT INTO `likes` (`id`, `this_dog`, `that_dog`) VALUES (10, 2, 9);
 
 COMMIT;
 
@@ -344,30 +346,51 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `doggytinderdb`;
-INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 1, 4);
-INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 2, 4);
-INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 5, 11);
-INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 5, 12);
-INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 6, 11);
-INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 6, 12);
-INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 8, 2);
-INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 8, 5);
-INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 8, 6);
-INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 2, 11);
-INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 11, 5);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (1, 1, 4);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (2, 2, 4);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (3, 5, 11);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (4, 5, 12);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (5, 6, 11);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (6, 6, 12);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (7, 8, 2);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (8, 8, 5);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (9, 8, 6);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (10, 2, 11);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (11, 11, 5);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `match`
+-- Data for table `matches`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `doggytinderdb`;
-INSERT INTO `match` (`id`, `dog1_id`, `dog2_id`) VALUES (DEFAULT, 2, 3);
-INSERT INTO `match` (`id`, `dog1_id`, `dog2_id`) VALUES (DEFAULT, 5, 6);
-INSERT INTO `match` (`id`, `dog1_id`, `dog2_id`) VALUES (DEFAULT, 3, 8);
-INSERT INTO `match` (`id`, `dog1_id`, `dog2_id`) VALUES (DEFAULT, 2, 9);
+INSERT INTO `matches` (`id`, `dog1_id`, `dog2_id`) VALUES (1, 2, 3);
+INSERT INTO `matches` (`id`, `dog1_id`, `dog2_id`) VALUES (2, 5, 6);
+INSERT INTO `matches` (`id`, `dog1_id`, `dog2_id`) VALUES (3, 3, 8);
+INSERT INTO `matches` (`id`, `dog1_id`, `dog2_id`) VALUES (4, 2, 9);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `preferences`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `doggytinderdb`;
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (1, 1, 0, 200, 0, 10, 0, 30, 'Male');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (3, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (4, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (5, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (6, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (7, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (8, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (9, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (10, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (11, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (12, 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 COMMIT;
 

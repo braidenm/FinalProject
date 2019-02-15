@@ -6,10 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.doggyTinder.entities.Address;
-import com.skilldistillery.doggyTinder.entities.Dog;
 import com.skilldistillery.doggyTinder.entities.User;
-
 import com.skilldistillery.doggyTinder.repositories.UserRepo;
 
 @Service
@@ -17,8 +14,7 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private UserRepo uRepo;
-	@Autowired
-	private AddressRepo aRepo;
+	
 
 	@Override
 	public List<User> index() {
@@ -65,9 +61,5 @@ public class UserServiceImpl implements UserService{
 		return null;
 	}
 
-	@Override
-	public User createUser(User user) {
-		return uRepo.saveAndFlush(user);
-	}
 
 }

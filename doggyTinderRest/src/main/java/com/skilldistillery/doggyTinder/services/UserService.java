@@ -12,10 +12,5 @@ public interface UserService {
 	public User showUser(Integer id);
 	public void deleteUser(Integer id);
 	public User updateUser(User user);
-	public User createUser(User user);
-	public Address updateAddr(Address address);
-	public Address createAddr(Address address);
-	public Address deleteAddr(Address address);
-	public Address showAddr(Address address);
-
+	
 }

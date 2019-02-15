@@ -110,10 +110,11 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `like` ;
 
 CREATE TABLE IF NOT EXISTS `like` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `this_dog` INT NOT NULL,
   `that_dog` INT NOT NULL,
-  PRIMARY KEY (`this_dog`, `that_dog`),
   INDEX `fk_liked_dog_idx` (`that_dog` ASC),
+  PRIMARY KEY (`id`),
   CONSTRAINT `fk_liking_dog`
     FOREIGN KEY (`this_dog`)
     REFERENCES `dog` (`id`)
@@ -133,10 +134,12 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `dislike` ;
 
 CREATE TABLE IF NOT EXISTS `dislike` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `this_dog` INT NOT NULL,
   `that_dog` INT NOT NULL,
-  PRIMARY KEY (`this_dog`, `that_dog`),
   INDEX `fk_to_that_dog_idx` (`that_dog` ASC),
+  PRIMARY KEY (`id`),
+  INDEX `fk_to_this_dog_idx` (`this_dog` ASC),
   CONSTRAINT `fk_to_this_dog`
     FOREIGN KEY (`this_dog`)
     REFERENCES `dog` (`id`)
@@ -156,10 +159,11 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `match` ;
 
 CREATE TABLE IF NOT EXISTS `match` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `dog1_id` INT NOT NULL,
   `dog2_id` INT NOT NULL,
-  PRIMARY KEY (`dog1_id`, `dog2_id`),
   INDEX `fk_match_to_dog2_idx` (`dog2_id` ASC),
+  PRIMARY KEY (`id`),
   CONSTRAINT `fk_match_to_dog1`
     FOREIGN KEY (`dog1_id`)
     REFERENCES `dog` (`id`)
@@ -179,6 +183,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `preferences` ;
 
 CREATE TABLE IF NOT EXISTS `preferences` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `dog_id` INT NOT NULL,
   `min_weight` INT NULL,
   `max_weight` INT NULL,
@@ -186,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `preferences` (
   `max_energy` INT NULL,
   `min_age` INT NULL,
   `max_age` INT NULL,
-  PRIMARY KEY (`dog_id`),
+  PRIMARY KEY (`id`),
   CONSTRAINT `fk_to_dog`
     FOREIGN KEY (`dog_id`)
     REFERENCES `dog` (`id`)
@@ -320,16 +325,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `doggytinderdb`;
-INSERT INTO `like` (`this_dog`, `that_dog`) VALUES (1, 2);
-INSERT INTO `like` (`this_dog`, `that_dog`) VALUES (3, 2);
-INSERT INTO `like` (`this_dog`, `that_dog`) VALUES (2, 3);
-INSERT INTO `like` (`this_dog`, `that_dog`) VALUES (5, 6);
-INSERT INTO `like` (`this_dog`, `that_dog`) VALUES (6, 5);
-INSERT INTO `like` (`this_dog`, `that_dog`) VALUES (3, 8);
-INSERT INTO `like` (`this_dog`, `that_dog`) VALUES (8, 3);
-INSERT INTO `like` (`this_dog`, `that_dog`) VALUES (2, 5);
-INSERT INTO `like` (`this_dog`, `that_dog`) VALUES (9, 2);
-INSERT INTO `like` (`this_dog`, `that_dog`) VALUES (2, 9);
+INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 1, 2);
+INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 3, 2);
+INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 2, 3);
+INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 5, 6);
+INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 6, 5);
+INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 3, 8);
+INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 8, 3);
+INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 2, 5);
+INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 9, 2);
+INSERT INTO `like` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 2, 9);
 
 COMMIT;
 
@@ -339,17 +344,17 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `doggytinderdb`;
-INSERT INTO `dislike` (`this_dog`, `that_dog`) VALUES (1, 4);
-INSERT INTO `dislike` (`this_dog`, `that_dog`) VALUES (2, 4);
-INSERT INTO `dislike` (`this_dog`, `that_dog`) VALUES (5, 11);
-INSERT INTO `dislike` (`this_dog`, `that_dog`) VALUES (5, 12);
-INSERT INTO `dislike` (`this_dog`, `that_dog`) VALUES (6, 11);
-INSERT INTO `dislike` (`this_dog`, `that_dog`) VALUES (6, 12);
-INSERT INTO `dislike` (`this_dog`, `that_dog`) VALUES (8, 2);
-INSERT INTO `dislike` (`this_dog`, `that_dog`) VALUES (8, 5);
-INSERT INTO `dislike` (`this_dog`, `that_dog`) VALUES (8, 6);
-INSERT INTO `dislike` (`this_dog`, `that_dog`) VALUES (2, 11);
-INSERT INTO `dislike` (`this_dog`, `that_dog`) VALUES (11, 5);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 1, 4);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 2, 4);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 5, 11);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 5, 12);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 6, 11);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 6, 12);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 8, 2);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 8, 5);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 8, 6);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 2, 11);
+INSERT INTO `dislike` (`id`, `this_dog`, `that_dog`) VALUES (DEFAULT, 11, 5);
 
 COMMIT;
 
@@ -359,10 +364,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `doggytinderdb`;
-INSERT INTO `match` (`dog1_id`, `dog2_id`) VALUES (2, 3);
-INSERT INTO `match` (`dog1_id`, `dog2_id`) VALUES (5, 6);
-INSERT INTO `match` (`dog1_id`, `dog2_id`) VALUES (3, 8);
-INSERT INTO `match` (`dog1_id`, `dog2_id`) VALUES (2, 9);
+INSERT INTO `match` (`id`, `dog1_id`, `dog2_id`) VALUES (DEFAULT, 2, 3);
+INSERT INTO `match` (`id`, `dog1_id`, `dog2_id`) VALUES (DEFAULT, 5, 6);
+INSERT INTO `match` (`id`, `dog1_id`, `dog2_id`) VALUES (DEFAULT, 3, 8);
+INSERT INTO `match` (`id`, `dog1_id`, `dog2_id`) VALUES (DEFAULT, 2, 9);
 
 COMMIT;
 

@@ -46,9 +46,9 @@ class AddressTest {
 		
 		Address a = em.find(Address.class, 1);
 		
-		assertEquals("", "street");
-		assertEquals("", "state");
-		assertEquals("", "city");
+		assertEquals("7400 E Orchard Rd #1450n", a.getStreet());
+		assertEquals("Greenwood Village", a.getCity());
+		assertEquals("Colorado", a.getState());
 		
 	}
 

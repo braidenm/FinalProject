@@ -11,8 +11,6 @@ import com.skilldistillery.doggyTinder.entities.User;
 import com.skilldistillery.doggyTinder.repositories.DogRepo;
 import com.skilldistillery.doggyTinder.repositories.UserRepo;
 
-
-
 @Service
 public class DogServiceImpl implements DogService {
 
@@ -20,8 +18,7 @@ public class DogServiceImpl implements DogService {
 	private DogRepo dRepo;
 	@Autowired
 	private UserRepo uRepo;
-	
-	
+
 	@Override
 	public List<Dog> index() {
 		return dRepo.findAll();
@@ -29,9 +26,9 @@ public class DogServiceImpl implements DogService {
 
 	@Override
 	public Dog show(Integer id) {
-		
+
 		Optional<Dog> op = dRepo.findById(id);
-		if(op.isPresent()) {
+		if (op.isPresent()) {
 			return op.get();
 		}
 		return null;
@@ -40,7 +37,7 @@ public class DogServiceImpl implements DogService {
 	@Override
 	public void delete(Integer id) {
 		Optional<Dog> op = dRepo.findById(id);
-		if(op.isPresent()) {
+		if (op.isPresent()) {
 			Dog dog = op.get();
 			dog.setPhotos(null);
 			dog.setPreferences(null);
@@ -58,15 +55,15 @@ public class DogServiceImpl implements DogService {
 		dog.setActive(true);
 		Optional<User> op = uRepo.findById(userId);
 		try {
-		if(op.isPresent()) {
-			dog.setUser(op.get());
-			dog.setPreferences(null);
-			dRepo.saveAndFlush(dog);
-			return dog;
-		}
+			if (op.isPresent()) {
+				dog.setUser(op.get());
+				dog.setPreferences(null);
+				dRepo.saveAndFlush(dog);
+				return dog;
+			}
 			System.out.println("invalid user");
 			return null;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -74,27 +71,55 @@ public class DogServiceImpl implements DogService {
 
 	@Override
 	public Dog update(Dog dog) {
-		Dog managed = dRepo.findById(dog.getId()).get();
-		
-		return null;
+		Optional<Dog> op = dRepo.findById(dog.getId());
+		try {
+			if (op.isPresent()) {
+				Dog managed = op.get();
+				managed.setAbout(dog.getAbout());
+				managed.setAge(dog.getAge());
+				managed.setName(dog.getName());
+				managed.setBreed(dog.getBreed());
+				managed.setWeight(dog.getWeight());
+				managed.setEnergy(dog.getEnergy());
+				managed.setAbout(dog.getAbout());
+				managed.setPhotos(dog.getPhotos());
+				dRepo.saveAndFlush(managed);
+				return managed;
+			}
+			System.out.println("invalid dog");
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public List<Dog> getAllDogsByUserId(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<User> uOp = uRepo.findById(id);
+		try {
+			if(uOp.isPresent()) {
+				User user = uOp.get();
+				return user.getDogs();
+			}
+			System.out.println("invalid user. Error at DogServiceImpl.getAllDogsByUserId");
+			return null;
+		}catch(Exception e ) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public List<Dog> findByNameLike(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return dRepo.findByNameLike("%"+name+"%");
 	}
 
 	@Override
-	public List<Dog> findByBreedLike(String Breed) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Dog> findByBreedLike(String breed) {
+		return dRepo.findByBreedLike("%"+breed+"%");
 	}
+	
+	
 
 }

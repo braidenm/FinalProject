@@ -262,7 +262,7 @@ public class Dog {
 		super();
 	}
 	
-	public List<Like> addTodo( Like like){
+	public List<Like> addLike( Like like){
 		if(likes == null) {
 			likes = new ArrayList<Like>();
 		}
@@ -273,7 +273,7 @@ public class Dog {
 		return likes;
 	}
 	
-	public boolean removeTodo(Like like) {
+	public boolean removeLike(Like like) {
 		if(!likes.isEmpty()) {
 			if(likes.contains(like)) {
 				likes.remove(like);
@@ -284,7 +284,7 @@ public class Dog {
 		return false;
 	}
 	
-	public List<Message> addTodo( Message message){
+	public List<Message> addMessage( Message message){
 		if(messages == null) {
 			messages = new ArrayList<Message>();
 		}
@@ -295,7 +295,7 @@ public class Dog {
 		return messages;
 	}
 	
-	public boolean removeTodo(Message message) {
+	public boolean removeMessage(Message message) {
 		if(!messages.isEmpty()) {
 			if(messages.contains(message)) {
 				messages.remove(message);
@@ -306,7 +306,7 @@ public class Dog {
 		return false;
 	}
 	
-	public List<Dislike> addTodo( Dislike dislike){
+	public List<Dislike> addDislike( Dislike dislike){
 		if(dislikes == null) {
 			dislikes = new ArrayList<Dislike>();
 		}
@@ -317,7 +317,7 @@ public class Dog {
 		return dislikes;
 	}
 	
-	public boolean removeTodo(Dislike dislike) {
+	public boolean removeDislike(Dislike dislike) {
 		if(!dislikes.isEmpty()) {
 			if(dislikes.contains(dislike)) {
 				dislikes.remove(dislike);
@@ -328,7 +328,7 @@ public class Dog {
 		return false;
 	}
 	
-	public List<Photo> addTodo( Photo photo){
+	public List<Photo> addPhoto( Photo photo){
 		if(photos == null) {
 			photos = new ArrayList<Photo>();
 		}
@@ -339,7 +339,7 @@ public class Dog {
 		return photos;
 	}
 	
-	public boolean removeTodo(Photo photo) {
+	public boolean removePhoto(Photo photo) {
 		if(!photos.isEmpty()) {
 			if(photos.contains(photo)) {
 				photos.remove(photo);
@@ -350,7 +350,7 @@ public class Dog {
 		return false;
 	}
 	
-	public List<Match> addTodo( Match match){
+	public List<Match> addMatch( Match match){
 		if(matches == null) {
 			matches = new ArrayList<Match>();
 		}
@@ -361,10 +361,10 @@ public class Dog {
 		return matches;
 	}
 	
-	public boolean removeTodo(Match todo) {
+	public boolean removeMatch(Match match) {
 		if(!matches.isEmpty()) {
-			if(matches.contains(todo)) {
-				matches.remove(todo);
+			if(matches.contains(match)) {
+				matches.remove(match);
 				return true;
 			}
 			

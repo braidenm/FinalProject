@@ -3,6 +3,7 @@ package com.skilldistillery.doggyTinder.services;
 import java.util.List;
 
 import com.skilldistillery.doggyTinder.entities.Dog;
+import com.skilldistillery.doggyTinder.entities.Like;
 
 public interface DogService {
 	
@@ -13,7 +14,8 @@ public interface DogService {
 	public Dog update(Dog dog);
 	public List<Dog> getAllDogsByUserId(Integer id);
 	public List<Dog> findByNameLike(String name);
-	public List<Dog> findByBreedLike(String Breed);
+	public List<Dog> findByBreedLike(String breed);
+	
 	
 	
 

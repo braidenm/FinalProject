@@ -1,4 +1,4 @@
-package com.skilldistillery.doggyTinder;
+package com.skilldistillery.doggyTinder.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,9 +12,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.doggyTinder.entities.Photo;
+import com.skilldistillery.doggyTinder.entities.Matches;
 
-class PhotoTest {
+class MatchesTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
@@ -42,12 +42,12 @@ class PhotoTest {
 	}
 
 	@Test
-	void test_connection() {
+	void test_match_connection() {
 		
-		Photo p = em.find(Photo.class, 1);
+		Matches m = em.find(Matches.class, 1);
 		
-		assertEquals("", "url");
-		assertEquals("", "dog");
+		assertEquals("The Revolution", m.getThisDog().getName());
+		assertEquals("Little Dude", m.getThatDog().getName());
 		
 	}
 

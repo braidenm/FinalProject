@@ -1,11 +1,14 @@
 package com.skilldistillery.doggyTinder.repositories;
 
+import java.util.Set;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
+
 import com.skilldistillery.doggyTinder.entities.Dog;
-import com.skilldistillery.doggyTinder.entities.Match;
+import com.skilldistillery.doggyTinder.entities.Matches;
 
+public interface MatchRepo extends JpaRepository<Matches, Integer> {
 
-public interface MatchRepo extends JpaRepository<Match, Dog> {
-
+	Set<Matches> findByThisDog_idOrThatDog_id(Integer id, Integer id2);
 }

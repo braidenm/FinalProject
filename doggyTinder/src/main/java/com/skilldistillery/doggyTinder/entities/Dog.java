@@ -19,6 +19,7 @@ public class Dog {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
@@ -31,7 +32,7 @@ public class Dog {
 	@OneToOne(mappedBy="dog")
 	private Preferences preferences;
 	@OneToMany(mappedBy="thisDog")
-	private List<Like> likes;
+	private List<Likes> likes;
 	@OneToMany(mappedBy="thisDog")
 	private List<Message> messages;
 	@OneToMany(mappedBy="dog")
@@ -39,9 +40,17 @@ public class Dog {
 	@OneToMany(mappedBy="thisDog")
 	private List<Dislike> dislikes;
 	@OneToMany(mappedBy="thisDog")
-	private List<Match> matches;
+	private List<Matches> matches;
 	private Boolean active;
 	
+	private String sex;
+	
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 	public Boolean getActive() {
 		return active;
 	}
@@ -103,10 +112,10 @@ public class Dog {
 	public void setPreferences(Preferences preferences) {
 		this.preferences = preferences;
 	}
-	public List<Like> getLikes() {
+	public List<Likes> getLikes() {
 		return likes;
 	}
-	public void setLikes(List<Like> likes) {
+	public void setLikes(List<Likes> likes) {
 		this.likes = likes;
 	}
 	public List<Message> getMessages() {
@@ -127,10 +136,10 @@ public class Dog {
 	public void setDislikes(List<Dislike> dislikes) {
 		this.dislikes = dislikes;
 	}
-	public List<Match> getMatches() {
+	public List<Matches> getMatches() {
 		return matches;
 	}
-	public void setMatches(List<Match> matches) {
+	public void setMatches(List<Matches> matches) {
 		this.matches = matches;
 	}
 	@Override
@@ -239,9 +248,10 @@ public class Dog {
 		return "Dog [id=" + id + ", user=" + user + ", name=" + name + ", breed=" + breed + ", weight=" + weight
 				+ ", energy=" + energy + ", age=" + age + ", about=" + about + "]";
 	}
+
 	public Dog(Integer id, User user, String name, String breed, Integer weight, Integer energy, Integer age,
-			String about, Preferences preferences, List<Like> likes, List<Message> messages, List<Photo> photos,
-			List<Dislike> dislikes, List<Match> matches) {
+			String about, Preferences preferences, List<Likes> likes, List<Message> messages, List<Photo> photos,
+			List<Dislike> dislikes, List<Matches> matches, Boolean active, String sex) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -257,14 +267,16 @@ public class Dog {
 		this.photos = photos;
 		this.dislikes = dislikes;
 		this.matches = matches;
+		this.active = active;
+		this.sex = sex;
 	}
 	public Dog() {
 		super();
 	}
 	
-	public List<Like> addTodo( Like like){
+	public List<Likes> addLike( Likes like){
 		if(likes == null) {
-			likes = new ArrayList<Like>();
+			likes = new ArrayList<Likes>();
 		}
 		if(!likes.contains(like) && like != null) {
 			likes.add(like);
@@ -273,7 +285,7 @@ public class Dog {
 		return likes;
 	}
 	
-	public boolean removeTodo(Like like) {
+	public boolean removeLike(Likes like) {
 		if(!likes.isEmpty()) {
 			if(likes.contains(like)) {
 				likes.remove(like);
@@ -284,7 +296,7 @@ public class Dog {
 		return false;
 	}
 	
-	public List<Message> addTodo( Message message){
+	public List<Message> addMessage( Message message){
 		if(messages == null) {
 			messages = new ArrayList<Message>();
 		}
@@ -295,7 +307,7 @@ public class Dog {
 		return messages;
 	}
 	
-	public boolean removeTodo(Message message) {
+	public boolean removeMessage(Message message) {
 		if(!messages.isEmpty()) {
 			if(messages.contains(message)) {
 				messages.remove(message);
@@ -306,7 +318,7 @@ public class Dog {
 		return false;
 	}
 	
-	public List<Dislike> addTodo( Dislike dislike){
+	public List<Dislike> addDislike( Dislike dislike){
 		if(dislikes == null) {
 			dislikes = new ArrayList<Dislike>();
 		}
@@ -317,7 +329,7 @@ public class Dog {
 		return dislikes;
 	}
 	
-	public boolean removeTodo(Dislike dislike) {
+	public boolean removeDislike(Dislike dislike) {
 		if(!dislikes.isEmpty()) {
 			if(dislikes.contains(dislike)) {
 				dislikes.remove(dislike);
@@ -328,7 +340,7 @@ public class Dog {
 		return false;
 	}
 	
-	public List<Photo> addTodo( Photo photo){
+	public List<Photo> addPhoto( Photo photo){
 		if(photos == null) {
 			photos = new ArrayList<Photo>();
 		}
@@ -339,7 +351,7 @@ public class Dog {
 		return photos;
 	}
 	
-	public boolean removeTodo(Photo photo) {
+	public boolean removePhoto(Photo photo) {
 		if(!photos.isEmpty()) {
 			if(photos.contains(photo)) {
 				photos.remove(photo);
@@ -350,9 +362,9 @@ public class Dog {
 		return false;
 	}
 	
-	public List<Match> addTodo( Match match){
+	public List<Matches> addMatch( Matches match){
 		if(matches == null) {
-			matches = new ArrayList<Match>();
+			matches = new ArrayList<Matches>();
 		}
 		if(!matches.contains(match) && match != null) {
 			matches.add(match);
@@ -361,10 +373,10 @@ public class Dog {
 		return matches;
 	}
 	
-	public boolean removeTodo(Match todo) {
+	public boolean removeMatch(Matches match) {
 		if(!matches.isEmpty()) {
-			if(matches.contains(todo)) {
-				matches.remove(todo);
+			if(matches.contains(match)) {
+				matches.remove(match);
 				return true;
 			}
 			

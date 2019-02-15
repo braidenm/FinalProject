@@ -1,11 +1,18 @@
 package com.skilldistillery.doggyTinder.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Dislike {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
 	
 	@ManyToOne
 	@JoinColumn(name="this_dog")
@@ -31,12 +38,20 @@ public class Dislike {
 		this.thatDog = thatDog;
 	}
 
+
+
+	public Dislike(int id, Dog thisDog, Dog thatDog) {
+		super();
+		this.id = id;
+		this.thisDog = thisDog;
+		this.thatDog = thatDog;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((thatDog == null) ? 0 : thatDog.hashCode());
-		result = prime * result + ((thisDog == null) ? 0 : thisDog.hashCode());
+		result = prime * result + id;
 		return result;
 	}
 
@@ -49,28 +64,14 @@ public class Dislike {
 		if (getClass() != obj.getClass())
 			return false;
 		Dislike other = (Dislike) obj;
-		if (thatDog == null) {
-			if (other.thatDog != null)
-				return false;
-		} else if (!thatDog.equals(other.thatDog))
-			return false;
-		if (thisDog == null) {
-			if (other.thisDog != null)
-				return false;
-		} else if (!thisDog.equals(other.thisDog))
+		if (id != other.id)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Dislike [thisDog=" + thisDog + ", thatDog=" + thatDog + "]";
-	}
-
-	public Dislike(Dog thisDog, Dog thatDog) {
-		super();
-		this.thisDog = thisDog;
-		this.thatDog = thatDog;
+		return "Dislike [id=" + id + ", thisDog=" + thisDog + ", thatDog=" + thatDog + "]";
 	}
 
 	public Dislike() {

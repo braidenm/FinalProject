@@ -1,6 +1,7 @@
-package com.skilldistillery.doggyTinder;
+package com.skilldistillery.doggyTinder.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -42,14 +43,15 @@ class PreferencesTest {
 	}
 
 	@Test
-	void test_connection() {
+	void test_preferences_connection() {
 		
 		Preferences p = em.find(Preferences.class, 1);
 		
-		assertEquals("", "minweight");
-		assertEquals("", "max weight");
-		assertEquals("", "min age");
-		assertEquals("", "max age");
+		assertTrue(0 == p.getMinWeight());
+		assertTrue(200 == p.getMaxWeight());
+		assertTrue(0 == p.getMinAge());
+		assertTrue(30 == p.getMaxAge());
+		assertEquals("Male", p.getSex());
 		
 	}
 

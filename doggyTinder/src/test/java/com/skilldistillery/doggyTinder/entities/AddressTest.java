@@ -1,4 +1,4 @@
-package com.skilldistillery.doggyTinder;
+package com.skilldistillery.doggyTinder.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -42,13 +42,13 @@ class AddressTest {
 	}
 
 	@Test
-	void test_connection() {
+	void test_address_connection() {
 		
 		Address a = em.find(Address.class, 1);
 		
-		assertEquals("", "street");
-		assertEquals("", "state");
-		assertEquals("", "city");
+		assertEquals("7400 E Orchard Rd #1450n", a.getStreet());
+		assertEquals("Greenwood Village", a.getCity());
+		assertEquals("Colorado", a.getState());
 		
 	}
 

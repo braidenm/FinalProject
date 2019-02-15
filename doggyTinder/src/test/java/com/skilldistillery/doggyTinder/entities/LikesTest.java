@@ -1,6 +1,7 @@
-package com.skilldistillery.doggyTinder;
+package com.skilldistillery.doggyTinder.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,9 +13,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.doggyTinder.entities.Like;
-
-class likeTest {
+class LikesTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
@@ -42,12 +41,20 @@ class likeTest {
 	}
 
 	@Test
-	void test_connection() {
+	void test_like_connection() {
 		
-		Like l = em.find(Like.class, 1);
+		Likes l = em.find(Likes.class, 1);
+		System.out.println(l);
+		assertTrue(1 == l.getThisDog().getId());
+		assertTrue(2 == l.getThatDog().getId());
 		
-		assertEquals("", "thisDog");
-		assertEquals("", "ThatDog");
+//		assertEquals("3", l.getThisDog().getId().toString());
+//		assertEquals("2", l.getThatDog().getId().toString());
+//		String thisDogName = l.getThisDog().getName();
+//		String thatDogName = l.getThatDog().getName();
+//		System.out.println(thisDogName + ", " + thatDogName);
+//		assertEquals("Little Dude", thisDogName);
+//		assertEquals("The Revolution", thatDogName);
 		
 	}
 

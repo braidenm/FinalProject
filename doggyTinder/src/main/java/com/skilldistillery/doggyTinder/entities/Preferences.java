@@ -8,8 +8,6 @@ import javax.persistence.OneToOne;
 @Entity
 public class Preferences {
 	
-	//Fields
-	
 	@OneToOne
 	@JoinColumn(name="dog_id")
 	private Dog	dog;

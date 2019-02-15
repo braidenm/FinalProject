@@ -3,7 +3,8 @@ package com.skilldistillery.doggyTinder.services;
 import java.util.List;
 
 import com.skilldistillery.doggyTinder.entities.Dog;
-import com.skilldistillery.doggyTinder.entities.Like;
+import com.skilldistillery.doggyTinder.entities.Photo;
+import com.skilldistillery.doggyTinder.entities.Preferences;
 
 public interface DogService {
 	
@@ -15,8 +16,8 @@ public interface DogService {
 	public List<Dog> getAllDogsByUserId(Integer id);
 	public List<Dog> findByNameLike(String name);
 	public List<Dog> findByBreedLike(String breed);
+	public Dog updatePref(Preferences pref, Integer id);
+	public Dog addPhoto(String imageUrl, Integer dogId);
+	public Dog deletePhoto(Integer dogId, Integer photoId);
 	
-	
-	
-
 }

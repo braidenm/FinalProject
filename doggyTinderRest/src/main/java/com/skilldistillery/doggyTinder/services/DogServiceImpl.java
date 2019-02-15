@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.doggyTinder.entities.Dog;
+import com.skilldistillery.doggyTinder.entities.Photo;
+import com.skilldistillery.doggyTinder.entities.Preferences;
 import com.skilldistillery.doggyTinder.entities.User;
 import com.skilldistillery.doggyTinder.repositories.DogRepo;
+import com.skilldistillery.doggyTinder.repositories.PhotoRepo;
 import com.skilldistillery.doggyTinder.repositories.UserRepo;
 
 @Service
@@ -18,6 +21,8 @@ public class DogServiceImpl implements DogService {
 	private DogRepo dRepo;
 	@Autowired
 	private UserRepo uRepo;
+	@Autowired
+	private PhotoRepo pRepo;
 
 	@Override
 	public List<Dog> index() {
@@ -57,7 +62,9 @@ public class DogServiceImpl implements DogService {
 		try {
 			if (op.isPresent()) {
 				dog.setUser(op.get());
-				dog.setPreferences(null);
+				Preferences pref = new Preferences();
+				pref.setDog(dog);
+				dog.setPreferences(pref);
 				dRepo.saveAndFlush(dog);
 				return dog;
 			}
@@ -82,7 +89,6 @@ public class DogServiceImpl implements DogService {
 				managed.setWeight(dog.getWeight());
 				managed.setEnergy(dog.getEnergy());
 				managed.setAbout(dog.getAbout());
-				managed.setPhotos(dog.getPhotos());
 				dRepo.saveAndFlush(managed);
 				return managed;
 			}
@@ -98,13 +104,13 @@ public class DogServiceImpl implements DogService {
 	public List<Dog> getAllDogsByUserId(Integer id) {
 		Optional<User> uOp = uRepo.findById(id);
 		try {
-			if(uOp.isPresent()) {
+			if (uOp.isPresent()) {
 				User user = uOp.get();
 				return user.getDogs();
 			}
 			System.out.println("invalid user. Error at DogServiceImpl.getAllDogsByUserId");
 			return null;
-		}catch(Exception e ) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -112,14 +118,61 @@ public class DogServiceImpl implements DogService {
 
 	@Override
 	public List<Dog> findByNameLike(String name) {
-		return dRepo.findByNameLike("%"+name+"%");
+		return dRepo.findByNameLike("%" + name + "%");
 	}
 
 	@Override
 	public List<Dog> findByBreedLike(String breed) {
-		return dRepo.findByBreedLike("%"+breed+"%");
+		return dRepo.findByBreedLike("%" + breed + "%");
 	}
-	
-	
+
+	@Override
+	public Dog updatePref(Preferences pref, Integer id) {
+		Optional<Dog> op = dRepo.findById(id);
+		if (op.isPresent()) {
+			Dog dog = op.get();
+			Preferences dogPref = dog.getPreferences();
+			dogPref.setMaxAge(pref.getMaxAge());
+			dogPref.setMinAge(pref.getMinAge());
+			dogPref.setMaxEnergy(pref.getMaxEnergy());
+			dogPref.setMinEnergy(pref.getMinEnergy());
+			dogPref.setMaxWeight(pref.getMaxWeight());
+			dogPref.setMinWeight(pref.getMinWeight());
+			dog.setPreferences(dogPref);
+			dRepo.saveAndFlush(dog);
+			return dog;
+
+		}
+		return null;
+	}
+
+	@Override
+	public Dog addPhoto(String urlString, Integer dogId) {
+		Optional<Dog> op = dRepo.findById(dogId);
+		if (op.isPresent()) {
+			Dog dog = op.get();
+			Photo photo = new Photo();
+			photo.setDog(dog);
+			photo.setUrl(urlString);
+			dog.addPhoto(photo);
+			dRepo.saveAndFlush(dog);
+			return dog;
+		}
+		return null;
+	}
+
+	@Override
+	public Dog deletePhoto(Integer dogId, Integer photoId) {
+		Optional<Dog> op = dRepo.findById(dogId);
+		Optional<Photo> op2 = pRepo.findById(photoId);
+		if(op.isPresent() && op2.isPresent()) {
+			Dog dog = op.get();
+			Photo photo = op2.get();
+			dog.removePhoto(photo);
+			dRepo.saveAndFlush(dog); 
+			return dog;
+		}
+		return null;
+	}
 
 }

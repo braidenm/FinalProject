@@ -20,8 +20,8 @@ import com.skilldistillery.doggyTinder.entities.Preferences;
 import com.skilldistillery.doggyTinder.services.DogService;
 import com.skilldistillery.doggyTinder.services.UserService;
 
+//@CrossOrigin({ "*", "http://localhost:4201" })
 @RestController
-@CrossOrigin({ "*", "http://localhost:4201" })
 @RequestMapping("api")
 public class DogController {
 

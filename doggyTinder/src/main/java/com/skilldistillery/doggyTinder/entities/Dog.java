@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Dog {
 	//Feilds
@@ -20,6 +22,7 @@ public class Dog {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
@@ -29,16 +32,22 @@ public class Dog {
 	private Integer energy;
 	private Integer age;
 	private String about;
+	@JsonIgnore
 	@OneToOne(mappedBy="dog")
 	private Preferences preferences;
+	@JsonIgnore
 	@OneToMany(mappedBy="thisDog")
 	private List<Likes> likes;
+	@JsonIgnore
 	@OneToMany(mappedBy="thisDog")
 	private List<Message> messages;
+	@JsonIgnore
 	@OneToMany(mappedBy="dog")
 	private List<Photo> photos;
+	@JsonIgnore
 	@OneToMany(mappedBy="thisDog")
 	private List<Dislike> dislikes;
+	@JsonIgnore
 	@OneToMany(mappedBy="thisDog")
 	private List<Matches> matches;
 	private Boolean active;
@@ -245,7 +254,7 @@ public class Dog {
 	}
 	@Override
 	public String toString() {
-		return "Dog [id=" + id + ", user=" + user + ", name=" + name + ", breed=" + breed + ", weight=" + weight
+		return "Dog [id=" + id + ", name=" + name + ", breed=" + breed + ", weight=" + weight
 				+ ", energy=" + energy + ", age=" + age + ", about=" + about + "]";
 	}
 

@@ -2,13 +2,21 @@ package com.skilldistillery.doggyTinder.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Preferences {
 	
+	
+	
 	//Fields
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
 	
 	@OneToOne
 	@JoinColumn(name="dog_id")
@@ -28,12 +36,12 @@ public class Preferences {
 	
 	
 	//Methods
-	public Dog getDog() {
-		return dog;
-	}
-	public void setDog(Dog dog) {
-		this.dog = dog;
-	}
+//	public Dog getDog() {
+//		return dog;
+//	}
+//	public void setDog(Dog dog) {
+//		this.dog = dog;
+//	}
 	public Integer getMinWeight() {
 		return minWeight;
 	}
@@ -70,17 +78,25 @@ public class Preferences {
 	public void setMaxAge(Integer maxAge) {
 		this.maxAge = maxAge;
 	}
+	
+
+	public Preferences(int id, Dog dog, Integer minWeight, Integer maxWeight, Integer minEnergy, Integer maxEnergy,
+			Integer minAge, Integer maxAge) {
+		super();
+		this.id = id;
+		this.dog = dog;
+		this.minWeight = minWeight;
+		this.maxWeight = maxWeight;
+		this.minEnergy = minEnergy;
+		this.maxEnergy = maxEnergy;
+		this.minAge = minAge;
+		this.maxAge = maxAge;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((dog == null) ? 0 : dog.hashCode());
-		result = prime * result + ((maxAge == null) ? 0 : maxAge.hashCode());
-		result = prime * result + ((maxEnergy == null) ? 0 : maxEnergy.hashCode());
-		result = prime * result + ((maxWeight == null) ? 0 : maxWeight.hashCode());
-		result = prime * result + ((minAge == null) ? 0 : minAge.hashCode());
-		result = prime * result + ((minEnergy == null) ? 0 : minEnergy.hashCode());
-		result = prime * result + ((minWeight == null) ? 0 : minWeight.hashCode());
+		result = prime * result + id;
 		return result;
 	}
 	@Override
@@ -92,62 +108,19 @@ public class Preferences {
 		if (getClass() != obj.getClass())
 			return false;
 		Preferences other = (Preferences) obj;
-		if (dog == null) {
-			if (other.dog != null)
-				return false;
-		} else if (!dog.equals(other.dog))
-			return false;
-		if (maxAge == null) {
-			if (other.maxAge != null)
-				return false;
-		} else if (!maxAge.equals(other.maxAge))
-			return false;
-		if (maxEnergy == null) {
-			if (other.maxEnergy != null)
-				return false;
-		} else if (!maxEnergy.equals(other.maxEnergy))
-			return false;
-		if (maxWeight == null) {
-			if (other.maxWeight != null)
-				return false;
-		} else if (!maxWeight.equals(other.maxWeight))
-			return false;
-		if (minAge == null) {
-			if (other.minAge != null)
-				return false;
-		} else if (!minAge.equals(other.minAge))
-			return false;
-		if (minEnergy == null) {
-			if (other.minEnergy != null)
-				return false;
-		} else if (!minEnergy.equals(other.minEnergy))
-			return false;
-		if (minWeight == null) {
-			if (other.minWeight != null)
-				return false;
-		} else if (!minWeight.equals(other.minWeight))
+		if (id != other.id)
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Preferences [dog=" + dog + ", minWeight=" + minWeight + ", maxWeight=" + maxWeight + ", minEnergy="
-				+ minEnergy + ", maxEnergy=" + maxEnergy + ", minAge=" + minAge + ", maxAge=" + maxAge + "]";
-	}
-	public Preferences(Dog dog, Integer minWeight, Integer maxWeight, Integer minEnergy, Integer maxEnergy,
-			Integer minAge, Integer maxAge) {
-		super();
-		this.dog = dog;
-		this.minWeight = minWeight;
-		this.maxWeight = maxWeight;
-		this.minEnergy = minEnergy;
-		this.maxEnergy = maxEnergy;
-		this.minAge = minAge;
-		this.maxAge = maxAge;
+		return "Preferences [id=" + id + ", dog=" + dog + ", minWeight=" + minWeight + ", maxWeight=" + maxWeight
+				+ ", minEnergy=" + minEnergy + ", maxEnergy=" + maxEnergy + ", minAge=" + minAge + ", maxAge=" + maxAge
+				+ "]";
 	}
 	public Preferences() {
-		super();
 	}
+
 	
 	
 	

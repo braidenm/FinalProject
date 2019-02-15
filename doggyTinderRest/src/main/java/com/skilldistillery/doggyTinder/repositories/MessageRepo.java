@@ -8,8 +8,8 @@ import com.skilldistillery.doggyTinder.entities.Message;
 
 public interface MessageRepo extends JpaRepository<Message, Integer> {
 	
-	List<Message> findByReceiverIdAndSenderIdOrderByDateAsc(int rid, int sid);
-	List<Message> findByReceiverId(int rid);
-	List<Message> findBySenderId(int sid);
+	List<Message> findByThatDog_IdAndThisDog_IdOrderByDateAsc(int rid, int sid);
+	List<Message> findByThatDog_Id(int rid);
+	List<Message> findByThisDog_Id(int sid);
 
 }

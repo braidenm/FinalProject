@@ -43,18 +43,18 @@ public class MessageServiceImpl implements MessageService {
 
 	@Override
 	public List<Message> findByReceiverIdAndSenderIdOrderByDateAsc(int rid, int sid) {
-		List<Message> messages = mRepo.findByReceiverIdAndSenderIdOrderByDateAsc(rid, sid);
+		List<Message> messages = mRepo.findByThatDog_IdAndThisDog_IdOrderByDateAsc(rid, sid);
 		return messages;
 	}
 
 	@Override
 	public List<Message> findByReceiverId(int rid) {
-			return mRepo.findByReceiverId(rid);
+			return mRepo.findByThatDog_Id(rid);
 	}
 
 	@Override
 	public List<Message> findBySenderId(int sid) {
-		return mRepo.findBySenderId(sid);
+		return mRepo.findByThisDog_Id(sid);
 	}
 
 }

@@ -37,12 +37,12 @@ public class Preferences {
 	private String sex;
 	
 	//Methods
-//	public Dog getDog() {
-//		return dog;
-//	}
-//	public void setDog(Dog dog) {
-//		this.dog = dog;
-//	}
+	public Dog getDog() {
+		return dog;
+	}
+	public void setDog(Dog dog) {
+		this.dog = dog;
+	}
 	public Integer getMinWeight() {
 		return minWeight;
 	}
@@ -86,12 +86,7 @@ public class Preferences {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Dog getDog() {
-		return dog;
-	}
-	public void setDog(Dog dog) {
-		this.dog = dog;
-	}
+
 	public String getSex() {
 		return sex;
 	}

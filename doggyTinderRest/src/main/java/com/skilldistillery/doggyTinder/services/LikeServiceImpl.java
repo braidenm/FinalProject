@@ -30,22 +30,21 @@ public class LikeServiceImpl implements LikeService{
 			like.setThatDog(op2.get());
 			like.setThisDog(op.get());
 			Dog dog = op.get();
-			dog.
-			dRepo.saveAndFlush();
+			dog.addLike(like);
+			dRepo.saveAndFlush(dog);
+			return dog;
 		}
 		return null;
 	}
 
 	@Override
 	public List<Likes> getAllLikes(Integer thisDog) {
-		// TODO Auto-generated method stub
-		return null;
+		return lRepo.findAll();
 	}
 
 	@Override
 	public List<Likes> findByThatDogId(Integer thatDog) {
-		// TODO Auto-generated method stub
-		return null;
+		return lRepo.findByThatDog_id(thatDog);
 	}
 
 }

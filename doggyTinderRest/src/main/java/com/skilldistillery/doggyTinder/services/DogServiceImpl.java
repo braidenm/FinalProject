@@ -169,6 +169,7 @@ public class DogServiceImpl implements DogService {
 			Dog dog = op.get();
 			Photo photo = op2.get();
 			dog.removePhoto(photo);
+			pRepo.deleteById(photoId);
 			dRepo.saveAndFlush(dog); 
 			return dog;
 		}

@@ -40,7 +40,14 @@ public class Dog {
 	private List<Dislike> dislikes;
 	@OneToMany(mappedBy="thisDog")
 	private List<Match> matches;
+	private Boolean active;
 	
+	public Boolean getActive() {
+		return active;
+	}
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
 	//Methods
 	public Integer getId() {
 		return id;

@@ -11,8 +11,6 @@ import javax.persistence.OneToOne;
 @Entity
 public class Preferences {
 	
-	
-	
 	//Fields
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

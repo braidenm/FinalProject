@@ -14,7 +14,6 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private UserRepo uRepo;
-	
 
 	@Override
 	public List<User> index() {

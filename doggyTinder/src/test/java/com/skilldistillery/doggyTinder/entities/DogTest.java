@@ -1,5 +1,6 @@
-package com.skilldistillery.doggyTinder;
+package com.skilldistillery.doggyTinder.entities;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
@@ -14,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import com.skilldistillery.doggyTinder.entities.Dog;
 
-class dogTest {
+class DogTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
@@ -42,18 +43,18 @@ class dogTest {
 	}
 
 	@Test
-	void test_connection() {
+	void test_dog_connection() {
 		
 		Dog d = em.find(Dog.class, 1);
 		
-		assertEquals("", "name");
-		assertEquals("", "breed");
-		assertEquals("", "liked");
-		assertEquals("", "disliked");
-		assertEquals("", "preferences");
-		assertEquals("", "match");
-		assertEquals("", "messages");
-		assertEquals("", "photo");
+		assertEquals("Spot", d.getName());
+		assertEquals("Mutt", d.getBreed());
+		assertNotNull(d.getLikes());
+		assertNotNull(d.getDislikes());
+		assertNotNull(d.getPreferences());
+		assertNotNull(d.getMatches());
+		assertNotNull(d.getMessages());
+		assertNotNull(d.getPhotos());
 		
 	}
 

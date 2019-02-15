@@ -34,6 +34,7 @@ public class Preferences {
 	@Column(name="max_age")
 	private Integer maxAge;
 	
+	private String sex;
 	
 	//Methods
 	public Dog getDog() {
@@ -79,18 +80,18 @@ public class Preferences {
 		this.maxAge = maxAge;
 	}
 	
-
-	public Preferences(int id, Dog dog, Integer minWeight, Integer maxWeight, Integer minEnergy, Integer maxEnergy,
-			Integer minAge, Integer maxAge) {
-		super();
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
 		this.id = id;
-		this.dog = dog;
-		this.minWeight = minWeight;
-		this.maxWeight = maxWeight;
-		this.minEnergy = minEnergy;
-		this.maxEnergy = maxEnergy;
-		this.minAge = minAge;
-		this.maxAge = maxAge;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 	@Override
 	public int hashCode() {
@@ -119,6 +120,19 @@ public class Preferences {
 				+ "]";
 	}
 	public Preferences() {
+	}
+	public Preferences(int id, Dog dog, Integer minWeight, Integer maxWeight, Integer minEnergy, Integer maxEnergy,
+			Integer minAge, Integer maxAge, String sex) {
+		super();
+		this.id = id;
+		this.dog = dog;
+		this.minWeight = minWeight;
+		this.maxWeight = maxWeight;
+		this.minEnergy = minEnergy;
+		this.maxEnergy = maxEnergy;
+		this.minAge = minAge;
+		this.maxAge = maxAge;
+		this.sex = sex;
 	}
 
 	

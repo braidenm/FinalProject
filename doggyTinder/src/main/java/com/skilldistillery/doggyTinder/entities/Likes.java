@@ -8,7 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Like {
+public class Likes {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -38,12 +38,28 @@ public class Like {
 		this.thatDog = thatDog;
 	}
 
+	
+
+	public Likes(int id, Dog thisDog, Dog thatDog) {
+		super();
+		this.id = id;
+		this.thisDog = thisDog;
+		this.thatDog = thatDog;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((thatDog == null) ? 0 : thatDog.hashCode());
-		result = prime * result + ((thisDog == null) ? 0 : thisDog.hashCode());
+		result = prime * result + id;
 		return result;
 	}
 
@@ -55,32 +71,18 @@ public class Like {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Like other = (Like) obj;
-		if (thatDog == null) {
-			if (other.thatDog != null)
-				return false;
-		} else if (!thatDog.equals(other.thatDog))
-			return false;
-		if (thisDog == null) {
-			if (other.thisDog != null)
-				return false;
-		} else if (!thisDog.equals(other.thisDog))
+		Likes other = (Likes) obj;
+		if (id != other.id)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Like [thisDog=" + thisDog + ", thatDog=" + thatDog + "]";
+		return "Like [id=" + id + ", thisDog=" + thisDog + ", thatDog=" + thatDog + "]";
 	}
 
-	public Like(Dog thisDog, Dog thatDog) {
-		super();
-		this.thisDog = thisDog;
-		this.thatDog = thatDog;
-	}
-
-	public Like() {
+	public Likes() {
 		super();
 	}
 	

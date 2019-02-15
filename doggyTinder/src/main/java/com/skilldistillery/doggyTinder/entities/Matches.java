@@ -8,18 +8,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Match {
+public class Matches {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	@ManyToOne
-	@JoinColumn(name="this_dog")
+	@JoinColumn(name="dog1_id")
 	private Dog thisDog;
 	
 	@ManyToOne
-	@JoinColumn(name="that_dog")
+	@JoinColumn(name="dog2_id")
 	private Dog thatDog;
 
 	public Dog getThisDog() {
@@ -38,12 +38,13 @@ public class Match {
 		this.thatDog = thatDog;
 	}
 
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((thatDog == null) ? 0 : thatDog.hashCode());
-		result = prime * result + ((thisDog == null) ? 0 : thisDog.hashCode());
+		result = prime * result + id;
 		return result;
 	}
 
@@ -55,16 +56,8 @@ public class Match {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Match other = (Match) obj;
-		if (thatDog == null) {
-			if (other.thatDog != null)
-				return false;
-		} else if (!thatDog.equals(other.thatDog))
-			return false;
-		if (thisDog == null) {
-			if (other.thisDog != null)
-				return false;
-		} else if (!thisDog.equals(other.thisDog))
+		Matches other = (Matches) obj;
+		if (id != other.id)
 			return false;
 		return true;
 	}
@@ -74,15 +67,17 @@ public class Match {
 		return "Match [thisDog=" + thisDog + ", thatDog=" + thatDog + "]";
 	}
 
-	public Match(Dog thisDog, Dog thatDog) {
-		super();
+	public Matches(int id, Dog thisDog, Dog thatDog) {
+		this.id = id;
 		this.thisDog = thisDog;
 		this.thatDog = thatDog;
 	}
 
-	public Match() {
+	public Matches() {
 		super();
 	}
+
+
 	
 	
 }

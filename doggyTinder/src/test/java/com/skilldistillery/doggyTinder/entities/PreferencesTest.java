@@ -1,6 +1,7 @@
-package com.skilldistillery.doggyTinder;
+package com.skilldistillery.doggyTinder.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,9 +13,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.doggyTinder.entities.Address;
+import com.skilldistillery.doggyTinder.entities.Preferences;
 
-class AddressTest {
+class PreferencesTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
@@ -42,13 +43,15 @@ class AddressTest {
 	}
 
 	@Test
-	void test_connection() {
+	void test_preferences_connection() {
 		
-		Address a = em.find(Address.class, 1);
+		Preferences p = em.find(Preferences.class, 1);
 		
-		assertEquals("7400 E Orchard Rd #1450n", a.getStreet());
-		assertEquals("Greenwood Village", a.getCity());
-		assertEquals("Colorado", a.getState());
+		assertTrue(0 == p.getMinWeight());
+		assertTrue(200 == p.getMaxWeight());
+		assertTrue(0 == p.getMinAge());
+		assertTrue(30 == p.getMaxAge());
+		assertEquals("Male", p.getSex());
 		
 	}
 

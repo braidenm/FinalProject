@@ -39,13 +39,18 @@ public class LikeServiceImpl implements LikeService{
 	}
 
 	@Override
-	public List<Likes> getAllLikes(Integer thisDog) {
-		return lRepo.findAll();
+	public List<Likes> getAllLikesByThisDog(Integer thisDog) {
+		return lRepo.findByThisDog_id(thisDog);
 	}
 
 	@Override
-	public List<Likes> findByThatDogId(Integer thatDog) {
+	public List<Likes> getAllLikesByThatDogId(Integer thatDog) {
 		return lRepo.findByThatDog_id(thatDog);
+	}
+
+	@Override
+	public List<Likes> getAllLikes() {
+		return lRepo.findAll();
 	}
 
 }

@@ -12,25 +12,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.doggyTinder.entities.Dislike;
 import com.skilldistillery.doggyTinder.entities.Dog;
 import com.skilldistillery.doggyTinder.entities.Likes;
-import com.skilldistillery.doggyTinder.services.DislikeService;
+import com.skilldistillery.doggyTinder.services.LikeService;
 
 @RestController
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost:4201" })
-public class DislikeController {
-
+public class LikesController {
+	
 	@Autowired
-	private DislikeService dServ;
-
-	@PostMapping("dogs/dislikes/{id1}/{id2}")
-	public Dog addDislike(HttpServletResponse res, @PathVariable Integer id1, @PathVariable Integer id2) {
+	private LikeService lServ;
+	
+	@PostMapping("dogs/likes/{id1}/{id2}")
+	public Dog addLike(HttpServletResponse res, @PathVariable Integer id1, @PathVariable Integer id2) {
 
 		try {
 			res.setStatus(201);
-			return dServ.addDislike(id1, id2);
+			return lServ.addlike(id1, id2);
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(404);
@@ -39,12 +38,12 @@ public class DislikeController {
 		}
 
 	}
-	@GetMapping("dogs/dislikes/thisDog/{id1}")
-	public List<Dislike> getAllDislikesByThisDog(HttpServletResponse res, @PathVariable Integer id1) {
+	@GetMapping("dogs/likes/thisDog/{id1}")
+	public List<Likes> getAllLikesByThisDog(HttpServletResponse res, @PathVariable Integer id1) {
 		
 		try {
 			res.setStatus(201);
-			return dServ.getAllDislikesByThisDog(id1);
+			return lServ.getAllLikesByThisDog(id1);
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(404);
@@ -53,12 +52,12 @@ public class DislikeController {
 		}
 	}
 	
-	@GetMapping("dogs/dislikes/thatDog/{id1}")
-	public List<Dislike> getAllDislikesByThatDog(HttpServletResponse res, @PathVariable Integer id1) {
+	@GetMapping("dogs/likes/thatDog/{id1}")
+	public List<Likes> getAllLikesByThatDog(HttpServletResponse res, @PathVariable Integer id1) {
 		
 		try {
 			res.setStatus(201);
-			return dServ.getAllDislikesByThatDog(id1);
+			return lServ.getAllLikesByThatDogId(id1);
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(404);
@@ -67,15 +66,17 @@ public class DislikeController {
 		}
 	}
 	
-	@GetMapping("dogs/dislikes")
-	public List<Dislike> getAllDislikes(HttpServletResponse res) {
+	@GetMapping("dogs/likes")
+	public List<Likes> getAllLikes(HttpServletResponse res) {
 		try {
 			res.setStatus(201);
-			return dServ.getAllDislikes();
+			return lServ.getAllLikes();
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(404);
 			return null;
 		}
 	}
+	
+
 }

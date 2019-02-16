@@ -39,8 +39,19 @@ public class DislikeServiceImpl implements DislikeService {
 	}
 
 	@Override
-	public List<Dislike> getAllDislikes(Integer dogId) {
+	public List<Dislike> getAllDislikesByThisDog(Integer dogId) {
+		return dRepo.findByThisDog_id(dogId);
+	}
+
+	@Override
+	public List<Dislike> getAllDislikes() {
 		return dRepo.findAll();
+	}
+
+	@Override
+	public List<Dislike> getAllDislikesByThatDog(Integer dogid) {
+		// TODO Auto-generated method stub
+		return dRepo.findByThatDog_id(dogid);
 	}
 
 }

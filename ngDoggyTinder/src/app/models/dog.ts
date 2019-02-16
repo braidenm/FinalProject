@@ -13,16 +13,16 @@ export class Dog {
   sex: string;
 
   constructor(
-    id: number,
-    user: User,
-    name: string,
-    breed: string,
-    weight: number,
-    energy: number,
-    age: number,
-    about: string,
-    active: boolean,
-    sex: string
+    id?: number,
+    user?: User,
+    name?: string,
+    breed?: string,
+    weight?: number,
+    energy?: number,
+    age?: number,
+    about?: string,
+    active?: boolean,
+    sex?: string
   ) {
     this.id = id;
     this.user = user;

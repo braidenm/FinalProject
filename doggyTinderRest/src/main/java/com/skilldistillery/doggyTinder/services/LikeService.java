@@ -8,6 +8,7 @@ import com.skilldistillery.doggyTinder.entities.Likes;
 public interface LikeService {
 	
 	public Dog addlike(Integer thisDog, Integer thatDog);
-	public List<Likes> getAllLikes(Integer thisDog);
-	public List<Likes> findByThatDogId(Integer thatDog);
+	public List<Likes> getAllLikes();
+	List<Likes> getAllLikesByThisDog(Integer thisDog);
+	List<Likes> getAllLikesByThatDogId(Integer thatDog);
 }

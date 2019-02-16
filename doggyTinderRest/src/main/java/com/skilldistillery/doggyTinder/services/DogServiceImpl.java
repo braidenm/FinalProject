@@ -163,6 +163,7 @@ public class DogServiceImpl implements DogService {
 	@Override
 	public List<Dog> getAllDogsByUserId(Integer id) {
 		Optional<User> uOp = uRepo.findById(id);
+		System.out.println(uOp);
 		try {
 			if (uOp.isPresent()) {
 				User user = uOp.get();
@@ -198,12 +199,20 @@ public class DogServiceImpl implements DogService {
 			dogPref.setMinEnergy(pref.getMinEnergy());
 			dogPref.setMaxWeight(pref.getMaxWeight());
 			dogPref.setMinWeight(pref.getMinWeight());
+			dogPref.setSex(pref.getSex());
 			dog.setPreferences(dogPref);
 			dRepo.saveAndFlush(dog);
 			return dog;
 
 		}
 		return null;
+	}
+	
+	@Override
+	public Preferences getPreferencesByDogId(Integer id) {
+		Preferences pref = prefRepo.findPreferencesByDog_Id(id);
+		return pref;
+		
 	}
 
 	@Override
@@ -215,6 +224,7 @@ public class DogServiceImpl implements DogService {
 			photo.setDog(dog);
 			photo.setUrl(urlString);
 			dog.addPhoto(photo);
+			pRepo.saveAndFlush(photo);
 			dRepo.saveAndFlush(dog);
 			return dog;
 		}
@@ -232,6 +242,17 @@ public class DogServiceImpl implements DogService {
 			pRepo.deleteById(photoId);
 			dRepo.saveAndFlush(dog); 
 			return dog;
+		}
+		return null;
+	}
+	
+	@Override
+	public List<Photo> getPhotosByDogId(Integer dogId) {
+		Optional<Dog> opDog = dRepo.findById(dogId);
+		if(opDog.isPresent()) {
+			Dog dog = opDog.get();
+			List<Photo> photos = dog.getPhotos();
+			return photos;
 		}
 		return null;
 	}

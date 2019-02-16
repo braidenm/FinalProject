@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.doggyTinder.entities.Dog;
+import com.skilldistillery.doggyTinder.entities.Photo;
 import com.skilldistillery.doggyTinder.entities.Preferences;
 import com.skilldistillery.doggyTinder.services.DogService;
 import com.skilldistillery.doggyTinder.services.UserService;
@@ -36,6 +36,31 @@ public class DogController {
 		try {
 			res.setStatus(201);
 			return dServ.index();
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(404);
+			return null;
+		}
+	}
+	
+	@GetMapping("dogs/{id}")
+	public Dog show(HttpServletResponse res, @PathVariable Integer id) {
+		try {
+			res.setStatus(201);
+			return dServ.show(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(404);
+			return null;
+		}
+	}
+	
+	@GetMapping("dogs/{id}/pref")
+	public Preferences showPref(HttpServletResponse res, @PathVariable Integer id) {
+		try {
+			res.setStatus(201);
+			
+			return dServ.getPreferencesByDogId(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(404);
@@ -80,7 +105,9 @@ public class DogController {
 			return null;
 		}
 	}
-	@GetMapping("dogs/users/{id}/")
+	
+	// not working
+	@GetMapping("dogs/users/{id}")
 	public List <Dog> getAllDogsByUser(HttpServletResponse res, @PathVariable Integer id) {
 		
 		try {
@@ -92,6 +119,8 @@ public class DogController {
 			return null;
 		}
 	}
+	
+	
 	@GetMapping("dogs/name/{name}")
 	public List <Dog> findByNameLike(HttpServletResponse res, @PathVariable String name) {
 		
@@ -116,8 +145,9 @@ public class DogController {
 			return null;
 		}
 	}
-	@GetMapping("dogs/{id}/pref")
-	public Dog findByBreedLike(HttpServletResponse res, @PathVariable Integer id, @RequestBody Preferences pref) {
+	
+	@PutMapping("dogs/{id}/pref")
+	public Dog updatePreferences(HttpServletResponse res, @PathVariable Integer id, @RequestBody Preferences pref) {
 		
 		try {
 			res.setStatus(201);
@@ -128,12 +158,12 @@ public class DogController {
 			return null;
 		}
 	}
-	@PostMapping("dogs/{id}/photo/{urlString}")
-	public Dog addPhoto(HttpServletResponse res, @PathVariable Integer id, @PathVariable String urlString) {
+	@PostMapping("dogs/{id}/photo")
+	public Dog addPhoto(HttpServletResponse res, @PathVariable Integer id, @RequestBody Photo photo) {
 		
 		try {
 			res.setStatus(201);
-			return dServ.addPhoto(urlString, id);
+			return dServ.addPhoto(photo.getUrl(), id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(404);
@@ -147,6 +177,18 @@ public class DogController {
 			res.setStatus(201);
 			return dServ.deletePhoto(id, pid);
 		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(404);
+			return null;
+		}
+	}
+	
+	@GetMapping("dogs/{id}/photo")
+	public List<Photo> getPhotos(HttpServletResponse res, @PathVariable Integer id) {
+		try {
+			res.setStatus(201);
+			return dServ.getPhotosByDogId(id);
+		} catch (Exception e ) {
 			e.printStackTrace();
 			res.setStatus(404);
 			return null;

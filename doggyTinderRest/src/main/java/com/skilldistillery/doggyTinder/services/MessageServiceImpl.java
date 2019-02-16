@@ -22,7 +22,7 @@ public class MessageServiceImpl implements MessageService {
 	
 	
 	@Override
-	public Dog addMessage(String text, Integer sender, Integer receiver) {
+	public Message addMessage(String text, Integer sender, Integer receiver) {
 		Optional<Dog> op = dRepo.findById(sender);
 		Optional<Dog> op2 = dRepo.findById(receiver);
 		Message message = new Message();
@@ -35,14 +35,14 @@ public class MessageServiceImpl implements MessageService {
 			mRepo.saveAndFlush(message);
 			senderDog.addMessage(message);
 			dRepo.saveAndFlush(senderDog);
-			return senderDog;
+			return message;
 		}
 		
 		return null;
 	}
 
 	@Override
-	public List<Message> findByReceiverIdAndSenderIdOrderByDateAsc(int rid, int sid) {
+	public List<Message> findByReceiverIdAndSenderIdOrderByDateAsc(int sid, int rid) {
 		List<Message> messages = mRepo.findByThatDog_IdAndThisDog_IdOrderByDateAsc(rid, sid);
 		return messages;
 	}

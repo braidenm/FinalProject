@@ -28,6 +28,7 @@ public class MatchServiceImpl implements MatchService {
 		if(op.isPresent() && op2.isPresent()) {
 			match.setThatDog(op2.get());
 			match.setThisDog(op.get());
+			mRepo.saveAndFlush(match);
 			Dog dog = op.get();
 			Dog dog2 = op2.get();
 			dog.addMatch(match);
@@ -45,12 +46,14 @@ public class MatchServiceImpl implements MatchService {
 		Optional<Dog> op2 = dogRepo.findById(thatDog);
 		Matches match = new Matches();
 		if(op.isPresent() && op2.isPresent()) {
-			match.setThatDog(op2.get());
-			match.setThisDog(op.get());
+			match.setThatDog(null);
+			match.setThisDog(null);
+			
 			Dog dog = op.get();
 			Dog dog2 = op2.get();
 			dog.removeMatch(match);
 			dog2.removeMatch(match);
+			mRepo.delete(match);
 			dogRepo.saveAndFlush(dog);
 			dogRepo.saveAndFlush(dog2);
 			return dog;

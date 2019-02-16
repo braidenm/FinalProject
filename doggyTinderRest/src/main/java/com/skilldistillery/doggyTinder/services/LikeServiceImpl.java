@@ -29,6 +29,7 @@ public class LikeServiceImpl implements LikeService{
 		if(op.isPresent() && op2.isPresent()) {
 			like.setThatDog(op2.get());
 			like.setThisDog(op.get());
+			lRepo.saveAndFlush(like);
 			Dog dog = op.get();
 			dog.addLike(like);
 			dRepo.saveAndFlush(dog);

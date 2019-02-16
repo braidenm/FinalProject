@@ -42,7 +42,9 @@ public class MessageController {
 		
 		try {
 			res.setStatus(201);
-			return mServ.findByReceiverIdAndSenderIdOrderByDateAsc(dogIdS, dogIdR);
+			List<Message> messages = mServ.findByReceiverIdAndSenderIdOrderByDateAsc(dogIdS, dogIdR);
+			messages.addAll(mServ.findByReceiverIdAndSenderIdOrderByDateAsc(dogIdR, dogIdS));
+			return messages;
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(404);

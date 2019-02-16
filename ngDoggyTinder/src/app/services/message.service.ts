@@ -14,7 +14,7 @@ export class MessageService {
 
    // Fields
    private baseUrl = environment.baseUrl;
-   private url = this.baseUrl + 'api/users';
+   private url = this.baseUrl + 'api/messages';
 
    // Constructor
    constructor(private http: HttpClient, private router: Router, private auth: AuthService) { }
@@ -31,11 +31,50 @@ export class MessageService {
      };
    }
 
-   index() {
+   add(text: string, senderId: number, receiverId: number) {
      // if (!this.auth.checkLogin) {
      //   this.router.navigateByUrl('login');
      // }
-     return this.http.get<Message[]>(this.url, this.getHttp())
+     return this.http.post<Message>(this.url + '/' + text + '/' + senderId + '/' + receiverId, this.getHttp())
+     .pipe(
+           catchError((err: any) => {
+             console.log(err);
+             return throwError('KABOOM broken at todo service index');
+           })
+      );
+   }
+
+   getConversation(senderId: number, receiverId: number) {
+     // if (!this.auth.checkLogin) {
+     //   this.router.navigateByUrl('login');
+     // }
+     return this.http.get<Message[]>(this.url + '/' + senderId + '/' + receiverId, this.getHttp())
+     .pipe(
+           catchError((err: any) => {
+             console.log(err);
+             return throwError('KABOOM broken at todo service index');
+           })
+      );
+   }
+
+   findByReceiver(receiverId: number) {
+     // if (!this.auth.checkLogin) {
+     //   this.router.navigateByUrl('login');
+     // }
+     return this.http.get<Message[]>(this.url + '/receiver/' + receiverId, this.getHttp())
+     .pipe(
+           catchError((err: any) => {
+             console.log(err);
+             return throwError('KABOOM broken at todo service index');
+           })
+      );
+   }
+
+   findBySender(senderId: number) {
+     // if (!this.auth.checkLogin) {
+     //   this.router.navigateByUrl('login');
+     // }
+     return this.http.get<Message[]>(this.url + '/sender/' + senderId, this.getHttp())
      .pipe(
            catchError((err: any) => {
              console.log(err);

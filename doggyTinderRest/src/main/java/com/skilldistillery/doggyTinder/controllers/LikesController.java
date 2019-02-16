@@ -24,12 +24,12 @@ public class LikesController {
 	@Autowired
 	private LikeService lServ;
 	
-	@PostMapping("dogs/likes/{id1}/{id2}")
-	public Dog addLike(HttpServletResponse res, @PathVariable Integer id1, @PathVariable Integer id2) {
+	@PostMapping("dogs/likes/{thisId}/{thatId}")
+	public Dog addLike(HttpServletResponse res, @PathVariable Integer thisId, @PathVariable Integer thatId) {
 
 		try {
 			res.setStatus(201);
-			return lServ.addlike(id1, id2);
+			return lServ.addlike(thisId, thatId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(404);

@@ -20,5 +20,7 @@ public interface DogService {
 	public Dog updatePref(Preferences pref, Integer id);
 	public Dog addPhoto(String imageUrl, Integer dogId);
 	public Dog deletePhoto(Integer dogId, Integer photoId);
+	public Preferences getPreferencesByDogId(Integer id);
+	List<Photo> getPhotosByDogId(Integer dogId);
 	
 }

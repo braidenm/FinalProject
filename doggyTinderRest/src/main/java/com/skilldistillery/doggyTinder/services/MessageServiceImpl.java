@@ -33,8 +33,8 @@ public class MessageServiceImpl implements MessageService {
 			message.setThatDog(receiveDog);
 			message.setText(text);
 			mRepo.saveAndFlush(message);
-			//may need to pull new message from db and add explicitly
-//			senderDog.addMessage(message);
+			senderDog.addMessage(message);
+			dRepo.saveAndFlush(senderDog);
 			return senderDog;
 		}
 		

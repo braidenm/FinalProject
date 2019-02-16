@@ -29,6 +29,7 @@ public class DislikeServiceImpl implements DislikeService {
 		if(op.isPresent() && op2.isPresent()) {
 			dislike.setThatDog(op2.get());
 			dislike.setThisDog(op.get());
+			dRepo.saveAndFlush(dislike);
 			Dog dog = op.get();
 			dog.addDislike(dislike);
 			dogRepo.saveAndFlush(dog);

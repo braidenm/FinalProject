@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.doggyTinder.entities.Dog;
 import com.skilldistillery.doggyTinder.entities.User;
 import com.skilldistillery.doggyTinder.repositories.UserRepo;
 
@@ -31,7 +32,13 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void deleteUser(Integer id) {
-		uRepo.delete(uRepo.findById(id).get());
+		User u = uRepo.findById(id).get();
+		DogService dserve = new DogServiceImpl();
+		for (Dog dog : u.getDogs()) {
+			dserve.delete(dog.getId());
+			
+		}
+		uRepo.delete(u);
 		
 	}
 

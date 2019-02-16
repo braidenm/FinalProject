@@ -23,7 +23,7 @@ public class UserController {
 	@Autowired
 	private UserService uServ;
 
-	@GetMapping("user/{id}")
+	@GetMapping("users/{id}")
 	public User getById(HttpServletResponse res, @PathVariable Integer id) {
 		try {
 			res.setStatus(201);
@@ -36,7 +36,7 @@ public class UserController {
 		}
 	}
 
-	@PutMapping("user")
+	@PutMapping("users")
 	public User update(HttpServletResponse res, @RequestBody User user) {
 
 		try {
@@ -49,7 +49,7 @@ public class UserController {
 		}
 	}
 
-	@DeleteMapping("user/{id}")
+	@DeleteMapping("users/{id}")
 	public void delete(HttpServletResponse res, Integer id) {
 		try {
 			res.setStatus(201);
@@ -60,7 +60,7 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("user")
+	@GetMapping("users")
 	public List<User> index(HttpServletResponse res) {
 		try {
 			res.setStatus(201);

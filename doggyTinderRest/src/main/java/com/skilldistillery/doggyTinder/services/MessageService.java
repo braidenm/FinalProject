@@ -7,7 +7,7 @@ import com.skilldistillery.doggyTinder.entities.Message;
 
 public interface MessageService {
 
-	public Dog addMessage(String message, Integer sender, Integer receiver);
+	public Message addMessage(String message, Integer sender, Integer receiver);
 	public List<Message> findByReceiverIdAndSenderIdOrderByDateAsc(int rid, int sid);
 	public List<Message> findByReceiverId(int rid);
 	public List<Message> findBySenderId(int sid);

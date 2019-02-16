@@ -24,7 +24,7 @@ public class MatchController {
 	private MatchService mServ;
 
 	@PostMapping("matches/{thisId}/{thatId}")
-	public Dog addMatch(HttpServletResponse res,@PathVariable Integer thisId,@PathVariable Integer thatId) {
+	public Dog addMatch(HttpServletResponse res, @PathVariable Integer thisId,@PathVariable Integer thatId) {
 		try {
 			res.setStatus(201);
 			return mServ.addMatch(thisId, thatId);
@@ -37,7 +37,7 @@ public class MatchController {
 	}
 
 	@DeleteMapping("matches/{thisId}/{thatId}")
-	public Dog deleteMatch(HttpServletResponse res,@PathVariable Integer thisId,@PathVariable Integer thatId) {
+	public Dog deleteMatch(HttpServletResponse res, @PathVariable Integer thisId,@PathVariable Integer thatId) {
 		try {
 			res.setStatus(201);
 			return mServ.deleteMatch(thisId, thatId);
@@ -49,7 +49,7 @@ public class MatchController {
 	}
 
 	@GetMapping("matches/{dogId}")
-	public Set<Matches> getAllMatches(HttpServletResponse res,@PathVariable Integer dogId) {
+	public Set<Matches> getAllMatches(HttpServletResponse res, @PathVariable Integer dogId) {
 		try {
 			res.setStatus(201);
 			return mServ.getAllMatches(dogId);

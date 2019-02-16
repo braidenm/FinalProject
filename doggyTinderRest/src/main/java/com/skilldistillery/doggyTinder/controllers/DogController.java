@@ -47,7 +47,7 @@ public class DogController {
 	public void delete(HttpServletResponse res, @PathVariable Integer id) {
 
 		try {
-			res.setStatus(201);
+			res.setStatus(204);
 			dServ.delete(id);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -72,7 +72,7 @@ public class DogController {
 	public Dog update(HttpServletResponse res, @RequestBody Dog dog) {
 
 		try {
-			res.setStatus(201);
+			res.setStatus(204);
 			return dServ.update(dog);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -38,7 +38,13 @@ public class Dislike {
 		this.thatDog = thatDog;
 	}
 
+	public int getId() {
+		return id;
+	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public Dislike(int id, Dog thisDog, Dog thatDog) {
 		super();

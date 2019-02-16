@@ -22,6 +22,14 @@ public class Matches {
 	@JoinColumn(name="dog2_id")
 	private Dog thatDog;
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Dog getThisDog() {
 		return thisDog;
 	}
@@ -64,7 +72,7 @@ public class Matches {
 
 	@Override
 	public String toString() {
-		return "Match [thisDog=" + thisDog + ", thatDog=" + thatDog + "]";
+		return "Matches [id=" + id + ", thisDog=" + thisDog + ", thatDog=" + thatDog + "]";
 	}
 
 	public Matches(int id, Dog thisDog, Dog thatDog) {

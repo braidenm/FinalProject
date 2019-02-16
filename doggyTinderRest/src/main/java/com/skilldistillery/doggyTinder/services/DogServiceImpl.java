@@ -6,12 +6,21 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.doggyTinder.entities.Dislike;
 import com.skilldistillery.doggyTinder.entities.Dog;
+import com.skilldistillery.doggyTinder.entities.Likes;
+import com.skilldistillery.doggyTinder.entities.Matches;
+import com.skilldistillery.doggyTinder.entities.Message;
 import com.skilldistillery.doggyTinder.entities.Photo;
 import com.skilldistillery.doggyTinder.entities.Preferences;
 import com.skilldistillery.doggyTinder.entities.User;
+import com.skilldistillery.doggyTinder.repositories.DislikeRepo;
 import com.skilldistillery.doggyTinder.repositories.DogRepo;
+import com.skilldistillery.doggyTinder.repositories.LikeRepo;
+import com.skilldistillery.doggyTinder.repositories.MatchRepo;
+import com.skilldistillery.doggyTinder.repositories.MessageRepo;
 import com.skilldistillery.doggyTinder.repositories.PhotoRepo;
+import com.skilldistillery.doggyTinder.repositories.PreferencesRepo;
 import com.skilldistillery.doggyTinder.repositories.UserRepo;
 
 @Service
@@ -23,6 +32,16 @@ public class DogServiceImpl implements DogService {
 	private UserRepo uRepo;
 	@Autowired
 	private PhotoRepo pRepo;
+	@Autowired
+	private PreferencesRepo prefRepo;
+	@Autowired
+	private MessageRepo messRepo;
+	@Autowired
+	private LikeRepo likeRepo;
+	@Autowired
+	private DislikeRepo disRepo;
+	@Autowired
+	private MatchRepo matchRepo;
 
 	@Override
 	public List<Dog> index() {
@@ -44,12 +63,51 @@ public class DogServiceImpl implements DogService {
 		Optional<Dog> op = dRepo.findById(id);
 		if (op.isPresent()) {
 			Dog dog = op.get();
+			
+			List<Photo> photos = dog.getPhotos();
+			for (Photo photo : photos) {
+				photo.setDog(null);
+				pRepo.deleteById(photo.getId());
+			}
 			dog.setPhotos(null);
+			
+			Preferences pref = dog.getPreferences();
 			dog.setPreferences(null);
+			pref.setDog(null);
+			prefRepo.deleteById(pref.getId());
+			
+			List<Message> messages = dog.getMessages();
+			for (Message message : messages) {
+				message.setThatDog(null);
+				message.setThisDog(null);
+				messRepo.deleteById(message.getId());
+			}
 			dog.setMessages(null);
+			
+			List<Likes> likes = dog.getLikes();
+			for (Likes likes2 : likes) {
+				likes2.setThatDog(null);
+				likes2.setThisDog(null);
+				likeRepo.deleteById(likes2.getId());
+			}
 			dog.setLikes(null);
+			
+			List<Dislike> dislikes = dog.getDislikes();
+			for (Dislike dislike : dislikes) {
+				dislike.setThatDog(null);
+				dislike.setThisDog(null);
+				disRepo.deleteById(dislike.getId());;
+			}
 			dog.setDislikes(null);
+			
+			List<Matches> matches = dog.getMatches();
+			for (Matches matches2 : matches) {
+				matches2.setThatDog(null);
+				matches2.setThisDog(null);
+				matchRepo.deleteById(matches2.getId());
+			}
 			dog.setMatches(null);
+			
 			dRepo.saveAndFlush(dog);
 			dRepo.deleteById(id);
 		}
@@ -62,8 +120,10 @@ public class DogServiceImpl implements DogService {
 		try {
 			if (op.isPresent()) {
 				dog.setUser(op.get());
+				dRepo.saveAndFlush(dog);
 				Preferences pref = new Preferences();
 				pref.setDog(dog);
+				prefRepo.saveAndFlush(pref);
 				dog.setPreferences(pref);
 				dRepo.saveAndFlush(dog);
 				return dog;

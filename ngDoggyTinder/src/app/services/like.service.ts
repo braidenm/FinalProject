@@ -49,7 +49,7 @@ export class LikeService {
    // if (!this.auth.checkLogin) {
    //   this.router.navigateByUrl('login');
    // }
-   return this.http.get<Likes[]>(this.url + '/' + thatDogId, this.getHttp())
+   return this.http.get<Likes[]>(this.url + '/thatDog/' + thatDogId, this.getHttp())
    .pipe(
          catchError((err: any) => {
            console.log(err);
@@ -61,7 +61,7 @@ export class LikeService {
    // if (!this.auth.checkLogin) {
    //   this.router.navigateByUrl('login');
    // }
-   return this.http.get<Likes[]>(this.url + '/' + thisDogId, this.getHttp())
+   return this.http.get<Likes[]>(this.url + '/thisDog/' + thisDogId, this.getHttp())
    .pipe(
          catchError((err: any) => {
            console.log(err);

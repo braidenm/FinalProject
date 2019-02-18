@@ -2,8 +2,11 @@
 
 Created by:
 Jimmy Fruchterman - DBA
+
 Mike Murrell - Scrum Master
+
 Braiden Miller - Repository owner
+
 
 Link to project on AWS: link
 

@@ -1,4 +1,5 @@
 import { User } from './user';
+import { Photo } from './photo';
 
 
 export class Dog {
@@ -12,6 +13,7 @@ export class Dog {
   about: string;
   active: boolean;
   sex: string;
+  photos: Photo[];
 
   constructor(
     id?: number,

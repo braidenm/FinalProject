@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileViewComponent },
-  { path: 'dogView', component: DogViewComponent },
+  { path: 'dogView/:id', component: DogViewComponent },
   { path: 'admin', component: AdminComponent },
   { path: '**', component: NotFoundComponent },
 ];

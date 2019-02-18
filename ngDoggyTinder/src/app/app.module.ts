@@ -38,6 +38,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     ProfileViewComponent,
     RegisterComponent,
     NotFoundComponent,
+
   ],
   imports: [
     AppRoutingModule,

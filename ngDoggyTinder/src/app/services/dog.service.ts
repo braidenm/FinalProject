@@ -208,9 +208,4 @@ export class DogService {
           })
      );
   }
-
-  addLikedDog(dog: Dog) {
-    this.selectedDog
-
-  }
 }

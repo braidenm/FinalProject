@@ -33,7 +33,7 @@ export class Dog {
     this.energy = energy;
     this.age = age;
     this.about = about;
-    this.active;
+    this.active = active;
     this.sex = sex;
   }
 }

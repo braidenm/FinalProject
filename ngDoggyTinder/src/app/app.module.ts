@@ -23,6 +23,7 @@ import { ProfileViewComponent } from './components/profile-view/profile-view.com
 import { RegisterComponent } from './components/register/register.component';
 import { UserService } from './services/user.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { DogRegisterComponent } from './components/dog-register/dog-register.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     ProfileViewComponent,
     RegisterComponent,
     NotFoundComponent,
+    DogRegisterComponent,
   ],
   imports: [
     AppRoutingModule,

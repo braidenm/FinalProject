@@ -55,6 +55,18 @@ export class UserService {
           })
      );
   }
+  getLoggedInUser() {
+    // if (!this.auth.checkLogin) {
+    //   this.router.navigateByUrl('login');
+    // }
+    return this.http.get<User>(this.url + '/username', this.getHttp())
+    .pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError('KABOOM broken at todo service index');
+          })
+     );
+  }
 
   update(user: User) {
     // if (!this.auth.checkLogin) {

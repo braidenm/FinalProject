@@ -12,5 +12,6 @@ public interface UserService {
 	public User showUser(Integer id);
 	public void deleteUser(Integer id);
 	public User updateUser(User user);
+	public User findByUserName(String userName);
 	
 }

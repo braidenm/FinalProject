@@ -1,5 +1,6 @@
 package com.skilldistillery.doggyTinder.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +34,17 @@ public class UserController {
 			res.setStatus(404);
 			return null;
 
+		}
+	}
+	@GetMapping("users/username")
+	public User getByUsername(HttpServletResponse res, Principal principal) {
+		try {
+			res.setStatus(201);
+			return uServ.findByUserName(principal.getName());
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(404);
+			return null;
 		}
 	}
 

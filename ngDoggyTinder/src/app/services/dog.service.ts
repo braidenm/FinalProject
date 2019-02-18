@@ -17,11 +17,25 @@ export class DogService {
   // Fields
   private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/dogs';
+  private selectedDog: Dog;
 
   // Constructor
   constructor(private http: HttpClient, private router: Router, private auth: AuthService) { }
 
   // Methods
+
+  setSelectedDog(dogId: number) {
+    this.getOneDog(dogId).subscribe(
+      data => this.selectedDog = data,
+      err => {
+        this.router.navigateByUrl('notFound');
+      }
+    );
+  }
+
+  getSelectedDog() {
+    return this.selectedDog;
+  }
   getHttp() {
     const credentials = this.auth.getCredentials();
     return {

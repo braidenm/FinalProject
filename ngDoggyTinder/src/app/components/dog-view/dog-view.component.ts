@@ -14,7 +14,9 @@ export class DogViewComponent implements OnInit {
   constructor(private userve: UserService) { }
 
   ngOnInit() {
-    this.userve.getLoggedInUser
+    this.userve.getLoggedInUser().subscribe(
+      data => this.user = data
+    );
 
     console.log(this.user);
 

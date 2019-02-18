@@ -39,11 +39,8 @@ import { DogRegisterComponent } from './components/dog-register/dog-register.com
     ProfileViewComponent,
     RegisterComponent,
     NotFoundComponent,
-<<<<<<< HEAD
     DogRegisterComponent,
-=======
 
->>>>>>> 6d4a767f9468b4a0b3911fbec727debbe34f508a
   ],
   imports: [
     AppRoutingModule,

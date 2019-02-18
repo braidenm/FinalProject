@@ -17,12 +17,12 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  addUser() {
-    this.authService.register(this.user).subscribe(
-      data => {},
-      error => console.log(error)
-    );
-  }
+  // addUser() {
+  //   this.authService.register(this.user).subscribe(
+  //     data => {},
+  //     error => console.log(error)
+  //   );
+  // }
 
 
 }

@@ -33,8 +33,9 @@ export class AuthService {
     // create request to authenticate credentials
     return this.http.get(this.baseUrl + 'authenticate', httpOptions).pipe(
       tap(res => {
-        localStorage.setItem('credentials', credentials);
-        return res;
+        //come back to this!!
+        // localStorage.setItem('credentials', credentials);
+        // return res;
       }),
       catchError((err: any) => {
         console.log(err);

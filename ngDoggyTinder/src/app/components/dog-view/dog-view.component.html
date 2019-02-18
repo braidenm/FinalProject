@@ -1,5 +1,5 @@
 <div class="col-sm-3"></div>
-<div class="col-sm-3" *ngIf="dog.active && !editDog">
+<div class="col-sm-3" *ngIf="dog.active && !editDog && !preferences">
 
   <div *ngFor="let image of dog.photos">
     <ngb-carousel *ngIf="image">
@@ -22,8 +22,7 @@
     <button *ngIf="isUserDog" (click)="deactivateDog()" class="btn btn-outline-danger">Edit Dog</button>
   </div>
 </div>
-<div *ngIf="editDog">
-
+<div *ngIf="editDog && !preferences">
   <form>
     Name: <input type="text" name="name" required [(ngModel)]="editDog.name">
     Breed: <input type="text" name="breed" required [(ngModel)]="editDog.breed">
@@ -43,7 +42,22 @@
   <h1>Dog is not found or not Active</h1>
   <button *ngIf="isUserDog" class="btn btn-outline-primary" (click)="reactivateDog()"></button>
 </div>
-<div class="col-sm-3" *ngIf="dog.active && !editDog && !isUserDog">
+<div *ngIf="preferences">
+  <form>
+    <input type="number" name="minWeight" min="0" [(ngModel)]="preferences.minWeight">
+    <input type="number" name="maxWeight" min="0" [(ngModel)]="preferences.maxWeight">
+    <input type="number" name="minEnergy" min="0" [(ngModel)]="preferences.minEnergy">
+    <input type="number" name="maxEnergy" min="0" [(ngModel)]="preferences.maxEnergy">
+    <input type="number" name="minAge" min="0" [(ngModel)]="preferences.minAge">
+    <input type="number" name="maxAge" min="0" [(ngModel)]="preferences.maxAge">
+    Gender: <br>
+    <input type="radio" name="sex" value="Male" [(ngModel)]="preferences.sex"> Male<br>
+    <input type="radio" name="sex" value="Female" [(ngModel)]="preferences.sex"> Female <br>
+    <button class="btn btn-outline-secondary" (click)="cancelEditPref()">Cancel</button>
+    <button class="btn btn-outline-primary" (click)="confirmEditPref()">Submit</button>
+  </form>
+</div>
+<div class="col-sm-3" *ngIf="dog.active && !editDog && !isUserDog && !preferences">
   <app-message></app-message>
 </div>
 

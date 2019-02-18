@@ -34,7 +34,7 @@
     Weight: <input type="number" name="weigth" min="0" required [(ngModel)]="editDog.weight">
     Energy Level: <input type="text" name="energy" min="0" max="10" required [(ngModel)]="editDog.energy">
     About: <br>
-    <textarea type="text" name="about" maxlength="500" rows="4" cols="50" [(ngModel)]="editDog.about">
+    <textarea type="text" name="about" maxlength="500" rows="4" cols="50" [(ngModel)]="editDog.about"></textarea>
     <button class="btn btn-outline-secondary" (click)="cancelEditDog()">Cancel</button>
     <button class="btn btn-outline-primary" (click)="confirmEditDog()">Submit</button>
   </form>

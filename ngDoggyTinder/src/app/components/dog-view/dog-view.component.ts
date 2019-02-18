@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { userInfo } from 'os';
 import { Preferences } from 'src/app/models/preferences';
 
+
 @Component({
   selector: 'app-dog-view',
   templateUrl: './dog-view.component.html',

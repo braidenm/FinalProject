@@ -5,7 +5,7 @@ import { User } from 'src/app/models/user';
 import { UserService } from './../../services/user.service';
 import { Dog } from 'src/app/models/dog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { userInfo } from 'os';
+
 
 @Component({
   selector: 'app-dog-view',

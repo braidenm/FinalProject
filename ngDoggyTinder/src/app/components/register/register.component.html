@@ -1,2 +1,18 @@
 <h1>Register User</h1>
 
+<form>
+  Username <input type='text' name='username' [(ngModel)]='user.username'/>
+  Password <input type='text' name='password' [(ngModel)]='user.password'/>
+  Email <input type='text' name='email' [(ngModel)]='user.email'/>
+  First Name <input type='text' name='firstName' [(ngModel)]='user.firstName'/>
+  Gender <input type='text' name='gender' [(ngModel)]='user.gender'/>
+  Age <input type='number' name='age' [(ngModel)]='user.age'/>
+  Street Address <input type='text' name='street' [(ngModel)]='user.address.street'/>
+  City <input type='text' name='city' [(ngModel)]='user.address.city'/>
+  State <input type='text' name='state' [(ngModel)]='user.address.state'/>
+  Zip Code <input type='text' name='zip' [(ngModel)]='user.address.zip'/>
+  Profile Picture URL <input type='text' name='url' [(ngModel)]='user.url'/>
+  <input type='submit' (click)='onSubmit()' value='Submit'>
+</form>
+
+

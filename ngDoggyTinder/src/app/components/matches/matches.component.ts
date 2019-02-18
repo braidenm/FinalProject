@@ -24,12 +24,12 @@ export class MatchesComponent implements OnInit {
         return this.matches = null;
       }
     );
-    if(this.matches) {
+    if (this.matches) {
       for (let i = 0; i < this.matches.length; i++) {
         const match = this.matches[i];
         this.dogServe.getPhotos(match.id).subscribe(
           data => match.photos = data,
-        )
+        );
 
       }
 

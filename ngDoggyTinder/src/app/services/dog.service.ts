@@ -195,7 +195,7 @@ export class DogService {
           })
      );
   }
-  getPhotos(dogId: number, photoId: number) {
+  getPhotos(dogId: number) {
     // if (!this.auth.checkLogin) {
     //   this.router.navigateByUrl('login');
     // }

@@ -1,4 +1,5 @@
 import { User } from './user';
+import { Photo } from './photo';
 
 
 export class Dog {
@@ -12,6 +13,7 @@ export class Dog {
   about: string;
   active: boolean;
   sex: string;
+  photos: Photo[];
 
   constructor(
     id?: number,
@@ -33,7 +35,7 @@ export class Dog {
     this.energy = energy;
     this.age = age;
     this.about = about;
-    this.active;
+    this.active = active;
     this.sex = sex;
   }
 }

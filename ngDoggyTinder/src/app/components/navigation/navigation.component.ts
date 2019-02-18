@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { Dog } from 'src/app/models/dog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -17,7 +18,8 @@ export class NavigationComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private userS: UserService,
-    private dogS: DogService
+    private dogS: DogService,
+    private router: Router
   ) {}
 
   ngOnInit() {}
@@ -44,5 +46,17 @@ export class NavigationComponent implements OnInit {
 
   setDog(id: number) {
     this.dogS.setSelectedDog(id);
+  }
+
+  logout() {
+    this.auth.logout();
+    if (this.auth.getCredentials() == null) {
+      console.log(
+        'LogoutComponent.logout(): user logged out, routing to /home.'
+      );
+      this.router.navigateByUrl('/home');
+    } else {
+      console.error('LogoutComponent.logout(): error logging out.');
+    }
   }
 }

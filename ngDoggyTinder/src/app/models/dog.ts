@@ -1,5 +1,5 @@
-import { User } fr
-  id: string;om "./user";
+import { User } from './user';
+
 
 export class Dog {
   id: number;

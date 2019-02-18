@@ -1,4 +1,5 @@
-import { User } from "./user";
+import { User } fr
+  id: string;om "./user";
 
 export class Dog {
   id: number;

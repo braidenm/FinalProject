@@ -1,6 +1,6 @@
 <h1>Register User</h1>
 
-<form #registerForm = 'ngForm'>
+<form>
   Username <input type='text' name='username' [(ngModel)]='user.username'/>
   Password <input type='text' name='password' [(ngModel)]='user.password'/>
   Email <input type='text' name='email' [(ngModel)]='user.email'/>
@@ -12,7 +12,7 @@
   State <input type='text' name='state' [(ngModel)]='user.address.state'/>
   Zip Code <input type='text' name='zip' [(ngModel)]='user.address.zip'/>
   Profile Picture URL <input type='text' name='url' [(ngModel)]='user.url'/>
-  <input type='submit' (click)='addUser(registerForm)' value='Register'>
+  <input type='submit' (click)='addUser()' value='Register'>
 </form>
 
 

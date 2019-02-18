@@ -14,6 +14,7 @@ export class User {
   address: Address;
   age: number;
   dogs: Dog[];
+  url: string;
 
   constructor(
     id?: number,
@@ -28,7 +29,8 @@ export class User {
     gender?: string,
     address?: Address,
     age?: number,
-    dogs?: Dog[]
+    dogs?: Dog[],
+    url?: string
   ) {
     this.id = id,
     this.username = username,
@@ -43,5 +45,6 @@ export class User {
     this.address = address;
     this.age = age;
     this.dogs = dogs;
+    this.url = url;
   }
 }

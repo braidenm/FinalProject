@@ -11,6 +11,8 @@ import { throwError } from 'rxjs';
 export class AuthService {
   private baseUrl = environment.baseUrl;
 
+  private user: User;
+
   constructor(private http: HttpClient) {}
   getCredentials() {
     return localStorage.getItem('credentials');
@@ -40,6 +42,7 @@ export class AuthService {
       })
     );
   }
+
 
   register(user: User) {}
   logout() {}

@@ -12,21 +12,19 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/about']">About</a>
       </li>
-      <li class="nav-item" *ngIf="isLoggedin()">
+
+      <li class="nav-item" *ngIf="getUser()" >
         <a class="nav-link " [routerLink]="['/profile']">Profile</a>
       </li>
-      <li class="nav-item dropdown" *ngIf="user">
+      <li class="nav-item dropdown" *ngIf="getUserDogs">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
+            Choose Your Dog
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngFor="let dog of dogs">
+            <a class="dropdown-item" (click)= "setDog(dog.id)">{{dog.name}}</a>
           </div>
     </ul>
-    <div *ngIf="!isLoggedin()">
+    <div *ngIf="!getUser()">
     <app-login></app-login>
     </div>
       <!-- <form class="form-inline my-2 my-lg-0">

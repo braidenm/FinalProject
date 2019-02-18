@@ -1,3 +1,4 @@
+import { DogService } from './../../services/dog.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  dogs = [];
+
+  constructor(private dogService: DogService) { }
 
   ngOnInit() {
   }
+
+  getAllDogs() {
+    this.dogService.index().subscribe(
+      data => {
+
+      },
+      error => console.log(error)
+    );
+  }
+
+
 
 }

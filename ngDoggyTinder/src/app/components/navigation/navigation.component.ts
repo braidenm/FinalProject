@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class NavigationComponent implements OnInit {
   user: User;
   dogs: Dog[];
+  dog: Dog;
 
   constructor(
     private auth: AuthService,
@@ -22,7 +23,11 @@ export class NavigationComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getUser();
+    if (this.user) {this.getUserDogs()};
+
+  }
 
   // isLoggedin() {
   //   this.auth.checkLogin().subscribe(

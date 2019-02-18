@@ -1,6 +1,11 @@
-import { UserService } from './../../services/user.service';
+import { MessageService } from './../../services/message.service';
+import { DogService } from './../../services/dog.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
+import { UserService } from './../../services/user.service';
+import { Dog } from 'src/app/models/dog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { userInfo } from 'os';
 
 @Component({
   selector: 'app-dog-view',
@@ -9,17 +14,76 @@ import { User } from 'src/app/models/user';
 })
 export class DogViewComponent implements OnInit {
 
-  private user: User;
+  user: User;
+  dog: Dog;
+  editDog: Dog;
+  isUserDog = false;
 
-  constructor(private userve: UserService) { }
+  constructor(private route: ActivatedRoute, private userve: UserService,
+              private dogServe: DogService, private router: Router,
+              private messServe: MessageService) { }
 
   ngOnInit() {
-    this.userve.getLoggedInUser().subscribe(
-      data => this.user = data
+    let dogId;
+    dogId = this.route.snapshot.paramMap.get('id');
+    this.dogServe.getOneDog(dogId).subscribe(
+      dogData => this.dog = dogData
     );
+    this.userve.getLoggedInUser().subscribe(
+      userData => this.user = userData
+    );
+    this.getUserDogs();
+    this.getDogPhotos(dogId);
+
+    for (const dog of this.user.dogs) {
+        if (this.dog.id === dog.id) {
+          this.isUserDog = true;
+        }
+    }
+    if (!this.isUserDog) {
+      this.messServe.setThatDog(this.dog);
+    }
 
     console.log(this.user);
+  }
 
+  getUserDogs() {
+    this.dogServe.getAllByUser(this.user.id).subscribe(
+      data => this.user.dogs = data
+    );
+  }
+
+  getDogPhotos(dogId) {
+    this.dogServe.getPhotos(dogId).subscribe(
+      data => this.dog.photos = data
+    );
+  }
+
+  setEditDog() {
+    this.editDog = this.dog;
+  }
+
+  cancelEditDog() {
+    this.editDog = null;
+  }
+  confirmEditDog() {
+    this.dog = this.editDog;
+    this.dogServe.update(this.dog).subscribe(
+      data => this.dog = data
+    );
+    this.editDog = null;
+  }
+  deactivateDog() {
+    this.dog.active = false;
+    this.dogServe.update(this.dog).subscribe(
+      data => this.dog = data
+    );
+  }
+  reactivateDog() {
+    this.dog.active = true;
+    this.dogServe.update(this.dog).subscribe(
+      data => this.dog = data
+    );
   }
 
 }

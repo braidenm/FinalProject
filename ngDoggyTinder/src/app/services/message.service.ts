@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { Message } from './../models/message';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -6,6 +7,8 @@ import { AuthService } from './auth.service';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Dog } from '../models/dog';
+import { DogService } from './dog.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +18,14 @@ export class MessageService {
    // Fields
    private baseUrl = environment.baseUrl;
    private url = this.baseUrl + 'api/messages';
+   private thisDog: Dog;
+   private thatDog: Dog;
 
    // Constructor
-   constructor(private http: HttpClient, private router: Router, private auth: AuthService) { }
+   constructor(private dogServe: DogService, private http: HttpClient,
+               private router: Router, private auth: AuthService) {
+       this.thisDog = this.dogServe.getSelectedDog();
+    }
 
    // Methods
    getHttp() {
@@ -82,5 +90,17 @@ export class MessageService {
            })
       );
    }
+   setThatDog(dog: Dog) {
+     this.thatDog = dog;
+   }
+
+   getThatDog() {
+     return this.thatDog;
+   }
+
+   getThisDog() {
+     return this.thisDog;
+   }
+
 
 }

@@ -22,7 +22,7 @@ export class DogRegisterComponent implements OnInit {
   }
 
   addDog() {
-    this.dogService.create(this.dog, userId).subscribe(
+    this.dogService.create(this.dog, 2).subscribe(
       data => {
         this.dog = data;
         this.addPhoto();

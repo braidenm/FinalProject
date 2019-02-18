@@ -1,4 +1,6 @@
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-dog-view',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DogViewComponent implements OnInit {
 
-  constructor() { }
+  private user: User;
+
+  constructor(private userve: UserService) { }
 
   ngOnInit() {
+    this.userve.getLoggedInUser
+
+    console.log(this.user);
+
   }
 
 }

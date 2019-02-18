@@ -5,7 +5,8 @@ import { User } from 'src/app/models/user';
 import { UserService } from './../../services/user.service';
 import { Dog } from 'src/app/models/dog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { userInfo } from 'os';
+import { Preferences } from 'src/app/models/preferences';
+
 
 @Component({
   selector: 'app-dog-view',
@@ -18,6 +19,7 @@ export class DogViewComponent implements OnInit {
   dog: Dog;
   editDog: Dog;
   isUserDog = false;
+  preferences: Preferences;
 
   constructor(private route: ActivatedRoute, private userve: UserService,
               private dogServe: DogService, private router: Router,
@@ -84,6 +86,19 @@ export class DogViewComponent implements OnInit {
     this.dogServe.update(this.dog).subscribe(
       data => this.dog = data
     );
+  }
+  setEditPref() {
+    this.dogServe.showPreferences(this.dog.id).subscribe(
+      data => this.preferences = data
+    );
+  }
+  cancelEditPref() {
+    this.preferences = null;
+  }
+
+  confirmEditPref() {
+    this.dogServe.updatePref(this.dog.id, this.preferences).subscribe();
+    this.preferences = null;
   }
 
 }

@@ -11,48 +11,37 @@ import { throwError } from 'rxjs';
 export class AuthService {
   private baseUrl = environment.baseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   getCredentials() {
     return localStorage.getItem('credentials');
   }
 
-  checkLogin() {
-
-  }
+  checkLogin() {}
 
   login(username, password) {
-       // Make credentials
-       const credentials = this.generateBasicAuthCredentials(username, password);
-       // Send credentials as Authorization header (this is spring security convention for basic auth)
-       const httpOptions = {
-         headers: new HttpHeaders({
-           Authorization: `Basic ${credentials}`,
-           'X-Requested-With': 'XMLHttpRequest'
-         })
-       };
-      // create request to authenticate credentials
-       return this.http
-      .get(this.baseUrl + 'authenticate', httpOptions)
-      .pipe(
-        tap((res) => {
-          localStorage.setItem('credentials', credentials);
-          return res;
-        }),
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('AuthService.login(): Error logging in.');
-        })
-      );
-
+    // Make credentials
+    const credentials = this.generateBasicAuthCredentials(username, password);
+    // Send credentials as Authorization header (this is spring security convention for basic auth)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    // create request to authenticate credentials
+    return this.http.get(this.baseUrl + 'authenticate', httpOptions).pipe(
+      tap(res => {
+        localStorage.setItem('credentials', credentials);
+        return res;
+      }),
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('AuthService.login(): Error logging in.');
+      })
+    );
   }
 
-  register(user: User) {
-
-  }
-  logout() {
-
-  }
-  generateBasicAuthCredentials(username, password) {
-
-  }
+  register(user: User) {}
+  logout() {}
+  generateBasicAuthCredentials(username, password) {}
 }

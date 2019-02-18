@@ -1,3 +1,4 @@
+import { DogService } from './dog.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -206,5 +207,10 @@ export class DogService {
             return throwError('KABOOM broken at todo service index');
           })
      );
+  }
+
+  addLikedDog(dog: Dog) {
+    this.selectedDog
+
   }
 }

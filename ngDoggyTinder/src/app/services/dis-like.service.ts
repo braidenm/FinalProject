@@ -68,7 +68,7 @@ export class DisLikeService {
           })
      );
   }
-  addLike(thisDogId: number, thatDogId: number) {
+  addDislike(thisDogId: number, thatDogId: number) {
     // if (!this.auth.checkLogin) {
     //   this.router.navigateByUrl('login');
     // }

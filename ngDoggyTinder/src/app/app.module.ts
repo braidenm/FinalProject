@@ -40,8 +40,8 @@ import { DogRegisterComponent } from './components/dog-register/dog-register.com
     RegisterComponent,
     NotFoundComponent,
     DogRegisterComponent,
-
   ],
+
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -49,6 +49,7 @@ import { DogRegisterComponent } from './components/dog-register/dog-register.com
     HttpClientModule,
     NgbModule.forRoot(),
   ],
+
   providers: [
     AuthService,
     DisLikeService,

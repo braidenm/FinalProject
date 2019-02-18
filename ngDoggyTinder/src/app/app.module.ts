@@ -24,6 +24,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { UserService } from './services/user.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { DogRegisterComponent } from './components/dog-register/dog-register.component';
+import { FilterDogsByLikedPipe } from './pipes/filter-dogs-by-liked.pipe';
+import { FilterDogsByDislikePipe } from './pipes/filter-dogs-by-dislike.pipe';
+import { FilterDogsByActivePipe } from './pipes/filter-dogs-by-active.pipe';
+import { FilterDogsByYourPreferencesPipe } from './pipes/filter-dogs-by-your-preferences.pipe';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,10 @@ import { DogRegisterComponent } from './components/dog-register/dog-register.com
     RegisterComponent,
     NotFoundComponent,
     DogRegisterComponent,
+    FilterDogsByLikedPipe,
+    FilterDogsByDislikePipe,
+    FilterDogsByActivePipe,
+    FilterDogsByYourPreferencesPipe,
   ],
 
   imports: [

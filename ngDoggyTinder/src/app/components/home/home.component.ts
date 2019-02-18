@@ -1,3 +1,4 @@
+import { DisLike } from './../../models/dis-like';
 import { Likes } from './../../models/likes';
 import { DisLikeService } from './../../services/dis-like.service';
 import { LikeService } from './../../services/like.service';
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
   selectedDog = new Dog();
   matches: Matches[];
   popUpDog = new Dog();
+  dislikes: DisLike[];
 
   constructor(private matchService: MatchService, private dogService: DogService,
               private likeService: LikeService, private disLikeService: DisLikeService) { }
@@ -27,13 +29,15 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.selectedDog = this.dogService.getSelectedDog();
     this.loadMatches(this.selectedDog.id);
+    this.loadLikes(this.selectedDog.id);
+    this.loadDislikes(this.selectedDog.id);
     // this.dogs = this.getAllDogs();
   }
 
   getAllDogs() {
     this.dogService.index().subscribe(
       data => {
-
+        this.dogs = data;
       },
       error => console.log(error)
     );
@@ -43,6 +47,24 @@ export class HomeComponent implements OnInit {
     this.matchService.index(selectedDogId).subscribe(
       data => {
         this.matches = data;
+      },
+      error => console.log(error)
+    );
+  }
+
+  loadLikes(selectedDogId: number) {
+    this.likeService.getByThisDog(selectedDogId).subscribe(
+      data => {
+        this.likes = data;
+      },
+      error => console.log(error)
+    );
+  }
+
+  loadDislikes(selectedDogId: number) {
+    this.disLikeService.index().subscribe(
+      data => {
+        this.dislikes = data;
       },
       error => console.log(error)
     );

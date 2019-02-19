@@ -1,3 +1,4 @@
+import { MessageService } from './../../services/message.service';
 import { DogService } from './../../services/dog.service';
 import { UserService } from './../../services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -20,12 +21,16 @@ export class NavigationComponent implements OnInit {
     private auth: AuthService,
     private userS: UserService,
     private dogS: DogService,
-    private router: Router
+    private router: Router,
+    private messageS: MessageService
   ) {}
 
   ngOnInit() {
     this.getUser();
     if (this.user) {this.getUserDogs()};
+    if (this.dogs.length === 1 ) {
+        this.setDog(this.dogs[0].id);
+    }
 
   }
 
@@ -51,7 +56,13 @@ export class NavigationComponent implements OnInit {
 
   setDog(id: number) {
     this.dogS.setSelectedDog(id);
-  }
+    this.dogS.getOneDog(id).subscribe(
+       data => {
+         this.messageS.setThisDog(data);
+  });
+}
+
+
 
   logout() {
     this.auth.logout();

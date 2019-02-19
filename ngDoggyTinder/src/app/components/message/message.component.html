@@ -1,16 +1,19 @@
 <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-    <ngb-panel title="Messages">
-      <ng-template ngbPanelContent>
-          <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-              <ngb-panel title="Simple">
-                <ng-template ngbPanelContent>
-                  XXXXXXXXXXXXXXXXXXXXX
-                </ng-template>
-              </ngb-panel>
-
-            </ngb-accordion>
-      </ng-template>
-    </ngb-panel>
-
-
-  </ngb-accordion>
+  <ngb-panel title="Messages">
+    <ng-template ngbPanelContent>
+      <div *ngFor="let message of convo">
+        <div [ngClass]="setMessageStyle(message.thisDog.id)">
+          <p>{{ message.text }}</p>
+          <p>-{{ message.thisDog.name }}</p>
+          <p>-{{ message.date }}</p>
+        </div>
+      </div>
+      <form>
+        <input type="text" name="text" [(ngModel)]="text" />
+        <button type="button" class="btn btn-outline-success" (click)="addMessage()">
+          Send
+        </button>
+      </form>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>

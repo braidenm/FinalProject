@@ -1,3 +1,4 @@
+import { MessageService } from './../../services/message.service';
 import { DogService } from './../../services/dog.service';
 import { UserService } from './../../services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -20,7 +21,8 @@ export class NavigationComponent implements OnInit {
     private auth: AuthService,
     private userS: UserService,
     private dogS: DogService,
-    private router: Router
+    private router: Router,
+    private messageS: MessageService
   ) {}
 
   ngOnInit() {
@@ -51,7 +53,10 @@ export class NavigationComponent implements OnInit {
 
   setDog(id: number) {
     this.dogS.setSelectedDog(id);
+
   }
+
+
 
   logout() {
     this.auth.logout();

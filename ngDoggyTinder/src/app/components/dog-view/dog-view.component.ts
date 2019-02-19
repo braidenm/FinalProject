@@ -6,6 +6,7 @@ import { UserService } from './../../services/user.service';
 import { Dog } from 'src/app/models/dog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Preferences } from 'src/app/models/preferences';
+import { Photo } from 'src/app/models/photo';
 
 
 @Component({
@@ -20,6 +21,8 @@ export class DogViewComponent implements OnInit {
   editDog: Dog;
   isUserDog = false;
   preferences: Preferences;
+  active = false;
+  photos;
 
   constructor(private route: ActivatedRoute, private userve: UserService,
               private dogServe: DogService, private router: Router,
@@ -29,35 +32,38 @@ export class DogViewComponent implements OnInit {
     let dogId;
     dogId = this.route.snapshot.paramMap.get('id');
     this.dogServe.getOneDog(dogId).subscribe(
-      dogData => this.dog = dogData
-    );
-    this.userve.getLoggedInUser().subscribe(
-      userData => this.user = userData
-    );
-    this.getUserDogs();
-    this.getDogPhotos(dogId);
+      dogData => {
+        this.dog = dogData;
+        this.active = this.dog.active;
+        this.userve.getLoggedInUser().subscribe(
+          userData => {
+            this.user = userData;
+            console.log(this.user);
+            this.getDogPhotos(dogId);
+            console.log(this.photos);
+            for (const dog of this.user.dogs) {
+                if (this.dog.id === dog.id) {
+                  this.isUserDog = true;
+                }
+            }
+          }
+        );
 
-    for (const dog of this.user.dogs) {
-        if (this.dog.id === dog.id) {
-          this.isUserDog = true;
+        if (!this.isUserDog) {
+          this.messServe.setThatDog(this.dog);
         }
-    }
-    if (!this.isUserDog) {
-      this.messServe.setThatDog(this.dog);
-    }
-
-    console.log(this.user);
-  }
-
-  getUserDogs() {
-    this.dogServe.getAllByUser(this.user.id).subscribe(
-      data => this.user.dogs = data
+      }
     );
+
   }
 
-  getDogPhotos(dogId) {
+  getDogPhotos(dogId: number) {
     this.dogServe.getPhotos(dogId).subscribe(
-      data => this.dog.photos = data
+      data => {
+        this.photos = data;
+        console.log(data);
+
+      }
     );
   }
 

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,7 @@ import com.skilldistillery.doggyTinder.entities.Preferences;
 import com.skilldistillery.doggyTinder.services.DogService;
 import com.skilldistillery.doggyTinder.services.UserService;
 
-//@CrossOrigin({ "*", "http://localhost:4201" })
+@CrossOrigin({ "*", "http://localhost:4205" })
 @RestController
 @RequestMapping("api")
 public class DogController {
@@ -106,7 +107,6 @@ public class DogController {
 		}
 	}
 	
-	// not working
 	@GetMapping("dogs/users/{id}")
 	public List <Dog> getAllDogsByUser(HttpServletResponse res, @PathVariable Integer id) {
 		

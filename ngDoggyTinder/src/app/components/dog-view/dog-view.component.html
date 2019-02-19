@@ -1,10 +1,10 @@
 <div class="col-sm-3"></div>
-<div class="col-sm-3" *ngIf="dog.active && !editDog && !preferences">
+<div *ngIf="active && !editDog && !preferences">
 
-  <div *ngFor="let image of dog.photos">
-    <ngb-carousel *ngIf="image">
-      <ng-template ngbSlide>
-        <img [src]="image" alt="Random first slide">
+  <div>
+    <ngb-carousel >
+      <ng-template *ngFor="let image of photos" ngbSlide>
+        <img [src]="image.url" alt="no photo">
       </ng-template>
     </ngb-carousel>
   </div>
@@ -19,8 +19,11 @@
     <h3>About</h3>
     <p>{{dog.about}}</p>
     <button *ngIf="isUserDog" (click)="setEditDog()" class="btn btn-outline-primary">Edit Dog</button>
-    <button *ngIf="isUserDog" (click)="deactivateDog()" class="btn btn-outline-danger">Edit Dog</button>
+    <button *ngIf="isUserDog" (click)="deactivateDog()" class="btn btn-outline-danger">Deactivate Dog</button>
   </div>
+</div>
+<div class="col-sm-3" *ngIf="active && !editDog && !isUserDog && !preferences">
+  <app-message></app-message>
 </div>
 <div *ngIf="editDog && !preferences">
   <form>
@@ -38,7 +41,7 @@
     <button class="btn btn-outline-primary" (click)="confirmEditDog()">Submit</button>
   </form>
 </div>
-<div *ngIf="!dog.active">
+<div *ngIf="!active">
   <h1>Dog is not found or not Active</h1>
   <button *ngIf="isUserDog" class="btn btn-outline-primary" (click)="reactivateDog()"></button>
 </div>
@@ -56,8 +59,5 @@
     <button class="btn btn-outline-secondary" (click)="cancelEditPref()">Cancel</button>
     <button class="btn btn-outline-primary" (click)="confirmEditPref()">Submit</button>
   </form>
-</div>
-<div class="col-sm-3" *ngIf="dog.active && !editDog && !isUserDog && !preferences">
-  <app-message></app-message>
 </div>
 

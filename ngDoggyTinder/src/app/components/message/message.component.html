@@ -1,3 +1,16 @@
-<p>
-  message works!
-</p>
+<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-panel title="Messages">
+      <ng-template ngbPanelContent>
+          <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+              <ngb-panel title="Simple">
+                <ng-template ngbPanelContent>
+                  XXXXXXXXXXXXXXXXXXXXX
+                </ng-template>
+              </ngb-panel>
+
+            </ngb-accordion>
+      </ng-template>
+    </ngb-panel>
+
+
+  </ngb-accordion>

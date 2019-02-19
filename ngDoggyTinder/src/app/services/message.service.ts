@@ -24,7 +24,6 @@ export class MessageService {
    // Constructor
    constructor(private dogServe: DogService, private http: HttpClient,
                private router: Router, private auth: AuthService) {
-       this.thisDog = this.dogServe.getSelectedDog();
     }
 
    // Methods
@@ -92,6 +91,9 @@ export class MessageService {
    }
    setThatDog(dog: Dog) {
      this.thatDog = dog;
+   }
+   setThisDog(dog: Dog) {
+     this.thisDog = dog;
    }
 
    getThatDog() {

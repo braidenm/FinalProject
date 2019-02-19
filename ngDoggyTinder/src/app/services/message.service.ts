@@ -89,6 +89,18 @@ export class MessageService {
            })
       );
    }
+   update(message: Message) {
+     // if (!this.auth.checkLogin) {
+     //   this.router.navigateByUrl('login');
+     // }
+     return this.http.put<Message[]>(this.url, message, this.getHttp())
+     .pipe(
+           catchError((err: any) => {
+             console.log(err);
+             return throwError('KABOOM broken at todo service index');
+           })
+      );
+   }
    setThatDog(dog: Dog) {
      this.thatDog = dog;
    }

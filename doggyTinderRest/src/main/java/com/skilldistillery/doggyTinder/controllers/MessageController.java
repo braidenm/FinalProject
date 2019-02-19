@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -69,6 +71,18 @@ public class MessageController {
 		try {
 			res.setStatus(201);
 			return mServ.findBySenderId(dogIdS);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(404);
+			return null;
+		}
+	}
+	@PutMapping("messages/")
+	public Message update(HttpServletResponse res,@RequestBody Message message) {
+		
+		try {
+			res.setStatus(201);
+			return mServ.updateMessage(message);
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(404);

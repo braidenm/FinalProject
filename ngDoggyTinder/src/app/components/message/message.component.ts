@@ -1,5 +1,4 @@
 import { MatchService } from './../../services/match.service';
-import { MatchService } from 'src/app/services/match.service';
 import { MessageService } from './../../services/message.service';
 import { Component, OnInit } from '@angular/core';
 import { Dog } from 'src/app/models/dog';
@@ -17,9 +16,9 @@ export class MessageComponent implements OnInit {
   thatDog: Dog;
   convo: Message[] = [];
   text = '';
-  isMatch = false;
 
-  constructor(private messageS: MessageService, private dogServe: DogService, private matchServe: MatchService) { }
+
+  constructor(private messageS: MessageService, private dogServe: DogService) { }
 
   ngOnInit() {
     this.thisDog = this.messageS.getThisDog();
@@ -30,27 +29,22 @@ export class MessageComponent implements OnInit {
 
   }
 
-  checkIfMatch() {
-    this.matchServe.index(this.thisDog.id).subscribe(
-      data => {
-        for (const match of data) {
-          if (this.thatDog.id === match.thatDog.id) {
-            this.isMatch = true;
-            break;
-          }
-        }
-      }
-    );
-  }
 
   getConversation() {
 
     this.messageS.getConversation(this.thisDog.id, this.thatDog.id).subscribe(
       data => {
-        this.convo = data;
-        this.convo.sort((a: Message, b: Message) => {
-          return a.date.valueOf() - b.date.valueOf();
-        });
+        for (const mess of data) {
+          if (mess.read === false) {
+            mess.read = true;
+            this.messageS.update(mess).subscribe();
+          }
+          this.convo = data;
+          this.convo.sort((a: Message, b: Message) => {
+            return a.date.valueOf() - b.date.valueOf();
+          });
+
+        }
       }
     );
   }

@@ -72,16 +72,22 @@ export class DogViewComponent implements OnInit {
     );
   }
   checkIfMatch() {
-    this.matchServe.index(this.dogServe.getSelectedDog().id).subscribe(
-      data => {
-        for (const match of data) {
-          if (this.dog.id === match.thatDog.id) {
-            this.isMatch = true;
-            break;
+        this.dogServe.getOneDog(2).subscribe(
+          dogData => {
+            this.dogServe.setSelectedDog(dogData);
+            this.matchServe.index(this.dogServe.getSelectedDog().id).subscribe(
+              data => {
+                console.log(this.dogServe.getSelectedDog());
+                for (const match of data) {
+                  if (this.dog.id === match.thatDog.id) {
+                    this.isMatch = true;
+                    break;
+                  }
+                }
+            }
+          );
           }
-        }
-      }
-    );
+        );
   }
 
   setEditDog() {

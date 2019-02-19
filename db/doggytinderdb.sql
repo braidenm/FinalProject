@@ -213,6 +213,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `receiver_id` INT NOT NULL,
   `text` VARCHAR(500) NULL,
   `time_sent` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `read` TINYINT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   INDEX `fk_to_receiver_idx` (`receiver_id` ASC),
   CONSTRAINT `fk_to_sender`
@@ -228,11 +229,11 @@ CREATE TABLE IF NOT EXISTS `message` (
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';
-DROP USER IF EXISTS admin;
+DROP USER IF EXISTS admin@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-CREATE USER 'admin' IDENTIFIED BY 'admin';
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
 
-GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'admin';
+GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'admin'@'localhost';
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -297,6 +298,10 @@ INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, 
 INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (10, 10, 'Oprah', 'Schnauzer', 4, 7, 10, 'Apparently 50 cent doesn\'t love mrs. winfrey.', 1, 'Female');
 INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (11, 11, 'Poppy Raymond', 'Goldendoodle', 40, 6, 8, 'Yeah!', 1, 'Male');
 INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (12, 12, 'Vincent the Dog', 'Black Lab', 65, 7, 6, 'I\'m a wiz for a dog. Or dog for a wiz??', 1, 'Male');
+INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (13, 3, 'Zsa Zsa', 'English Bulldog', 35, 3, 9, 'I may be ugly but I\'ve got a heart of gold.', 1, 'Female');
+INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (14, 3, 'Martha', 'Neopolitan Mastiff', 125, 4, 6, 'ppphbbbbllllllltttttttt', 1, 'Female');
+INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (15, 3, 'SweePee Rambo', 'Chinese Crested Chihuahua', 5, 8, 17, 'Ewwwwwwwwwww.', 1, 'Female');
+INSERT INTO `dog` (`id`, `user_id`, `name`, `breed`, `weight`, `energy`, `age`, `about`, `active`, `sex`) VALUES (16, 3, 'Quasi Modo', 'Pit Bull/Dutch Shepherd', 50, 5, 10, 'I kinda look like a chupacabra.', 1, 'Female');
 
 COMMIT;
 
@@ -318,6 +323,30 @@ INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (9, 9, 'https://i2-prod.mirro
 INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (10, 10, 'https://vetstreet-brightspot.s3.amazonaws.com/c8/fb/ec5a2313447cac9886e8c7452d85/50%20cent.jpg');
 INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (11, 11, 'http://townsquare.media/site/625/files/2015/06/Usher-dog.jpg');
 INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (12, 12, 'https://celebritypets.net/wp-content/uploads/2017/03/Wiz-Khalifa-french-bulldog-Vincent.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (13, 2, 'https://www.science20.com/files/images/yo_quiero_taco_bell.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (14, 2, 'https://logo.cafepress.com/4/507270.273574.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (15, 2, 'http://www.obeythepurebreed.com/images/chihuahua_che_large.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (16, 4, 'https://static.politico.com/d5/80/165a405f4b4ea16a9ba6acc09b21/151009-bo-obama-gallery-ball-air-force-one-gty-1160.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (17, 3, 'https://3milliondogs.com/blog-assets-two/2016/08/Lady.png');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (18, 5, 'https://i.dailymail.co.uk/i/pix/2011/02/21/article-1359315-0D4C951F000005DC-110_468x608.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (19, 6, 'https://schulzmuseum.org/wp-content/uploads/2012/03/SparkyAndy-02.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (20, 7, 'https://i.pinimg.com/originals/5c/0b/7b/5c0b7b2225c863b832ec80f059e77785.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (21, 7, 'http://taildom.com/blog/wp-content/uploads/2010/10/kevin-costner-dog-daisy-and-jan.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (22, 7, 'https://www.tribute.ca/news/wp-content/uploads/2010/08/orange_dog.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (23, 8, 'https://straightfromthedogsmouth.files.wordpress.com/2011/08/dogdaddy-3.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (24, 8, 'https://alchetron.com/cdn/daddy-dog-0548af99-c741-4a6d-9a70-e8a96a5c907-resize-750.jpeg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (25, 13, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc4oARP_X5LUlaSEWoTsNRGvt49nNvgXBWCz31ACSaJYhd3o4rpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (26, 13, 'https://bringmethenews.com/.image/t_share/MTU2NTQxMjIwNDg5ODY0Mjgz/screen-shot-2018-06-24-at-81658-am.png');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (27, 13, 'http://newsmobile.in/wp-content/uploads/2018/06/DgcGb0hVQAEBc0k.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (28, 14, 'https://media4.s-nbcnews.com/j/MSNBC/Components/Video/201706/tdy_pets_worlds_ugliest_dog_170626.760;428;7;70;5.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (29, 14, 'https://media.npr.org/assets/img/2017/06/24/gettyimages-800244140_wide-56b2dddbeaab2aa5f921a9c847aad42ce5bec021-s800-c85.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (30, 14, 'https://toofab.akamaized.net/2017/06/24/ugly-dog-810x610.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (31, 15, 'http://www.wrongur.com/img/polls/poll-473.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (32, 15, 'https://www.abc.net.au/news/image/9904112-3x2-940x627.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (33, 15, 'https://www.usmagazine.com/wp-content/uploads/sweepee-ugliest-dog-2-daa14eca-0dcd-45c7-999c-b959f71288d3.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (34, 16, 'https://lovelace-media.imgix.net/getty/450965060.jpg');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (35, 16, 'https://www.trbimg.com/img-55bbbb69/turbine/sfl-quasi-modo-the-world-s-ugliest-dog-20150729');
+INSERT INTO `photo` (`id`, `dog_id`, `url`) VALUES (36, 16, 'https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2015/6/27/1435436934658/1fec67f1-17c4-482a-bbef-23a37bc2b1af-2060x1236.jpeg?width=700&quality=85&auto=format&fit=max&s=1b9398617d8e47d815721a4619ffefbc');
 
 COMMIT;
 
@@ -400,14 +429,14 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `doggytinderdb`;
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`) VALUES (1, 2, 3, 'Hi little dude!', '2019-02-11 15:02:55');
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`) VALUES (2, 3, 2, 'Woof!', '2019-02-11 15:12:13');
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`) VALUES (3, 5, 6, 'Woof! Woof! Ruff! Aroo!', '2019-02-13 09:02:55');
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`) VALUES (4, 6, 5, ';)', '2019-02-13 10:12:01');
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`) VALUES (5, 5, 6, 'Ruffarooooo!!!', '2019-02-13 10:43:20');
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`) VALUES (6, 6, 5, '????', '2019-02-13 11:01:02');
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`) VALUES (7, 5, 6, '!!!!!!', '2019-02-11 13:02:55');
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`) VALUES (8, 3, 8, 'Oh hi am dog you are cute', '2019-02-14 19:19:05');
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (1, 2, 3, 'Hi little dude!', '2019-02-11 15:02:55', 1);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (2, 3, 2, 'Woof!', '2019-02-11 15:12:13', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (3, 5, 6, 'Woof! Woof! Ruff! Aroo!', '2019-02-13 09:02:55', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (4, 6, 5, ';)', '2019-02-13 10:12:01', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (5, 5, 6, 'Ruffarooooo!!!', '2019-02-13 10:43:20', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (6, 6, 5, '????', '2019-02-13 11:01:02', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (7, 5, 6, '!!!!!!', '2019-02-11 13:02:55', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (8, 3, 8, 'Oh hi am dog you are cute', '2019-02-14 19:19:05', 0);
 
 COMMIT;
 

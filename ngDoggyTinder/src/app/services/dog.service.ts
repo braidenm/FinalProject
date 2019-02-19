@@ -17,7 +17,7 @@ export class DogService {
   // Fields
   private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/dogs';
-  private selectedDog: Dog = new Dog();
+  private selectedDog: Dog;
 
   // Constructor
   constructor(private http: HttpClient, private router: Router, private auth: AuthService) { }

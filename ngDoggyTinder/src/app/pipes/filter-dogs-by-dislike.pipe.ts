@@ -19,3 +19,4 @@ export class FilterDogsByDislikePipe implements PipeTransform {
     });
   }
 }
+}

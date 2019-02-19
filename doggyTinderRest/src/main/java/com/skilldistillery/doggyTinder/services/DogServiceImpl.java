@@ -149,6 +149,7 @@ public class DogServiceImpl implements DogService {
 				managed.setWeight(dog.getWeight());
 				managed.setEnergy(dog.getEnergy());
 				managed.setAbout(dog.getAbout());
+				managed.setActive(dog.getActive());
 				dRepo.saveAndFlush(managed);
 				return managed;
 			}

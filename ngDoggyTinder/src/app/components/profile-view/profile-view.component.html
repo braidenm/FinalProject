@@ -1,3 +1,70 @@
-<p>
-  profile-view works!
-</p>
+<div>
+  <h1>Profile</h1>
+  <div *ngIf="!editUser">
+    <table>
+      <tr>
+        <td>Username</td>
+        <td>{{user.username}}</td>
+      </tr>
+      <tr>
+        <td>Password</td>
+        <td>{{user.password}}</td>
+      </tr>
+      <tr>
+        <td>First Name</td>
+        <td>{{user.firstName}}</td>
+      </tr>
+      <tr>
+        <td>Last Name</td>
+        <td>{{user.lastName}}</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td>{{user.gender}}</td>
+      </tr>
+      <tr>
+        <td>Age</td>
+        <td>{{user.age}}</td>
+      </tr>
+      <tr>
+        <td>Street Address</td>
+        <td>{{user.address.street}}</td>
+      </tr>
+      <tr>
+        <td>Street Address</td>
+        <td>{{user.address.city}}</td>
+      </tr>
+      <tr>
+        <td>Street Address</td>
+        <td>{{user.address.state}}</td>
+      </tr>
+      <tr>
+        <td>Street Address</td>
+        <td>{{user.address.zip}}</td>
+      </tr>
+      <tr>
+        <td>Profile Picture</td>
+        <td><img src='{{user.url}}'></td>
+      </tr>
+    </table>
+    <button (click)="addDog()" class="btn btn-outline-primary">Add Dog</button>
+    <button (click)="selectEditUser()" class="btn btn-outline-primary">Edit User</button>
+    <button (click)="deleteUser()" class="btn btn-outline-danger">Delete User</button>
+  </div>
+  <div ngIf='editUser'>
+    <form>
+      Username <input type='text' name='username' value='{{user.username}}'[(ngModel)]='user.username'/>
+      Password <input type='text' name='password' value=='{{user.password}}' [(ngModel)]='user.password'/>
+      Email <input type='text' name='email' value=='{{user.email}}' [(ngModel)]='user.email'/>
+      First Name <input type='text' name='firstName' value=='{{user.firstName}}' [(ngModel)]='user.firstName'/>
+      Gender <input type='text' name='gender' value=='{{user.gender}}' [(ngModel)]='user.gender'/>
+      Age <input type='number' name='age' value=='{{user.age}}' [(ngModel)]='user.age'/>
+      Street Address <input type='text' name='street' value=='{{user.address.street}}' [(ngModel)]='user.address.street'/>
+      City <input type='text' name='city' value=='{{user.address.city}}' [(ngModel)]='user.address.city'/>
+      State <input type='text' name='state' value=='{{user.address.state}}' [(ngModel)]='user.address.state'/>
+      Zip Code <input type='text' name='zip' value=='{{user.address.zip}}' [(ngModel)]='user.address.zip'/>
+      Profile Picture URL <input type='text' value=='{{user.url}}' name='url' [(ngModel)]='user.url'/>
+      <input type='submit' (click)='submitEditUser()' value='Submit Changes'>
+    </form>
+  </div>
+</div>

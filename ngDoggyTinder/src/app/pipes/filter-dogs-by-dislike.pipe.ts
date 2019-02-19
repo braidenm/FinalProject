@@ -12,10 +12,10 @@ export class FilterDogsByDislikePipe implements PipeTransform {
 
     dogs.forEach((dog) => {
       dislikes.forEach((dislike) => {
-        if (dislike.thatDog.id !== dog.id && dislike.thatDog.id !== this.selectedDog.id) {
+        if (dislike.thatDog.id !== dog.id && dislike.thatDog.id !== selectedDog.id) {
           results.push(dog);
         }
       });
     });
-
+  }
 }

@@ -30,6 +30,14 @@ public class Message {
 	@CreationTimestamp
 	private Date date;
 	
+	private boolean read;
+	
+	public boolean isRead() {
+		return read;
+	}
+	public void setRead(boolean read) {
+		this.read = read;
+	}
 	//Methods
 	public Integer getId() {
 		return id;
@@ -85,18 +93,20 @@ public class Message {
 			return false;
 		return true;
 	}
-	@Override
-	public String toString() {
-		return "Message [id=" + id + ", thisDog=" + thisDog + ", thatDog=" + thatDog + ", text=" + text + ", date="
-				+ date + "]";
-	}
-	public Message(Integer id, Dog thisDog, Dog thatDog, String text, Date date) {
+	
+	public Message(Integer id, Dog thisDog, Dog thatDog, String text, Date date, boolean read) {
 		super();
 		this.id = id;
 		this.thisDog = thisDog;
 		this.thatDog = thatDog;
 		this.text = text;
 		this.date = date;
+		this.read = read;
+	}
+	@Override
+	public String toString() {
+		return "Message [id=" + id + ", thisDog=" + thisDog + ", thatDog=" + thatDog + ", text=" + text + ", date="
+				+ date + ", read=" + read + "]";
 	}
 	public Message() {
 		super();

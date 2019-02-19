@@ -11,5 +11,6 @@ public interface MessageService {
 	public List<Message> findByReceiverIdAndSenderIdOrderByDateAsc(int rid, int sid);
 	public List<Message> findByReceiverId(int rid);
 	public List<Message> findBySenderId(int sid);
+	public Message updateMessage(Message message);
 		
 }

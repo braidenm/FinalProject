@@ -24,13 +24,9 @@ export class DogService {
 
   // Methods
 
-  setSelectedDog(dogId: number) {
-    this.getOneDog(dogId).subscribe(
-      data => this.selectedDog = data,
-      err => {
-        this.router.navigateByUrl('notFound');
-      }
-    );
+  setSelectedDog(dog: Dog) {
+        this.selectedDog = dog;
+        console.log(dog);
   }
 
   getSelectedDog() {

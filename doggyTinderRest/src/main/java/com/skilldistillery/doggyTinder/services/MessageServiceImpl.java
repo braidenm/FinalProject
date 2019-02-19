@@ -58,4 +58,17 @@ public class MessageServiceImpl implements MessageService {
 		return mRepo.findByThisDog_Id(sid);
 	}
 
+	@Override
+	public Message updateMessage(Message message) {
+		Optional<Message> op = mRepo.findById(message.getId());
+		if(op.isPresent()) {
+			Message managed = op.get();
+			managed.setRead(message.isRead());
+			mRepo.saveAndFlush(managed);
+			return managed;
+		}
+		return null;
+	}
+
+
 }

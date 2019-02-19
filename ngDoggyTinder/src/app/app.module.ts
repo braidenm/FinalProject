@@ -28,6 +28,7 @@ import { FilterDogsByLikedPipe } from './pipes/filter-dogs-by-liked.pipe';
 import { FilterDogsByDislikePipe } from './pipes/filter-dogs-by-dislike.pipe';
 import { FilterDogsByActivePipe } from './pipes/filter-dogs-by-active.pipe';
 import { FilterDogsByYourPreferencesPipe } from './pipes/filter-dogs-by-your-preferences.pipe';
+import { MainPageCarouselComponent } from './components/main-page-carousel/main-page-carousel.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { FilterDogsByYourPreferencesPipe } from './pipes/filter-dogs-by-your-pre
     FilterDogsByDislikePipe,
     FilterDogsByActivePipe,
     FilterDogsByYourPreferencesPipe,
+    MainPageCarouselComponent,
   ],
 
   imports: [
@@ -55,7 +57,7 @@ import { FilterDogsByYourPreferencesPipe } from './pipes/filter-dogs-by-your-pre
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    NgbModule.forRoot(),
+    NgbModule,
   ],
 
   providers: [

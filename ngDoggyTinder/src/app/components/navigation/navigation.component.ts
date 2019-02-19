@@ -61,7 +61,6 @@ export class NavigationComponent implements OnInit {
 
   setDog(dog: Dog) {
     console.log(dog);
-
     this.dogS.setSelectedDog(dog);
     this.dogS.getOneDog(dog.id).subscribe(data => {
       this.messageS.setThisDog(data);

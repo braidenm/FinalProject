@@ -41,9 +41,39 @@
       </a>
     </div>
   </div> -->
+  <ngb-carousel >
+      <ng-template *ngFor="let dog of dogs" ngbSlide>
+        <img [src]="dog.photos[0].url" alt="">
+        <div class="carousel-caption">
+          <h3>10 seconds between slides...</h3>
+          <p>This carousel uses customized default values.</p>
+        </div>
+      </ng-template>
+      <!-- <ng-template ngbSlide>
+        <img [src]="images[1]" alt="Random second slide">
+        <div class="carousel-caption">
+          <h3>No mouse events...</h3>
+          <p>This carousel doesn't pause or resume on mouse events</p>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <img [src]="images[2]"  alt="Random third slide">
+        <div class="carousel-caption">
+          <h3>No keyboard...</h3>
+          <p>This carousel uses customized default values.</p>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <img [src]="images[3]" alt="Random fourth slide">
+        <div class="carousel-caption">
+          <h3>And no wrap after last slide.</h3>
+          <p>This carousel uses customized default values.</p>
+        </div>
+      </ng-template> -->
+    </ngb-carousel>
 
-  {{ dogs.length }}
+  <!-- {{ dogs.length }}
   {{ dogs[0].name }}
   <ul>
     <li *ngFor="let dog of dogs"> {{ dog.name}} </li>
-  </ul>
+  </ul> -->

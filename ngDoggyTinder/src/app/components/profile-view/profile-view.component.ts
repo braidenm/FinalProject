@@ -20,7 +20,7 @@ export class ProfileViewComponent implements OnInit {
 
   user = new User();
   selectedDog = new Dog();
-  editUser = new User();
+  editUser = null;
   addDog = false;
   dog = new Dog();
   photo = new Photo();
@@ -73,6 +73,8 @@ export class ProfileViewComponent implements OnInit {
         this.addPhoto();
         this.addDog = false;
         this.editUser = null;
+        this.selectedDog = this.dog;
+        this.reload();
       },
       error => console.log(error)
     );

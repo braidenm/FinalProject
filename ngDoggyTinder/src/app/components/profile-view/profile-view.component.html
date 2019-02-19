@@ -1,5 +1,5 @@
 <div class="col-sm-3"></div>
-<div class="col-sm-3">
+<div class="col-sm-6">
   <h1>Profile</h1>
   <div *ngIf="!editUser && !addDog">
     <table>
@@ -28,19 +28,19 @@
         <td>{{user.age}}</td>
       </tr>
       <tr>
-        <td>Street Address</td>
+        <td>Street</td>
         <td>{{user.address.street}}</td>
       </tr>
       <tr>
-        <td>Street Address</td>
+        <td>City</td>
         <td>{{user.address.city}}</td>
       </tr>
       <tr>
-        <td>Street Address</td>
+        <td>State</td>
         <td>{{user.address.state}}</td>
       </tr>
       <tr>
-        <td>Street Address</td>
+        <td>Zip Code</td>
         <td>{{user.address.zip}}</td>
       </tr>
       <tr>
@@ -54,23 +54,23 @@
   </div>
   <div *ngIf='editUser'>
     <form>
-      Username <input type='text' name='username' value='{{user.username}}'[(ngModel)]='user.username'/>
-      Password <input type='text' name='password' value=='{{user.password}}' [(ngModel)]='user.password'/>
-      Email <input type='text' name='email' value=='{{user.email}}' [(ngModel)]='user.email'/>
-      First Name <input type='text' name='firstName' value=='{{user.firstName}}' [(ngModel)]='user.firstName'/>
-      Gender <input type='text' name='gender' value=='{{user.gender}}' [(ngModel)]='user.gender'/>
-      Age <input type='number' name='age' value=='{{user.age}}' [(ngModel)]='user.age'/>
-      Street Address <input type='text' name='street' value=='{{user.address.street}}' [(ngModel)]='user.address.street'/>
-      City <input type='text' name='city' value=='{{user.address.city}}' [(ngModel)]='user.address.city'/>
-      State <input type='text' name='state' value=='{{user.address.state}}' [(ngModel)]='user.address.state'/>
-      Zip Code <input type='text' name='zip' value=='{{user.address.zip}}' [(ngModel)]='user.address.zip'/>
-      Profile Picture URL <input type='text' value=='{{user.url}}' name='url' [(ngModel)]='user.url'/>
+      Username <input type='text' name='username' value='{{user.username}}'[(ngModel)]='user.username'/><br>
+      Password <input type='text' name='password' value='{{user.password}}' [(ngModel)]='user.password'/><br>
+      Email <input type='text' name='email' value='{{user.email}}' [(ngModel)]='user.email'/><br>
+      First Name <input type='text' name='firstName' value='{{user.firstName}}' [(ngModel)]='user.firstName'/><br>
+      Gender <input type='text' name='gender' value='{{user.gender}}' [(ngModel)]='user.gender'/><br>
+      Age <input type='number' name='age' value='{{user.age}}' [(ngModel)]='user.age'/><br>
+      Street Address <input type='text' name='street' value='{{user.address.street}}' [(ngModel)]='user.address.street'/><br>
+      City <input type='text' name='city' value='{{user.address.city}}' [(ngModel)]='user.address.city'/><br>
+      State <input type='text' name='state' value='{{user.address.state}}' [(ngModel)]='user.address.state'/><br>
+      Zip Code <input type='text' name='zip' value='{{user.address.zip}}' [(ngModel)]='user.address.zip'/><br>
+      Profile Picture URL <input type='text' value='{{user.url}}' name='url' [(ngModel)]='user.url'/><br>
       <input type='submit' (click)='submitEditUser()' value='Submit Changes'>
     </form>
   </div>
 </div>
-<div class="col-sm-3">
-  <div *ngIf="!addDog">
+<div class="col-sm-6">
+  <div *ngIf="!addDog && !editUser">
     Selected Dog: {{selectedDog.name}}
     <img src='{{selectedDog.photos[0].url}}'>
     <button type="button" (click)="selectAddNewPhoto()" class="btn btn-outline-primary">Add Photo for {{selectedDog.name}}</button>
@@ -88,11 +88,16 @@
       Weight <input type='number' name='weight' [(ngModel)]='dog.weight'/>
       Energy Level (1-10) <input type='number' name='energy' [(ngModel)]='dog.energy'/>
       Age <input type='number' name='age' [(ngModel)]='dog.age'/>
-      Sex <input type='radio' name='sex' value='Male' [(ngModel)]='dog.sex'/>
-          <input type='radio' name='sex' value='Female' [(ngModel)]='dog.sex'/>
+      Sex <input type='radio' name='sex' value='Male' [(ngModel)]='dog.sex'/> Male
+          <input type='radio' name='sex' value='Female' [(ngModel)]='dog.sex'/> Female
       About <input type='text' name='about' [(ngModel)]='dog.about'/>
       Profile Picture URL <input type='text' name='url' [(ngModel)]='photo.url'/>
       <input type='submit' (click)='submitAddDog()' value='Register'>
     </form>
   </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>

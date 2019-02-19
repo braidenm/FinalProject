@@ -4,7 +4,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
@@ -17,17 +17,23 @@
         <a class="nav-link " [routerLink]="['/profile']">Profile</a>
       </li>
 
-      <li class="nav-item dropdown" >
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      <div *ngFor="let dog of dogs">
+      <li class="nav-item" >
+        <a class="nav-link " (click)="setDog(dog.id)">{{dog.name}}</a>
+      </li>
+    </div>
+
+      <!-- <li class="nav-item dropdown" >
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Choose Your Dog
         </a>
+
         <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
-          <a class="dropdown-item" (click)="setDog(dog[0].id)">{{dogs[0].name}}</a>
-          <a class="dropdown-item" (click)="setDog(dog[1].id)">{{dogs[1].name}}</a>
-          <a class="dropdown-item" (click)="setDog(dog[2].id)">{{dogs[2].name}}</a>
+          <a class="dropdown-item" (click)="setDog(dog.id)">{{dog.name}}</a>
         </div>
-      </li>
+      </li> -->
+
     </ul>
     <div *ngIf="!user"> <app-login></app-login>
     </div>

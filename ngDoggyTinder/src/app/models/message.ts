@@ -7,6 +7,7 @@ export class Message {
   thatDog: Dog;
   text: string;
   date: Date;
+  read: boolean;
 
   constructor(id?: number, thisDog?: Dog, thatDog?: Dog, date?: Date) {
     this.id = id;

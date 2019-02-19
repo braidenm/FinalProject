@@ -16,7 +16,7 @@ import { Photo } from '../models/photo';
 export class DogService {
   // Fields
   private baseUrl = environment.baseUrl;
-  private url = this.baseUrl + 'api/dogs';
+  private url = this.baseUrl + 'api/dogs/';
   private selectedDog: Dog;
 
   // Constructor
@@ -24,13 +24,9 @@ export class DogService {
 
   // Methods
 
-  setSelectedDog(dogId: number) {
-    this.getOneDog(dogId).subscribe(
-      data => this.selectedDog = data,
-      err => {
-        this.router.navigateByUrl('notFound');
-      }
-    );
+  setSelectedDog(dog: Dog) {
+        this.selectedDog = dog;
+        console.log(dog);
   }
 
   getSelectedDog() {
@@ -51,11 +47,15 @@ export class DogService {
     // if (!this.auth.checkLogin) {
     //   this.router.navigateByUrl('login');
     // }
+    console.log('************** url');
+
+    console.log(this.url);
+
     return this.http.get<Dog[]>(this.url, this.getHttp())
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at dog service index');
           })
      );
   }

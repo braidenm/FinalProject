@@ -26,7 +26,6 @@ export class DogService {
 
   setSelectedDog(dog: Dog) {
         this.selectedDog = dog;
-        console.log(dog);
   }
 
   getSelectedDog() {
@@ -47,10 +46,6 @@ export class DogService {
     // if (!this.auth.checkLogin) {
     //   this.router.navigateByUrl('login');
     // }
-    console.log('************** url');
-
-    console.log(this.url);
-
     return this.http.get<Dog[]>(this.url, this.getHttp())
     .pipe(
           catchError((err: any) => {

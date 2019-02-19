@@ -29,7 +29,7 @@ public class Message {
 	@Column(name="time_sent")
 	@CreationTimestamp
 	private Date date;
-	
+	@Column(name="opened")
 	private boolean read;
 	
 	public boolean isRead() {

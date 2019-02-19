@@ -46,13 +46,12 @@ export class DogViewComponent implements OnInit {
             this.messServe.setThatDog(this.dog);
             console.log(this.user);
             this.getDogPhotos(dogId);
-            console.log(this.photos);
+            this.checkIfMatch();
             for (const dog of this.user.dogs) {
                 if (this.dog.id === dog.id) {
                   this.isUserDog = true;
                 }
             }
-            this.checkIfMatch();
           }
         );
 
@@ -74,13 +73,20 @@ export class DogViewComponent implements OnInit {
   checkIfMatch() {
       this.matchServe.index(this.dogServe.getSelectedDog().id).subscribe(
         data => {
-          console.log(this.dogServe.getSelectedDog());
+          console.log(this.isMatch);
           for (const match of data) {
-            if (this.dog.id === match.thatDog.id) {
+            if (this.dog.id === match.thatDog.id || this.dog.id === match.thisDog.id) {
               this.isMatch = true;
               break;
             }
-         }
+          }
+          console.log(this.isMatch);
+
+        },
+        err => {
+          console.log(this.dogServe.getSelectedDog());
+        console.log('in err for get all matches in dog view comp');
+
       }
     );
   }

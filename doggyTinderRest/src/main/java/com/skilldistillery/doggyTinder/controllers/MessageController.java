@@ -34,7 +34,6 @@ public class MessageController {
 			return mServ.addMessage(text, dogIdS, dogIdR);
 		} catch (Exception e) {
 			e.printStackTrace();
-			res.setStatus(404);
 			return null;
 		}
 	}
@@ -49,7 +48,6 @@ public class MessageController {
 			return messages;
 		} catch (Exception e) {
 			e.printStackTrace();
-			res.setStatus(404);
 			return null;
 		}
 	}
@@ -77,7 +75,7 @@ public class MessageController {
 			return null;
 		}
 	}
-	@PutMapping("messages/")
+	@PutMapping("messages")
 	public Message update(HttpServletResponse res,@RequestBody Message message) {
 		
 		try {

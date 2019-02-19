@@ -40,13 +40,23 @@ export class MessageComponent implements OnInit {
             this.messageS.update(mess).subscribe();
           }
           this.convo = data;
-          this.convo.sort((a: Message, b: Message) => {
-            return a.date.valueOf() - b.date.valueOf();
-          });
+          console.log(this.convo[0].date.valueOf());
+          console.log(typeof this.convo[0].date);
+
 
         }
       }
-    );
+      );
+      console.log(this.convo);
+
+    this.convo = this.convo.sort((a: Message, b: Message) => {
+      console.log(a);
+      // return new Date(a.date.valueOf).valueOf() - new Date(b.date).valueOf();
+      if (a.date > b.date) {
+        return -1;
+      }
+      return 1;
+    });
   }
 
   setMessageStyle(dogId: number) {

@@ -213,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `receiver_id` INT NOT NULL,
   `text` VARCHAR(500) NULL,
   `time_sent` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `read` TINYINT NULL DEFAULT 0,
+  `opened` TINYINT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   INDEX `fk_to_receiver_idx` (`receiver_id` ASC),
   CONSTRAINT `fk_to_sender`
@@ -429,13 +429,14 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `doggytinderdb`;
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (1, 2, 3, 'Hi little dude!', '2019-02-11 15:02:55', 1);
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (2, 3, 2, 'Woof!', '2019-02-11 15:12:13', 0);
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (3, 5, 6, 'Woof! Woof! Ruff! Aroo!', '2019-02-13 09:02:55', 0);
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (4, 6, 5, ';)', '2019-02-13 10:12:01', 0);
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (5, 5, 6, 'Ruffarooooo!!!', '2019-02-13 10:43:20', 0);
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (6, 6, 5, '????', '2019-02-13 11:01:02', 0);
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (7, 5, 6, '!!!!!!', '2019-02-11 13:02:55', 0);
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (8, 3, 8, 'Oh hi am dog you are cute', '2019-02-14 19:19:05', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (1, 2, 3, 'Hi little dude!', '2019-02-11 15:02:55', 1);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (2, 3, 2, 'Woof!', '2019-02-11 15:12:13', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (3, 5, 6, 'Woof! Woof! Ruff! Aroo!', '2019-02-13 09:02:55', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (4, 6, 5, ';)', '2019-02-13 10:12:01', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (5, 5, 6, 'Ruffarooooo!!!', '2019-02-13 10:43:20', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (6, 6, 5, '????', '2019-02-13 11:01:02', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (7, 5, 6, '!!!!!!', '2019-02-11 13:02:55', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (8, 3, 8, 'Oh hi am dog you are cute', '2019-02-14 19:19:05', 0);
 
 COMMIT;
+

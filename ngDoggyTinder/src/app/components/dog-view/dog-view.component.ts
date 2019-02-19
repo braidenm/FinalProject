@@ -7,6 +7,7 @@ import { Dog } from 'src/app/models/dog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Preferences } from 'src/app/models/preferences';
 import { Photo } from 'src/app/models/photo';
+import { MatchService } from 'src/app/services/match.service';
 
 
 @Component({
@@ -23,10 +24,11 @@ export class DogViewComponent implements OnInit {
   preferences: Preferences;
   active = false;
   photos;
+  isMatch = false;
 
   constructor(private route: ActivatedRoute, private userve: UserService,
               private dogServe: DogService, private router: Router,
-              private messServe: MessageService) { }
+              private messServe: MessageService, private matchServe: MatchService) { }
 
   ngOnInit() {
     this.reload();
@@ -50,6 +52,7 @@ export class DogViewComponent implements OnInit {
                   this.isUserDog = true;
                 }
             }
+            this.checkIfMatch();
           }
         );
 
@@ -65,6 +68,18 @@ export class DogViewComponent implements OnInit {
       data => {
         this.photos = data;
         console.log(data);
+      }
+    );
+  }
+  checkIfMatch() {
+    this.matchServe.index(this.dogServe.getSelectedDog().id).subscribe(
+      data => {
+        for (const match of data) {
+          if (this.dog.id === match.thatDog.id) {
+            this.isMatch = true;
+            break;
+          }
+        }
       }
     );
   }

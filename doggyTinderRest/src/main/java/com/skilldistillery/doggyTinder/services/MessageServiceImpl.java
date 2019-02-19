@@ -30,6 +30,7 @@ public class MessageServiceImpl implements MessageService {
 			Dog senderDog = op.get();
 			Dog receiveDog = op2.get();
 			message.setThisDog(senderDog);
+			message.setRead(false);
 			message.setThatDog(receiveDog);
 			message.setText(text);
 			mRepo.saveAndFlush(message);

@@ -1,5 +1,5 @@
-import { Address } from "./address";
-import { Dog } from "./dog";
+import { Address } from './address';
+import { Dog } from './dog';
 export class User {
   id: number;
   username: string;

@@ -1,16 +1,16 @@
-import { MessageService } from "./../../services/message.service";
-import { DogService } from "./../../services/dog.service";
-import { UserService } from "./../../services/user.service";
-import { AuthService } from "src/app/services/auth.service";
-import { Component, OnInit } from "@angular/core";
-import { User } from "src/app/models/user";
-import { Dog } from "src/app/models/dog";
-import { Router } from "@angular/router";
+import { MessageService } from './../../services/message.service';
+import { DogService } from './../../services/dog.service';
+import { UserService } from './../../services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
+import { Dog } from 'src/app/models/dog';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "app-navigation",
-  templateUrl: "./navigation.component.html",
-  styleUrls: ["./navigation.component.css"]
+  selector: 'app-navigation',
+  templateUrl: './navigation.component.html',
+  styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
   user: User;
@@ -41,6 +41,8 @@ export class NavigationComponent implements OnInit {
   getUser() {
     this.userS.getLoggedInUser().subscribe(data => {
       this.user = data;
+      console.log(this.user);
+
       if (this.user) {
         this.getUserDogs();
       }
@@ -49,16 +51,17 @@ export class NavigationComponent implements OnInit {
 
   getUserDogs() {
     this.dogS.getAllByUser(this.user.id).subscribe(data => {
+      console.log(data);
       this.dogs = data;
       if (this.dogs.length === 1) {
-        this.setDog(this.dogs[0].id);
+        this.setDog(this.dogs[0]);
       }
     });
   }
 
-  setDog(id: number) {
-    this.dogS.setSelectedDog(id);
-    this.dogS.getOneDog(id).subscribe(data => {
+  setDog(dog: Dog) {
+    this.dogS.setSelectedDog(dog);
+    this.dogS.getOneDog(dog.id).subscribe(data => {
       this.messageS.setThisDog(data);
       this.dog = data;
     });
@@ -68,11 +71,11 @@ export class NavigationComponent implements OnInit {
     this.auth.logout();
     if (this.auth.getCredentials() == null) {
       console.log(
-        "LogoutComponent.logout(): user logged out, routing to /home."
+        'LogoutComponent.logout(): user logged out, routing to /home.'
       );
-      this.router.navigateByUrl("/home");
+      this.router.navigateByUrl('/home');
     } else {
-      console.error("LogoutComponent.logout(): error logging out.");
+      console.error('LogoutComponent.logout(): error logging out.');
     }
   }
 }

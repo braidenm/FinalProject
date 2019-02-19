@@ -16,7 +16,7 @@ import { Photo } from '../models/photo';
 export class DogService {
   // Fields
   private baseUrl = environment.baseUrl;
-  private url = this.baseUrl + 'api/dogs/';
+  private url = this.baseUrl + 'api/dogs';
   private selectedDog: Dog;
 
   // Constructor
@@ -127,7 +127,7 @@ export class DogService {
     // if (!this.auth.checkLogin) {
     //   this.router.navigateByUrl('login');
     // }
-    return this.http.put<Dog[]>(this.url + '/users/' + userId, this.getHttp())
+    return this.http.get<Dog[]>(this.url + '/users/' + userId, this.getHttp())
     .pipe(
           catchError((err: any) => {
             console.log(err);

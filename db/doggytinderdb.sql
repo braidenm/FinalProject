@@ -439,5 +439,3 @@ INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `r
 INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `read`) VALUES (8, 3, 8, 'Oh hi am dog you are cute', '2019-02-14 19:19:05', 0);
 
 COMMIT;
-
->>>>>>> 14e0aaeea237ac2835d1203a2732ccaa63ea0cca

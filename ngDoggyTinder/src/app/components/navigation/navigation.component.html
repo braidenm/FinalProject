@@ -17,7 +17,7 @@
         <a class="nav-link " [routerLink]="['/profile']">Profile</a>
       </li>
 
-      <div *ngFor="let dog of dogs">
+       <div *ngFor="let dog of dogs">
       <li class="nav-item" >
         <a class="nav-link " (click)="setDog(dog.id)">{{dog.name}}</a>
       </li>
@@ -29,7 +29,7 @@
           Choose Your Dog
         </a>
 
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngFor="let dog of dogs">
           <a class="dropdown-item" (click)="setDog(dog.id)">{{dog.name}}</a>
         </div>
       </li> -->

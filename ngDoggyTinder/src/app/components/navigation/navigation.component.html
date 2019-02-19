@@ -22,8 +22,10 @@
           aria-haspopup="true" aria-expanded="false">
           Choose Your Dog
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngFor="let dog of dogs">
-          <a class="dropdown-item" (click)="setDog(dog.id)">{{dog.name}}</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+          <a class="dropdown-item" (click)="setDog(dog[0].id)">{{dogs[0].name}}</a>
+          <a class="dropdown-item" (click)="setDog(dog[1].id)">{{dogs[1].name}}</a>
+          <a class="dropdown-item" (click)="setDog(dog[2].id)">{{dogs[2].name}}</a>
         </div>
       </li>
     </ul>

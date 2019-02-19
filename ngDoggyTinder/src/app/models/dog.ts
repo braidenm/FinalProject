@@ -1,6 +1,9 @@
+import { Message } from './message';
+import { Likes } from './likes';
 import { Preferences } from './preferences';
 import { User } from './user';
 import { Photo } from './photo';
+import { DisLike } from './dis-like';
 
 
 export class Dog {
@@ -16,6 +19,10 @@ export class Dog {
   sex: string;
   photos: Photo[];
   Preferences: Preferences;
+  likes: Likes[];
+  dislikes: DisLike[];
+  messages: Message[];
+
 
   constructor(
     id?: number,
@@ -27,7 +34,10 @@ export class Dog {
     age?: number,
     about?: string,
     active?: boolean,
-    sex?: string
+    sex?: string,
+    likes?: Likes[],
+    dislikes?: DisLike[],
+    messages?: Message[]
   ) {
     this.id = id;
     this.user = user;
@@ -39,5 +49,8 @@ export class Dog {
     this.about = about;
     this.active = active;
     this.sex = sex;
+    this.likes = likes;
+    this.dislikes = dislikes;
+    this.messages = messages;
   }
 }

@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
     this.loadLikes(this.selectedDog.id);
     this.loadDislikes(this.selectedDog.id);
     this.getUser();
+    this.getDogsThatLikeThisDog(this.selectedDog.id);
     // this.dogs = this.getAllDogs();
   }
 

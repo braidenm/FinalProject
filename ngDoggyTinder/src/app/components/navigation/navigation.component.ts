@@ -28,6 +28,9 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
     this.getUser();
     if (this.user) {this.getUserDogs()};
+    if (this.dogs.length === 1 ) {
+        this.setDog(this.dogs[0].id);
+    }
 
   }
 
@@ -53,8 +56,11 @@ export class NavigationComponent implements OnInit {
 
   setDog(id: number) {
     this.dogS.setSelectedDog(id);
-
-  }
+    this.dogS.getOneDog(id).subscribe(
+       data => {
+         this.messageS.setThisDog(data);
+  });
+}
 
 
 

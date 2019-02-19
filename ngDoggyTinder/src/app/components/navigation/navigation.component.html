@@ -4,7 +4,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
@@ -16,16 +16,21 @@
       <li class="nav-item" *ngIf="user" >
         <a class="nav-link " [routerLink]="['/profile']">Profile</a>
       </li>
+      <li lass="nav-item" *ngFor="let dog of dogs">
+        <a class="nav-link " (click)="setDog(dog.id)">{{dog.name}}</a>
+      </li>
 
-      <li class="nav-item dropdown" >
+      <!-- <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Choose Your Dog
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngFor="let dog of dogs">
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
           <a class="dropdown-item" (click)="setDog(dog.id)">{{dog.name}}</a>
         </div>
-      </li>
+      </li> -->
+
       <li class="nav-item" >
           {{dog.name}}
         </li>

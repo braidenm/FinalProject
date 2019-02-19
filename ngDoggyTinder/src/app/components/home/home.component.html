@@ -1,4 +1,5 @@
-<div class="bd-example" *ngIf="!user">
+<!-- <div *ngIf="!user & dogs">
+  <h1>Homepage {{dogs.length}}</h1>
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" >
       <div class="carousel-inner" >
         <div class="carousel-item active" *ngFor="let dog of dogs">
@@ -9,8 +10,7 @@
           </div>
         </div>
       </div>
-      <a mdbBtn floating="true" size="lg" gradient="purple" mdbWavesEffect data-slide="prev">
-
+      <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
@@ -40,4 +40,10 @@
         <span class="sr-only">Let's Make Puppies</span>
       </a>
     </div>
-  </div>
+  </div> -->
+
+  {{ dogs.length }}
+  {{ dogs[0].name }}
+  <ul>
+    <li *ngFor="let dog of dogs"> {{ dog.name}} </li>
+  </ul>

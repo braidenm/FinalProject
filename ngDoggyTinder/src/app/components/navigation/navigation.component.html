@@ -16,14 +16,16 @@
       <li class="nav-item" *ngIf="user" >
         <a class="nav-link " [routerLink]="['/profile']">Profile</a>
       </li>
-      <li class="nav-item dropdown" *ngIf="dogs">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Choose Your Dog
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngFor="let dog of dogs">
-            <a class="dropdown-item" (click)= "setDog(dog.id)">{{dog.name}}</a>
-          </div>
-          </li>
+
+      <li class="nav-item dropdown" *ngIf="dogs.length > 1">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Choose Your Dog
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngFor="let dog of dogs">
+          <a class="dropdown-item" (click)="setDog(dog.id)">{{dog.name}}</a>
+        </div>
+      </li>
     </ul>
     <div *ngIf="!user"> <app-login></app-login>
     </div>

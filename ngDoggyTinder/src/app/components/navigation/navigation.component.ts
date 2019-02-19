@@ -53,9 +53,7 @@ export class NavigationComponent implements OnInit {
     this.dogS.getAllByUser(this.user.id).subscribe(data => {
       console.log(data);
       this.dogs = data;
-      if (this.dogs.length === 1) {
-        this.setDog(this.dogs[0]);
-      }
+      this.setDog(this.dogs[0]);
     });
   }
 
@@ -63,10 +61,8 @@ export class NavigationComponent implements OnInit {
     console.log(dog);
 
     this.dogS.setSelectedDog(dog);
-    this.dogS.getOneDog(dog.id).subscribe(data => {
-      this.messageS.setThisDog(data);
-      this.dog = data;
-    });
+    this.messageS.setThisDog(dog);
+
   }
 
   logout() {

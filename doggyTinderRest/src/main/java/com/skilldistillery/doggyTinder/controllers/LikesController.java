@@ -18,7 +18,7 @@ import com.skilldistillery.doggyTinder.services.LikeService;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin({ "*", "http://localhost:4201" })
+@CrossOrigin({ "*", "http://localhost:4205" })
 public class LikesController {
 	
 	@Autowired

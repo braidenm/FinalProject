@@ -1,12 +1,21 @@
+import { DisLike } from './../models/dis-like';
 import { Pipe, PipeTransform } from '@angular/core';
+import { Dog } from '../models/dog';
 
 @Pipe({
   name: 'filterDogsByDislike'
 })
 export class FilterDogsByDislikePipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
-    return null;
-  }
+    transform(dogs: Dog[], dislikes: DisLike[], selectedDog: Dog): any {
+    const results = [];
+
+    dogs.forEach((dog) => {
+      dislikes.forEach((dislike) => {
+        if (dislike.thatDog.id !== dog.id && dislike.thatDog.id !== this.selectedDog.id) {
+          results.push(dog);
+        }
+      });
+    });
 
 }

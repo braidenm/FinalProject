@@ -199,7 +199,7 @@ export class DogService {
     // if (!this.auth.checkLogin) {
     //   this.router.navigateByUrl('login');
     // }
-    return this.http.post<Photo[]>(this.url + '/' + dogId + '/photo', this.getHttp())
+    return this.http.get<Photo[]>(this.url + '/' + dogId + '/photo', this.getHttp())
     .pipe(
           catchError((err: any) => {
             console.log(err);

@@ -16,9 +16,12 @@
       <li class="nav-item" *ngIf="user" >
         <a class="nav-link " [routerLink]="['/profile']">Profile</a>
       </li>
-      <li lass="nav-item" *ngFor="let dog of dogs">
+
+      <div *ngFor="let dog of dogs">
+      <li class="nav-item" >
         <a class="nav-link " (click)="setDog(dog.id)">{{dog.name}}</a>
       </li>
+    </div>
 
       <!-- <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -31,9 +34,6 @@
         </div>
       </li> -->
 
-      <li class="nav-item" >
-          {{dog.name}}
-        </li>
     </ul>
     <div *ngIf="!user"> <app-login></app-login>
     </div>

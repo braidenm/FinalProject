@@ -41,6 +41,7 @@ export class DogViewComponent implements OnInit {
         this.userve.getLoggedInUser().subscribe(
           userData => {
             this.user = userData;
+            this.messServe.setThatDog(this.dog);
             console.log(this.user);
             this.getDogPhotos(dogId);
             console.log(this.photos);

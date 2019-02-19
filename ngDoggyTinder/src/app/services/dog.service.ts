@@ -98,7 +98,7 @@ export class DogService {
     // if (!this.auth.checkLogin) {
     //   this.router.navigateByUrl('login');
     // }
-    return this.http.post<Dog>(this.url + '/users/' + userId, dog, this.getHttp())
+    return this.http.post<Dog>(this.url + '/' + userId, dog, this.getHttp())
     .pipe(
           catchError((err: any) => {
             console.log(err);

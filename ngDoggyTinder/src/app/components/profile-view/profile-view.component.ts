@@ -67,7 +67,7 @@ export class ProfileViewComponent implements OnInit {
   }
 
   submitAddDog() {
-    this.dogService.create(this.dog, 2).subscribe(
+    this.dogService.create(this.dog, this.user.id).subscribe(
       data => {
         this.dog = data;
         this.addPhoto();

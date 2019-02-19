@@ -29,6 +29,9 @@ export class DogViewComponent implements OnInit {
               private messServe: MessageService) { }
 
   ngOnInit() {
+    this.reload();
+  }
+  reload() {
     let dogId;
     dogId = this.route.snapshot.paramMap.get('id');
     this.dogServe.getOneDog(dogId).subscribe(
@@ -54,7 +57,6 @@ export class DogViewComponent implements OnInit {
         }
       }
     );
-
   }
 
   getDogPhotos(dogId: number) {
@@ -62,7 +64,6 @@ export class DogViewComponent implements OnInit {
       data => {
         this.photos = data;
         console.log(data);
-
       }
     );
   }
@@ -77,25 +78,35 @@ export class DogViewComponent implements OnInit {
   confirmEditDog() {
     this.dog = this.editDog;
     this.dogServe.update(this.dog).subscribe(
-      data => this.dog = data
     );
     this.editDog = null;
   }
   deactivateDog() {
     this.dog.active = false;
+    this.active = false;
     this.dogServe.update(this.dog).subscribe(
-      data => this.dog = data
+      data => {
+        this.dog = data;
+        this.reload();
+      }
     );
   }
   reactivateDog() {
     this.dog.active = true;
+    this.active = true;
     this.dogServe.update(this.dog).subscribe(
-      data => this.dog = data
-    );
+      data => {
+        this.dog = data;
+        this.reload();
+      }
+        );
   }
   setEditPref() {
     this.dogServe.showPreferences(this.dog.id).subscribe(
-      data => this.preferences = data
+      data => {
+        this.preferences = data;
+        this.reload();
+      }
     );
   }
   cancelEditPref() {

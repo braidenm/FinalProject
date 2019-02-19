@@ -53,7 +53,9 @@ export class NavigationComponent implements OnInit {
     this.dogS.getAllByUser(this.user.id).subscribe(data => {
       console.log(data);
       this.dogs = data;
-      this.setDog(this.dogs[0]);
+      if (!this.dogS.getSelectedDog()) {
+        this.setDog(this.dogs[0]);
+      }
     });
   }
 

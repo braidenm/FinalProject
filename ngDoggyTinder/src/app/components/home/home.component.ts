@@ -18,9 +18,9 @@ import { User } from 'src/app/models/user';
 })
 export class HomeComponent implements OnInit {
 
-  user: User;
+  user: User = null;
   likes: Likes[];
-  dogs = [];
+  dogs: Dog[] = null; // [];
   selectedDog = new Dog();
   matches: Matches[];
   popUpDog = new Dog();
@@ -32,13 +32,13 @@ export class HomeComponent implements OnInit {
               private userS: UserService) { }
 
   ngOnInit() {
+    this.getAllDogs();
     this.selectedDog = this.dogService.getSelectedDog();
     this.loadMatches(this.selectedDog.id);
     this.loadLikes(this.selectedDog.id);
     this.loadDislikes(this.selectedDog.id);
     this.getUser();
     this.getDogsThatLikeThisDog(this.selectedDog.id);
-    // this.dogs = this.getAllDogs();
   }
 
   getUser() {
@@ -48,11 +48,20 @@ export class HomeComponent implements OnInit {
   }
 
   getAllDogs() {
+    console.log('hellllo');
     this.dogService.index().subscribe(
       data => {
+        console.log('hey i got something');
+        console.log(data);
+
         this.dogs = data;
+        console.log(this.dogs);
       },
-      error => console.log(error)
+      error => {
+        console.log('hey i got an error');
+
+        console.log(error);
+      }
     );
   }
 

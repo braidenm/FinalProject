@@ -36,7 +36,8 @@ public class DogController {
 
 		try {
 			res.setStatus(201);
-			return dServ.index();
+			List<Dog> result = dServ.index();
+			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(404);

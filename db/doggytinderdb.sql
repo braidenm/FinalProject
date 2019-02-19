@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -440,3 +442,4 @@ INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `r
 
 COMMIT;
 
+>>>>>>> 14e0aaeea237ac2835d1203a2732ccaa63ea0cca

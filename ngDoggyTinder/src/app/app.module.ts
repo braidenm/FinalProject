@@ -30,6 +30,7 @@ import { FilterDogsByActivePipe } from './pipes/filter-dogs-by-active.pipe';
 import { FilterDogsByYourPreferencesPipe } from './pipes/filter-dogs-by-your-preferences.pipe';
 import { MainPageCarouselComponent } from './components/main-page-carousel/main-page-carousel.component';
 import { DatePipe } from '@angular/common';
+import { FilterDogMatchesPipe } from './pipes/filter-dog-matches.pipe';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { DatePipe } from '@angular/common';
     FilterDogsByActivePipe,
     FilterDogsByYourPreferencesPipe,
     MainPageCarouselComponent,
+    FilterDogMatchesPipe,
   ],
 
   imports: [

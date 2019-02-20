@@ -1,16 +1,16 @@
-.container {
+/* .container {
   background-color: #b6e0ec
-}
+} */
 
-#profile{
-  background-color: #ff8802;
+#box{
+  background-color: #C8B8FA;
   margin: 10px;
   padding: 10px
 }
 
-#dogs{
-  background-color: #fda94a;
-  margin: 10px;
+#element{
+  background-color: #cdc5e2;
+  margin: 0 auto;
   padding: 10px
 }
 
@@ -19,6 +19,22 @@
   max-width: 45px
 }
 
+table{
+  margin: 0 auto;
+}
+
 ul {
   list-style-type: none;
+  padding-left: 0px;
+  padding-right: 10px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin: 10px;
 }
+
+body {
+  background-color: #f3effe
+}
+
+
+/* C8B8FA */

@@ -262,6 +262,7 @@ public class DogServiceImpl implements DogService {
 
 	@Override
 	public List<Dog> getFilteredDogs(Integer dogId) {
+		System.out.println("in filtered dogs" + dogId);
 		List<Dog> allDogs = dRepo.findAll();
 		Optional<Dog> opDog = dRepo.findById(dogId);
 		List<Dog> results = new ArrayList<Dog>();
@@ -279,7 +280,8 @@ public class DogServiceImpl implements DogService {
 
 	public List<Dog> filterByLikes(List<Likes> likes, List<Dog> allDogs) {
 		List<Dog> results = new ArrayList<Dog>();
-		outterLoop: for (Dog dog : allDogs) {
+		outterLoop: 
+		for (Dog dog : allDogs) {
 			for (Likes like : likes) {
 				if (dog.getId() == like.getThisDog().getId() || dog.getId() == like.getThatDog().getId()) {
 					continue outterLoop;
@@ -308,6 +310,7 @@ public class DogServiceImpl implements DogService {
 	public List<Dog> filterByPrefs(Dog selectedDog, List<Dog> allDogs) {
 		List<Dog> results = new ArrayList<Dog>();
 		Preferences pref = selectedDog.getPreferences();
+		System.out.println(pref);
 		for (Dog dog : allDogs) {
 			if (pref.getMinWeight() < dog.getWeight() && pref.getMaxWeight() > dog.getWeight()) {
 				if (pref.getMinAge() < dog.getAge() && pref.getMaxAge() > dog.getAge()) {

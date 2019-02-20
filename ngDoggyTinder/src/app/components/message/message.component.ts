@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Dog } from 'src/app/models/dog';
 import { DogService } from 'src/app/services/dog.service';
 import { Message } from 'src/app/models/message';
+import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-message',
@@ -15,7 +16,10 @@ export class MessageComponent implements OnInit {
   convo: Message[] = [];
   text = '';
 
-  constructor(private messageS: MessageService, private dogServe: DogService) {}
+  constructor(private messageS: MessageService, private dogServe: DogService,
+              config: NgbDropdownConfig) {
+      config.autoClose = false;
+  }
 
   ngOnInit() {
     this.thisDog = this.messageS.getThisDog();

@@ -79,7 +79,13 @@
       <div *ngIf='!editUser && !addDog'>
         <h4>User Dogs</h4>
         <ul>
-          <li *ngFor='let dog of userDogs'><a (click)='viewDogProfile(dog.id)'>{{dog.name}}</a></li>
+          <li *ngFor='let dog of userDogs'>
+            <a (click)='viewDogProfile(dog.id)'>
+              <div *ngIf='dog.photos.length > 0'>
+                <img src="{{dog.photos[0].url}}" id="thumbnail">
+              </div>{{dog.name}}
+            </a>
+          </li>
         </ul>
         <button (click)="this.selectAddDog()" class="btn btn-outline-primary">Add Dog</button>
       </div>

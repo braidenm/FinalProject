@@ -37,9 +37,8 @@ export class HomeComponent implements OnInit {
 
 
 
-   this.loadMatches(this.selectedDog.id);
-    // this.loadLikes(this.selectedDog.id);
-    // this.loadDislikes(this.selectedDog.id);
+
+
 
   }
 // this is working properly
@@ -50,9 +49,12 @@ export class HomeComponent implements OnInit {
       this.selectedDog = this.dogService.getSelectedDog();
       console.log(this.selectedDog);
       this.getDogsThatLikeThisDog(this.selectedDog.id);
-
+      this.loadMatches(this.selectedDog.id);
+      this.loadLikes(this.selectedDog.id);
+      this.loadDislikes(this.selectedDog.id);
     });
   }
+
 // this is working properly
   getAllDogs() {
     console.log('hellllo');
@@ -75,7 +77,7 @@ export class HomeComponent implements OnInit {
   loadMatches(selectedDogId: number) {
     this.matchService.index(selectedDogId).subscribe(
       data => {
-        console.log("yoooooo")
+        console.log("yoooooo");
         this.matches = data;
       },
       error => console.log(error)

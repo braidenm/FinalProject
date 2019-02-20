@@ -13,3 +13,8 @@
   margin: 10px;
   padding: 10px
 }
+
+#thumbnail {
+  max-height: 45px;
+  max-width: 45px
+}

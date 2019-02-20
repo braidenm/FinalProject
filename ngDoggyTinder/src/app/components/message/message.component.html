@@ -1,25 +1,39 @@
-<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+<!-- <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
   <ngb-panel title="Messages">
     <ng-template ngbPanelContent>
-      <div class='messages' #scrollMe [scrollTop]="scrollMe.scrollHeight">
-        <div class='overflow'>
 
-          <div *ngFor="let message of convo">
-            <div [ngClass]="setMessageStyle(message.thisDog.id)">
-              <p>{{ message.text }}</p>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion> -->
+<div class="messageGroup">
+
+  <div class="col text-right">
+    <div ngbDropdown placement="top-right" class="d-inline-block">
+      <button class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle> Messages </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+        <div class='messages' #scrollMe [scrollTop]="scrollMe.scrollHeight">
+          <div class='overflow'>
+
+            <div *ngFor="let message of convo">
+              <div [ngClass]="setMessageStyle(message.thisDog.id)">
+                <p>{{ message.text }}</p>
                 <hr>
-            <p>-{{ message.thisDog.name }}:
-              {{ message.date | date }}</p>
+                <p>-{{ message.thisDog.name }}:
+                  {{ message.date | date }}</p>
+                </div>
+              </div>
             </div>
           </div>
+          <br>
+          <hr>
+          <form>
+            <input type="text" name="text" placeholder="Text" [(ngModel)]="text" />
+            <button type="button" class="btn btn-outline-success" (click)="addMessage()">
+              Send
+            </button>
+          </form>
         </div>
       </div>
-      <form>
-        <input type="text" name="text" [(ngModel)]="text" />
-        <button type="button" class="btn btn-outline-success" (click)="addMessage()">
-          Send
-        </button>
-      </form>
-    </ng-template>
-    </ngb-panel>
-</ngb-accordion>
+    </div>
+
+  </div>

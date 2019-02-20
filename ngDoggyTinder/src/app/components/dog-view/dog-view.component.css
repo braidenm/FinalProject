@@ -11,19 +11,16 @@ img {
 } */
 
 .message {
-  margin: 5px;
+  margin: 0px;
   width: 100%;
   padding: 0%;
 }
 
 .profile {
-  margin: 5px;
+  margin: 0px;
   border: solid;
   border-width: medium;
   background-color: lightgray;
   display: inline-block;
-}
-.row {
-  text-align: center;
 }
 

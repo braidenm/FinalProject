@@ -48,9 +48,13 @@
         <td><img src='{{user.url}}'></td>
       </tr>
     </table>
-    <button (click)="this.selectAddDog()" class="btn btn-outline-primary">Add Dog</button>
+
     <button (click)="this.selectEditUser()" class="btn btn-outline-primary">Edit User</button>
     <button (click)="this.deleteUser()" class="btn btn-outline-danger">Delete User</button>
+  </div>
+  <div class="col-sm-3">
+      <img src='{{user.url}}'><br>
+      Profile Picture
   </div>
   <br>
   <div *ngIf='!editUser && !addDog'>
@@ -58,6 +62,7 @@
     <ul>
       <li *ngFor='let dog of userDogs'><a (click)='viewDogProfile(dog.id)'>{{dog.name}}</a></li>
     </ul>
+    <button (click)="this.selectAddDog()" class="btn btn-outline-primary">Add Dog</button>
   </div>
   <div *ngIf='editUser'>
     <form>

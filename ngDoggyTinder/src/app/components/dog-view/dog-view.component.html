@@ -23,11 +23,9 @@
       <button type="button" *ngIf="isUserDog" (click)="deactivateDog()" class="btn btn-outline-danger">Deactivate Dog</button>
     </div>
   </div>
-  <div *ngIf="active && !editDog && !isUserDog && !preferences && isMatch">
-    <div class="col-sm-4 message" >
+    <div class="col-sm-4 message" *ngIf="active && !editDog && !isUserDog && !preferences && isMatch" >
       <app-message></app-message>
     </div>
-  </div>
   <div *ngIf="editDog && !preferences">
     <form>
       Name: <input type="text" name="name" required [(ngModel)]="editDog.name">

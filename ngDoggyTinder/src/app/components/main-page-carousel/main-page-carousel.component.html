@@ -7,32 +7,32 @@
      </div>
    </ng-template>
    </ngb-carousel> -->
-   <ngb-carousel>
+   <ngb-carousel >
       <ng-template ngbSlide>
-        <img src='assets/photos/dogChasing.jpg' alt="Random first slide">
+        <img [src]="images[0]" height="900px" alt="Random first slide">
         <div class="carousel-caption">
-          <h3>10 seconds between slides...</h3>
+          <h3>Puppy Love</h3>
           <p>This carousel uses customized default values.</p>
         </div>
       </ng-template>
       <ng-template ngbSlide>
-        <img [src]="images[1]" alt="Random second slide">
+        <img [src]="images[1]" height="900px" alt="Random second slide">
         <div class="carousel-caption">
-          <h3>No mouse events...</h3>
+          <h3>Dogs Love Too</h3>
           <p>This carousel doesn't pause or resume on mouse events</p>
         </div>
       </ng-template>
       <ng-template ngbSlide>
-        <img [src]="images[2]"  alt="Random third slide">
+        <img [src]="images[2]" height="900px"  alt="Random third slide">
         <div class="carousel-caption">
-          <h3>No keyboard...</h3>
+          <h3>More Pups, Less Worries</h3>
           <p>This carousel uses customized default values.</p>
         </div>
       </ng-template>
       <ng-template ngbSlide>
-        <img [src]="images[3]" alt="Random fourth slide">
+        <img [src]="images[3]" height="900px" alt="Random fourth slide">
         <div class="carousel-caption">
-          <h3>And no wrap after last slide.</h3>
+          <h3>Find Love</h3>
           <p>This carousel uses customized default values.</p>
         </div>
       </ng-template>

@@ -1,71 +1,19 @@
 
-  <div class="container" id="doggyView">
+
     <!-- <app-main-page-carousel [dogs]='dogs' [possibleMatches]='possibleMatches'>
     </app-main-page-carousel> -->
     <app-main-page-carousel>
     </app-main-page-carousel>
 
-<<<<<<< HEAD
-    <!-- <ngb-carousel *ngIf="!user" >
-        <div id="myCarousel"  class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-              <li data-target="#myCarousel" data-slide-to="1"></li>
-              <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-              <ng-template ngbSlide>
-              <div class="item bg bg1 active">
-                <div class="container">
-                  <div class="carousel-caption">
-                    <h1>Example headline.</h1>
-                    <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template ngbSlide>
-              <div class="item bg bg2">
-                <div class="container">
-                  <div class="carousel-caption">
-                    <h1>Another example headline.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template ngbSlide>
-              <div class="item bg bg1">
-                <div class="container">
-                  <div class="carousel-caption">
-                    <h1>One more for good measure.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            </div>
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-          </div>
-          </ngb-carousel> -->
-
-   <div *ngIf="user" >
-      <div *ngFor="let pm of possibleMatches">
-=======
     <div *ngIf="!user">
     <!-- <img [src]="dogs[0].photos[0].url" alt="no photo"> -->
   </div>
     <div *ngIf="user" >
       <div *ngFor="let pm of filteredDogs">
->>>>>>> 2349ea0269d62f9dd7b886437a849a5ac417088a
     <img [src]="pm.photos[0].url" alt="no photo" height="500" width="500">
     <button class="btn btn-primary" *ngIf="user" (click)="dislikeDog(pm.id)">Nope</button>
     <button class="btn btn-primary" *ngIf="user" (click)="likeDog(pm.id)">Like</button>
   </div>
   </div>
-   </div>
+
 

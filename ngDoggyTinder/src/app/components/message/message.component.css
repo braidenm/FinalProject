@@ -1,25 +1,47 @@
 .sender {
-  background-color: lightblue;
-  text-align: right;
+  background-color: tan;
+  /* text-align: right; */
   border-radius: 25px;
   padding: 5%;
   margin: 5%;
+  /* word-wrap: break-word; */
+  word-break: break-all;
+  /* word-wrap: normal; */
+  max-width: 90%;;
+  /* overflow: none; */
+  float: right;
+  /* white-space: wrap; */
+  font-size: 12px;
+
+}
+
+input {
+  width: 90%;
 }
 
 .receiver {
+  font-size: 12px;
+  word-wrap: break-word;
+  max-width: 90%;;
   margin: 5%;
   padding: 5%;
   background-color: green;
   text-align: left;
   border-radius: 25px;
+  display: inline-block;
 
 }
 
 .messages {
+  /* white-space: nowrap; */
   max-height: 500px;
-    overflow: hidden;
-    overflow-y: scroll;
+  word-wrap: break-word;
+  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: none;
+  width: 100%;
 }
+
 
 /* .overflow {
 } */

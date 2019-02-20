@@ -57,10 +57,11 @@ export class HomeComponent implements OnInit {
       console.log(this.user);
       this.selectedDog = this.dogService.getSelectedDog();
       console.log(this.selectedDog);
-      this.dogService
-        .getFilteredDogs(this.selectedDog.id)
+      this.dogService.getFilteredDogs(this.selectedDog.id)
         .subscribe(dogList => {
           this.filteredDogs = dogList;
+          console.log(dogList);
+
           this.getDogsThatLikeThisDog();
         });
     });
@@ -129,12 +130,12 @@ export class HomeComponent implements OnInit {
                   .getFilteredDogs(this.selectedDog.id)
                   .subscribe(dogList => {
                     this.filteredDogs = dogList;
-                    this.getDogsThatLikeThisDog();
                     this.loadMatches(this.selectedDog.id);
                     this.popUpCaller(thatDogId);
                   });
               }
             }
+            this.ngOnInit();
             // likeList.forEach(like => {
             //   if (like.thatDog.id === this.selectedDog.id) {
             //     this.matchService.addMatch(like.thatDog.id, thatDogId);
@@ -170,6 +171,7 @@ export class HomeComponent implements OnInit {
 
   getDogsThatLikeThisDog() {
     this.likeService.getByThatDog(this.selectedDog.id).subscribe(data => {
+      this.possibleMatches = [];
       for (const like of data) {
         this.dogService.getOneDog(like.thisDog.id).subscribe(
           data1 => {

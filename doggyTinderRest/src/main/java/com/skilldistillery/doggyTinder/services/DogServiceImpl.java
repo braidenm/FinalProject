@@ -1,5 +1,6 @@
 package com.skilldistillery.doggyTinder.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,19 +64,19 @@ public class DogServiceImpl implements DogService {
 		Optional<Dog> op = dRepo.findById(id);
 		if (op.isPresent()) {
 			Dog dog = op.get();
-			
+
 			List<Photo> photos = dog.getPhotos();
 			for (Photo photo : photos) {
 				photo.setDog(null);
 				pRepo.deleteById(photo.getId());
 			}
 			dog.setPhotos(null);
-			
+
 			Preferences pref = dog.getPreferences();
 			dog.setPreferences(null);
 			pref.setDog(null);
 			prefRepo.deleteById(pref.getId());
-			
+
 			List<Message> messages = dog.getMessages();
 			for (Message message : messages) {
 				message.setThatDog(null);
@@ -83,7 +84,7 @@ public class DogServiceImpl implements DogService {
 				messRepo.deleteById(message.getId());
 			}
 			dog.setMessages(null);
-			
+
 			List<Likes> likes = dog.getLikes();
 			for (Likes likes2 : likes) {
 				likes2.setThatDog(null);
@@ -91,15 +92,16 @@ public class DogServiceImpl implements DogService {
 				likeRepo.deleteById(likes2.getId());
 			}
 			dog.setLikes(null);
-			
+
 			List<Dislike> dislikes = dog.getDislikes();
 			for (Dislike dislike : dislikes) {
 				dislike.setThatDog(null);
 				dislike.setThisDog(null);
-				disRepo.deleteById(dislike.getId());;
+				disRepo.deleteById(dislike.getId());
+				;
 			}
 			dog.setDislikes(null);
-			
+
 			List<Matches> matches = dog.getMatches();
 			for (Matches matches2 : matches) {
 				matches2.setThatDog(null);
@@ -107,7 +109,7 @@ public class DogServiceImpl implements DogService {
 				matchRepo.deleteById(matches2.getId());
 			}
 			dog.setMatches(null);
-			
+
 			dRepo.saveAndFlush(dog);
 			dRepo.deleteById(id);
 		}
@@ -208,12 +210,12 @@ public class DogServiceImpl implements DogService {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public Preferences getPreferencesByDogId(Integer id) {
 		Preferences pref = prefRepo.findPreferencesByDog_Id(id);
 		return pref;
-		
+
 	}
 
 	@Override
@@ -236,26 +238,88 @@ public class DogServiceImpl implements DogService {
 	public Dog deletePhoto(Integer dogId, Integer photoId) {
 		Optional<Dog> op = dRepo.findById(dogId);
 		Optional<Photo> op2 = pRepo.findById(photoId);
-		if(op.isPresent() && op2.isPresent()) {
+		if (op.isPresent() && op2.isPresent()) {
 			Dog dog = op.get();
 			Photo photo = op2.get();
 			dog.removePhoto(photo);
 			pRepo.deleteById(photoId);
-			dRepo.saveAndFlush(dog); 
+			dRepo.saveAndFlush(dog);
 			return dog;
 		}
 		return null;
 	}
-	
+
 	@Override
 	public List<Photo> getPhotosByDogId(Integer dogId) {
 		Optional<Dog> opDog = dRepo.findById(dogId);
-		if(opDog.isPresent()) {
+		if (opDog.isPresent()) {
 			Dog dog = opDog.get();
 			List<Photo> photos = dog.getPhotos();
 			return photos;
 		}
 		return null;
+	}
+
+	@Override
+	public List<Dog> getFilteredDogs(Integer dogId) {
+		List<Dog> allDogs = dRepo.findAll();
+		Optional<Dog> opDog = dRepo.findById(dogId);
+		List<Dog> results = new ArrayList<Dog>();
+		if (opDog.isPresent()) {
+			Dog selectedDog = opDog.get();
+			List<Likes> likes = likeRepo.findByThisDog_id(selectedDog.getId());
+			List<Dislike> disLikes = disRepo.findByThisDog_id(selectedDog.getId());
+			results = filterByLikes(likes, allDogs);
+			results = filterByDisLikes(disLikes, results);
+			results = filterByPrefs(selectedDog, results);
+			return results;
+		}
+		return null;
+	}
+
+	public List<Dog> filterByLikes(List<Likes> likes, List<Dog> allDogs) {
+		List<Dog> results = new ArrayList<Dog>();
+		outterLoop: for (Dog dog : allDogs) {
+			for (Likes like : likes) {
+				if (dog.getId() == like.getThisDog().getId() || dog.getId() == like.getThatDog().getId()) {
+					continue outterLoop;
+				}
+			}
+			results.add(dog);
+		}
+
+		return results;
+	}
+
+	public List<Dog> filterByDisLikes(List<Dislike> disLikes, List<Dog> allDogs) {
+		List<Dog> results = new ArrayList<Dog>();
+		outterLoop: for (Dog dog : allDogs) {
+			for (Dislike disLike : disLikes) {
+				if (dog.getId() == disLike.getThisDog().getId() || dog.getId() == disLike.getThatDog().getId()) {
+					continue outterLoop;
+				}
+			}
+			results.add(dog);
+		}
+
+		return results;
+	}
+
+	public List<Dog> filterByPrefs(Dog selectedDog, List<Dog> allDogs) {
+		List<Dog> results = new ArrayList<Dog>();
+		Preferences pref = selectedDog.getPreferences();
+		for (Dog dog : allDogs) {
+			if (pref.getMinWeight() < dog.getWeight() && pref.getMaxWeight() > dog.getWeight()) {
+				if (pref.getMinAge() < dog.getAge() && pref.getMaxAge() > dog.getAge()) {
+					if (pref.getMinEnergy() < dog.getEnergy() && pref.getMaxEnergy() > dog.getEnergy()) {
+						if (pref.getSex().equals(dog.getSex())) {
+							results.add(dog);
+						}
+					}
+				}
+			}
+		}
+		return results;
 	}
 
 }

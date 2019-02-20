@@ -202,4 +202,16 @@ export class DogService {
           })
      );
   }
+  getFilteredDogs(dogId: number) {
+    // if (!this.auth.checkLogin) {
+    //   this.router.navigateByUrl('login');
+    // }
+    return this.http.get<Dog[]>(this.url + '/' + dogId + '/filtered', this.getHttp())
+    .pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError('KABOOM broken at getFilteredDogs');
+          })
+     );
+  }
 }

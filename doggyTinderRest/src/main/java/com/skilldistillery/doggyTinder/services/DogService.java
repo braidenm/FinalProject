@@ -22,5 +22,6 @@ public interface DogService {
 	public Dog deletePhoto(Integer dogId, Integer photoId);
 	public Preferences getPreferencesByDogId(Integer id);
 	List<Photo> getPhotosByDogId(Integer dogId);
+	public List<Dog> getFilteredDogs(Integer dogId);
 	
 }

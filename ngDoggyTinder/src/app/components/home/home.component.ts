@@ -1,68 +1,84 @@
-import { FilterDogMatchesPipe } from './../../pipes/filter-dog-matches.pipe';
-import { UserService } from './../../services/user.service';
-import { DisLike } from './../../models/dis-like';
-import { Likes } from './../../models/likes';
-import { DisLikeService } from './../../services/dis-like.service';
-import { LikeService } from './../../services/like.service';
-import { DogService } from './../../services/dog.service';
-import { Component, OnInit } from '@angular/core';
-import { Dog } from 'src/app/models/dog';
-import { forEach } from '@angular/router/src/utils/collection';
-import { MatchService } from 'src/app/services/match.service';
-import { Matches } from 'src/app/models/matches';
-import { User } from 'src/app/models/user';
+import { FilterOutOwnersDogsPipe } from "./../../pipes/filter-out-owners-dogs.pipe";
+import { FilterDogsByActivePipe } from "./../../pipes/filter-dogs-by-active.pipe";
+import { FilterDogsByDislikePipe } from "./../../pipes/filter-dogs-by-dislike.pipe";
+import { FilterDogMatchesPipe } from "./../../pipes/filter-dog-matches.pipe";
+import { UserService } from "./../../services/user.service";
+import { DisLike } from "./../../models/dis-like";
+import { Likes } from "./../../models/likes";
+import { DisLikeService } from "./../../services/dis-like.service";
+import { LikeService } from "./../../services/like.service";
+import { DogService } from "./../../services/dog.service";
+import { Component, OnInit } from "@angular/core";
+import { Dog } from "src/app/models/dog";
+import { forEach } from "@angular/router/src/utils/collection";
+import { MatchService } from "src/app/services/match.service";
+import { Matches } from "src/app/models/matches";
+import { User } from "src/app/models/user";
+import { FilterDogsByYourPreferencesPipe } from "src/app/pipes/filter-dogs-by-your-preferences.pipe";
+import { FilterDogsByLikedPipe } from "src/app/pipes/filter-dogs-by-liked.pipe";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: "app-home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
-
   user: User = null;
-  likes: Likes[];
+  // likes: Likes[];
   dogs: Dog[] = null; // [];
   selectedDog = new Dog();
   matches: Matches[];
   popUpDog = new Dog();
-  dislikes: DisLike[];
+  // dislikes: DisLike[];
   possibleMatches: Dog[] = [];
+  filteredDogs: Dog[] = [];
 
-  constructor(private matchService: MatchService, private dogService: DogService,
-              private likeService: LikeService, private disLikeService: DisLikeService,
-              private userS: UserService, private matchpipe: FilterDogMatchesPipe) { }
+  constructor(
+    private matchService: MatchService,
+    private dogService: DogService,
+    private likeService: LikeService,
+    private disLikeService: DisLikeService,
+    private userS: UserService,
+    private matchpipe: FilterDogMatchesPipe,
+    private prefPipe: FilterDogsByYourPreferencesPipe,
+    private likedPipe: FilterDogsByLikedPipe,
+    private dislikedPipe: FilterDogsByDislikePipe,
+    private activePipe: FilterDogsByActivePipe,
+    private filterOutOwner: FilterOutOwnersDogsPipe
+  ) {}
 
   ngOnInit() {
     this.getAllDogs();
-
   }
-// this is working properly
+  // this is working properly
   getUser() {
     this.userS.getLoggedInUser().subscribe(data => {
       this.user = data;
       console.log(this.user);
       this.selectedDog = this.dogService.getSelectedDog();
       console.log(this.selectedDog);
-      this.getDogsThatLikeThisDog(this.selectedDog.id);
-      this.loadMatches(this.selectedDog.id);
-      this.loadLikes(this.selectedDog.id);
-      this.loadDislikes(this.selectedDog.id);
+      this.dogService
+        .getFilteredDogs(this.selectedDog.id)
+        .subscribe(dogList => {
+          this.filteredDogs = dogList;
+          this.getDogsThatLikeThisDog();
+        });
     });
   }
 
-// this is working properly
+  // this is working properly
   getAllDogs() {
-    console.log('hellllo');
+    console.log("hellllo");
     this.dogService.index().subscribe(
       data => {
-        console.log('hey i got something');
+        console.log("hey i got something");
 
         this.dogs = data;
         console.log(this.dogs);
         this.getUser();
       },
       error => {
-        console.log('hey i got an error');
+        console.log("hey i got an error");
 
         console.log(error);
       }
@@ -79,37 +95,52 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  loadLikes(selectedDogId: number) {
-    this.likeService.getByThisDog(selectedDogId).subscribe(
-      data => {
-        this.likes = data;
-      },
-      error => console.log(error)
-    );
-  }
+  // loadLikes(selectedDogId: number) {
+  //   this.likeService.getByThisDog(selectedDogId).subscribe(
+  //     data => {
+  //       this.likes = data;
+  //       this.getDogsByFilter();
+  //     },
+  //     error => console.log(error)
+  //   );
+  // }
 
-  loadDislikes(selectedDogId: number) {
-    this.disLikeService.index().subscribe(
-      data => {
-        this.dislikes = data;
-      },
-      error => console.log(error)
-    );
-  }
+  // loadDislikes(selectedDogId: number) {
+  //   this.disLikeService.index().subscribe(
+  //     data => {
+  //       this.dislikes = data;
+  //       this.loadLikes(this.selectedDog.id);
+
+  //     },
+  //     error => console.log(error)
+  //   );
+  // }
 
   likeDog(thatDogId: number) {
     this.likeService.addLike(this.selectedDog.id, thatDogId).subscribe(
       data => {
         this.likeService.getByThisDog(thatDogId).subscribe(
           likeList => {
-            likeList.forEach(like => {
+            for (const like of likeList) {
               if (like.thatDog.id === this.selectedDog.id) {
                 this.matchService.addMatch(like.thatDog.id, thatDogId);
-                this.loadMatches(this.selectedDog.id);
-                this.popUpCaller(thatDogId);
-              }
 
-            });
+                this.dogService
+                  .getFilteredDogs(this.selectedDog.id)
+                  .subscribe(dogList => {
+                    this.filteredDogs = dogList;
+                    this.getDogsThatLikeThisDog();
+                    this.loadMatches(this.selectedDog.id);
+                    this.popUpCaller(thatDogId);
+                  });
+              }
+            }
+            // likeList.forEach(like => {
+            //   if (like.thatDog.id === this.selectedDog.id) {
+            //     this.matchService.addMatch(like.thatDog.id, thatDogId);
+            //     this.loadMatches(this.selectedDog.id);
+            //     this.popUpCaller(thatDogId);
+            //   }
           },
           error => console.log(error)
         );
@@ -138,24 +169,29 @@ export class HomeComponent implements OnInit {
   }
 
   getDogsThatLikeThisDog() {
-    this.likeService.getByThatDog(this.selectedDog.id).subscribe(
-      data => {
-        for (const like of data) {
-            this.dogService.getOneDog(like.thisDog.id).subscribe(
-              data1 => {
-                console.log(data1);
-                this.possibleMatches.push(data1);
-              },
-              error => console.log(error)
-              );
-        }
-        this.possibleMatches = this.matchpipe.transform(this.possibleMatches, this.selectedDog);
-        console.log(this.possibleMatches);
+    this.likeService.getByThatDog(this.selectedDog.id).subscribe(data => {
+      for (const like of data) {
+        this.dogService.getOneDog(like.thisDog.id).subscribe(
+          data1 => {
+            console.log(data1);
+            this.possibleMatches.push(data1);
+          },
+          error => console.log(error)
+        );
       }
-    );
+      this.loadMatches(this.selectedDog.id);
+      console.log(this.possibleMatches);
+    });
   }
 
-
+  // getDogsByFilter() {
+  //   // this.filteredDogs =  this.prefPipe.transform(this.dogs, this.selectedDog);
+  //   this.filteredDogs = this.likedPipe.transform(this.dogs, this.likes);
+  //   this.filteredDogs = this.dislikedPipe.transform(this.filteredDogs, this.dislikes, this.selectedDog);
+  //   this.filteredDogs = this.filterOutOwner.transform(this.filteredDogs, this.user);
+  //   this.loadMatches(this.selectedDog.id);
+  //   this.getDogsThatLikeThisDog();
+  // }
 
   // isLoggedin() {
   //   this.auth.checkLogin().subscribe(

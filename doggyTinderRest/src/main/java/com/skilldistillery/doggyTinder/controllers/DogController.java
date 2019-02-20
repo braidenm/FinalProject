@@ -195,5 +195,18 @@ public class DogController {
 			return null;
 		}
 	}
+	
+	@GetMapping("dogs/{id}/filtered")
+	public List<Dog> getFilteredDogs(HttpServletResponse res, @PathVariable Integer id) {
+		try {
+			res.setStatus(201);
+			return dServ.getFilteredDogs(id);
+		} catch (Exception e ) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
 
 }

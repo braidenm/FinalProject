@@ -40,7 +40,7 @@ export class LikeService {
    .pipe(
          catchError((err: any) => {
            console.log(err);
-           return throwError('KABOOM broken at todo service index');
+           return throwError('KABOOM broken at like service index');
          })
     );
  }
@@ -53,7 +53,7 @@ export class LikeService {
    .pipe(
          catchError((err: any) => {
            console.log(err);
-           return throwError('KABOOM broken at todo service index');
+           return throwError('KABOOM broken at like service getByThatDog');
          })
     );
  }
@@ -65,7 +65,7 @@ export class LikeService {
    .pipe(
          catchError((err: any) => {
            console.log(err);
-           return throwError('KABOOM broken at todo service index');
+           return throwError('KABOOM broken at like service getByThisDog');
          })
     );
  }
@@ -73,12 +73,13 @@ export class LikeService {
    // if (!this.auth.checkLogin) {
    //   this.router.navigateByUrl('login');
    // }
-   return this.http.get<Dog>(this.url + '/' + thisDogId + '/' + thatDogId, this.getHttp())
+   return this.http.post<Dog>(this.url + '/' + thisDogId + '/' + thatDogId, this.getHttp())
    .pipe(
          catchError((err: any) => {
            console.log(err);
-           return throwError('KABOOM broken at todo service index');
+           return throwError('KABOOM broken at like service addlike');
          })
     );
  }
 }
+// @PostMapping("dogs/likes/{thisId}/{thatId}")

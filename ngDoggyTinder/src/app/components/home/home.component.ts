@@ -1,3 +1,4 @@
+import { FilterDogMatchesPipe } from './../../pipes/filter-dog-matches.pipe';
 import { UserService } from './../../services/user.service';
 import { DisLike } from './../../models/dis-like';
 import { Likes } from './../../models/likes';
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private matchService: MatchService, private dogService: DogService,
               private likeService: LikeService, private disLikeService: DisLikeService,
-              private userS: UserService) { }
+              private userS: UserService, private matchpipe: FilterDogMatchesPipe) { }
 
   ngOnInit() {
     this.getAllDogs();
@@ -149,6 +150,7 @@ export class HomeComponent implements OnInit {
             this.dogService.getOneDog(like.thisDog.id).subscribe(
               data1 => {
                 console.log(data1);
+                this.dog
                 this.possibleMatches.push(data1);
               },
               error => console.log(error)
@@ -158,6 +160,8 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+
 
   // isLoggedin() {
   //   this.auth.checkLogin().subscribe(

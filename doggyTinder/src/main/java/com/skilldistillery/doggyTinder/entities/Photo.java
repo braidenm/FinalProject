@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Photo {
 	
@@ -14,6 +16,7 @@ public class Photo {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="dog_id")
 	private Dog dog;

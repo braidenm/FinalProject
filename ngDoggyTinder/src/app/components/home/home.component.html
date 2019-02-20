@@ -1,79 +1,11 @@
-<!-- <div *ngIf="!user">
-  <h1>Homepage {{dogs.length}}</h1>
-    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" >
-      <div class="carousel-inner" >
-        <div class="carousel-item active" *ngFor="let dog of dogs">
-          <img [src]="dog.photos[0].url" class="d-block w-100" alt="dog.name">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>{{dog.name}}</h5>
-            <p>{{dog.about}}</p>
-          </div>
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-  </div>
-<div class="bd-example"*ngIf="user">
-    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" >
-      <div class="carousel-inner" >
-        <div class="carousel-item active" *ngFor="let dog of possibleMatches">
-          <img [src]="dog.photos[0].url" class="d-block w-100" alt="dog.name">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>{{dog.name}}</h5>
-            <p>{{dog.about}}</p>
-          </div>
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="next">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Nope</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Let's Make Puppies</span>
-      </a>
-    </div>
-  </div> -->
-  <ngb-carousel >
-      <ng-template *ngFor="let dog of dogs" ngbSlide>
-        <img [src]="dog.photos[0].url" alt="">
-        <div class="carousel-caption">
-          <h3>10 seconds between slides...</h3>
-          <p>This carousel uses customized default values.</p>
-        </div>
-      </ng-template>
-      <!-- <ng-template ngbSlide>
-        <img [src]="images[1]" alt="Random second slide">
-        <div class="carousel-caption">
-          <h3>No mouse events...</h3>
-          <p>This carousel doesn't pause or resume on mouse events</p>
-        </div>
-      </ng-template>
-      <ng-template ngbSlide>
-        <img [src]="images[2]"  alt="Random third slide">
-        <div class="carousel-caption">
-          <h3>No keyboard...</h3>
-          <p>This carousel uses customized default values.</p>
-        </div>
-      </ng-template>
-      <ng-template ngbSlide>
-        <img [src]="images[3]" alt="Random fourth slide">
-        <div class="carousel-caption">
-          <h3>And no wrap after last slide.</h3>
-          <p>This carousel uses customized default values.</p>
-        </div>
-      </ng-template> -->
-    </ngb-carousel>
 
-  <!-- {{ dogs.length }}
-  {{ dogs[0].name }}
-  <ul>
-    <li *ngFor="let dog of dogs"> {{ dog.name}} </li>
-  </ul> -->
+  <div>
+    <!-- <app-main-page-carousel [dogs]='dogs' [possibleMatches]='possibleMatches'>
+    </app-main-page-carousel> -->
+    <div *ngIf="!user">
+    <img [src]="dogs[0].photos[0].url" alt="no photo">
+  </div>
+    <div *ngIf="user">
+    <img [src]="possibleMatches[1].photos[0].url" alt="no photo">
+  </div>
+  </div>

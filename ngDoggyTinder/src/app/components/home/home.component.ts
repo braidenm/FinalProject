@@ -25,20 +25,22 @@ export class HomeComponent implements OnInit {
   matches: Matches[];
   popUpDog = new Dog();
   dislikes: DisLike[];
-  possibleMatches: Dog[];
+  possibleMatches: Dog[] = [];
 
   constructor(private matchService: MatchService, private dogService: DogService,
               private likeService: LikeService, private disLikeService: DisLikeService,
               private userS: UserService) { }
 
   ngOnInit() {
+    this.getUser();
     this.getAllDogs();
     this.selectedDog = this.dogService.getSelectedDog();
+    this.getDogsThatLikeThisDog(this.selectedDog.id);
     this.loadMatches(this.selectedDog.id);
     this.loadLikes(this.selectedDog.id);
     this.loadDislikes(this.selectedDog.id);
-    this.getUser();
-    this.getDogsThatLikeThisDog(this.selectedDog.id);
+    console.log(this.possibleMatches);
+
   }
 
   getUser() {
@@ -68,6 +70,7 @@ export class HomeComponent implements OnInit {
   loadMatches(selectedDogId: number) {
     this.matchService.index(selectedDogId).subscribe(
       data => {
+        console.log("yoooooo")
         this.matches = data;
       },
       error => console.log(error)
@@ -137,8 +140,10 @@ export class HomeComponent implements OnInit {
       data => {
         for (const like of data) {
             this.dogService.getOneDog(like.thisDog.id).subscribe(
-              data => {
-                this.possibleMatches.push(data);
+              data1 => {
+                console.log(data1);
+
+                this.possibleMatches.push(data1);
               },
             );
         }

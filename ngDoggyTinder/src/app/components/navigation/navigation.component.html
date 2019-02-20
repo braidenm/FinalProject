@@ -1,28 +1,36 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Doggie Tinder</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" [routerLink]="['/home']"
+          >Home <span class="sr-only">(current)</span></a
+        >
       </li>
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/about']">About</a>
       </li>
 
-      <li class="nav-item" *ngIf="user" >
+      <li class="nav-item" *ngIf="user">
         <a class="nav-link " [routerLink]="['/profile']">Profile</a>
       </li>
-
-       <div *ngFor="let dog of dogs">
-      <li class="nav-item" >
-        <a class="nav-link " (click)="setDog(dog)">{{dog.name}}</a>
-      </li>
-    </div>
-
+      <div *ngFor="let dog of dogs">
+        <li class="nav-item">
+          <a class="nav-link " (click)="setDog(dog)">{{ dog.name }}</a>
+        </li>
+      </div>
       <!-- <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
@@ -33,14 +41,18 @@
           <a class="dropdown-item" (click)="setDog(dog.id)">{{dog.name}}</a>
         </div>
       </li> -->
-
     </ul>
-    <div *ngIf="!user"> <app-login></app-login>
-    </div>
+    <div *ngIf="!user"><app-login></app-login></div>
     <div *ngIf="user">
-        <button type="button" class="btn btn-outline-success my-2 my-sm-0"  (click) = "logout()">Logout</button>
+      <button
+        type="button"
+        class="btn btn-outline-success my-2 my-sm-0"
+        (click)="logout()"
+      >
+        Logout
+      </button>
     </div>
-      <!-- <form class="form-inline my-2 my-lg-0">
+    <!-- <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Username" aria-label="Search">
         <input class="form-control mr-sm-2" type="search" placeholder="Password" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Login</button>

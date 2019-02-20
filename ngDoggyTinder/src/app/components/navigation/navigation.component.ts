@@ -63,6 +63,7 @@ export class NavigationComponent implements OnInit {
     console.log(dog);
     this.dogS.setSelectedDog(dog);
     this.messageS.setThisDog(dog);
+    this.router.navigateByUrl('/home');
 
   }
 

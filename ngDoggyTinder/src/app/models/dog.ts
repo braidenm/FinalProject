@@ -37,7 +37,8 @@ export class Dog {
     sex?: string,
     likes?: Likes[],
     dislikes?: DisLike[],
-    messages?: Message[]
+    messages?: Message[],
+    photos?: Photo[]
   ) {
     this.id = id;
     this.user = user;
@@ -52,5 +53,6 @@ export class Dog {
     this.likes = likes;
     this.dislikes = dislikes;
     this.messages = messages;
+    this.photos = photos;
   }
 }

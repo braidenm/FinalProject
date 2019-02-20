@@ -41,7 +41,7 @@ public class Dog {
 	@JsonIgnore
 	@OneToMany(mappedBy="thisDog")
 	private List<Message> messages;
-//	@JsonIgnore
+
 	@OneToMany(mappedBy="dog")
 	private List<Photo> photos;
 	@JsonIgnore

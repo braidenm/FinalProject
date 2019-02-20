@@ -1,0 +1,20 @@
+.container {
+  background-color: #b6e0ec
+}
+
+#profile{
+  background-color: #ff8802;
+  margin: 10px;
+  padding: 10px
+}
+
+#dogs{
+  background-color: #fda94a;
+  margin: 10px;
+  padding: 10px
+}
+
+#thumbnail {
+  max-height: 45px;
+  max-width: 45px
+}

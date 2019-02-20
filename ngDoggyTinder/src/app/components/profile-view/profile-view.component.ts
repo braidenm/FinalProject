@@ -40,6 +40,9 @@ export class ProfileViewComponent implements OnInit {
         console.log(this.user.dogs);
         this.userDogs = this.user.dogs;
         this.getSelectedDog();
+        this.editUser = null;
+        this.addDog = false;
+        this.addNewPhoto = false;
 
       },
       error => console.log(error)

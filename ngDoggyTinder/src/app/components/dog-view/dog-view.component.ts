@@ -24,6 +24,7 @@ export class DogViewComponent implements OnInit {
   active = false;
   photos;
   isMatch = false;
+  selectedDog = new Dog();
 
   constructor(private route: ActivatedRoute, private userve: UserService,
               private dogServe: DogService, private router: Router,
@@ -35,6 +36,7 @@ export class DogViewComponent implements OnInit {
   reload() {
     let dogId;
     dogId = this.route.snapshot.paramMap.get('id');
+    this.getSelectedDog();
     this.dogServe.getOneDog(dogId).subscribe(
       dogData => {
         this.dog = dogData;
@@ -60,6 +62,10 @@ export class DogViewComponent implements OnInit {
     );
   }
 
+  getSelectedDog() {
+    this.selectedDog = this.dogServe.getSelectedDog();
+  }
+
   getDogPhotos(dogId: number) {
     this.dogServe.getPhotos(dogId).subscribe(
       data => {
@@ -68,7 +74,7 @@ export class DogViewComponent implements OnInit {
     );
   }
   checkIfMatch() {
-      this.matchServe.index(this.dogServe.getSelectedDog().id).subscribe(
+      this.matchServe.index(this.selectedDog.id).subscribe(
         data => {
           for (const match of data) {
             if (this.dog.id === match.thatDog.id || this.dog.id === match.thisDog.id) {
@@ -96,6 +102,7 @@ export class DogViewComponent implements OnInit {
     this.dogServe.update(this.dog).subscribe(
     );
     this.editDog = null;
+    this.reload();
   }
   deactivateDog() {
     this.dog.active = false;

@@ -37,7 +37,7 @@ dependencies {
 	compile project(':doggyTinder')
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.7'
 	compile 'org.junit.jupiter:junit-jupiter-api:5.0.1'
-	//compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-security')
 	testCompile('org.apiguardian:apiguardian-api:1.0.0')
 	testRuntime('org.junit.jupiter:junit-jupiter-engine:5.0.1',
             'org.junit.vintage:junit-vintage-engine:4.12.1',

@@ -42,8 +42,7 @@ public class UserController {
 	public User getByUsername(HttpServletResponse res, Principal principal) {
 		try {
 			res.setStatus(201);
-			//TODO: hard coded for now
-			return uServ.findByUserName("thedogabides");
+			return uServ.findByUserName(principal.getName());
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(404);

@@ -32,9 +32,9 @@ export class DisLikeService {
   }
 
   index() {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.get<DisLike[]>(this.url, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -45,9 +45,9 @@ export class DisLikeService {
   }
 
   getByThatDog(thatDogId: number) {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.get<DisLike[]>(this.url + '/thatDog/' + thatDogId, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -57,9 +57,9 @@ export class DisLikeService {
      );
   }
   getByThisDog(thisDogId: number) {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.get<DisLike[]>(this.url + '/thisDog/' + thisDogId, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -69,9 +69,9 @@ export class DisLikeService {
      );
   }
   addDislike(thisDogId: number, thatDogId: number) {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.get<Dog>(this.url + '/' + thisDogId + '/' + thatDogId, this.getHttp())
     .pipe(
           catchError((err: any) => {

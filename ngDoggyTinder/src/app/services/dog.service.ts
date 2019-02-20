@@ -43,9 +43,9 @@ export class DogService {
   }
 
   index() {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.get<Dog[]>(this.url, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -56,9 +56,9 @@ export class DogService {
   }
 
   getOneDog(dogId: number) {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.get<Dog>(this.url + '/' + dogId, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -69,9 +69,9 @@ export class DogService {
   }
 
   showPreferences(dogId: number) {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.get<Preferences>(this.url + '/' + dogId + '/pref', this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -82,9 +82,9 @@ export class DogService {
   }
 
   delete(dogId: number) {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.delete(this.url + '/' + dogId, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -95,9 +95,9 @@ export class DogService {
   }
 
   create(dog: Dog, userId: number) {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.post<Dog>(this.url + '/' + userId, dog, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -107,9 +107,9 @@ export class DogService {
      );
   }
   update(dog: Dog) {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.put<Dog>(this.url, dog, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -119,9 +119,9 @@ export class DogService {
      );
   }
   getAllByUser(userId: number) {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.get<Dog[]>(this.url + '/users/' + userId, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -131,9 +131,9 @@ export class DogService {
      );
   }
   findByName(name: string) {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.get<Dog[]>(this.url + '/name/' + name, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -143,9 +143,9 @@ export class DogService {
      );
   }
   findByBreed(breed: string) {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.get<Dog[]>(this.url + '/breed/' + breed, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -155,9 +155,9 @@ export class DogService {
      );
   }
   updatePref(dogId: number, preferences: Preferences) {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.put<Dog>(this.url + '/' + dogId + '/pref', preferences, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -167,9 +167,9 @@ export class DogService {
      );
   }
   addPhoto(dogId: number, photo: Photo) {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.post<Dog>(this.url + '/' + dogId + '/photo', photo, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -179,9 +179,9 @@ export class DogService {
      );
   }
   deletePhoto(dogId: number, photoId: number) {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.post<Dog>(this.url + '/' + dogId + '/photo/' + photoId, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -191,9 +191,9 @@ export class DogService {
      );
   }
   getPhotos(dogId: number) {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.get<Photo[]>(this.url + '/' + dogId + '/photo', this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -203,9 +203,9 @@ export class DogService {
      );
   }
   getFilteredDogs(dogId: number) {
-    // if (!this.auth.checkLogin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if (!this.auth.checkLogin) {
+      this.router.navigateByUrl('login');
+    }
     return this.http.get<Dog[]>(this.url + '/' + dogId + '/filtered', this.getHttp())
     .pipe(
           catchError((err: any) => {

@@ -34,9 +34,9 @@ export class MatchService {
    }
 
    index(dogId: number) {
-     // if (!this.auth.checkLogin) {
-     //   this.router.navigateByUrl('login');
-     // }
+     if (!this.auth.checkLogin) {
+       this.router.navigateByUrl('login');
+     }
      return this.http.get<Matches[]>(this.url + '/' + dogId, this.getHttp())
      .pipe(
            catchError((err: any) => {
@@ -47,9 +47,9 @@ export class MatchService {
    }
 
    delete(thisdogId: number, thatDogId) {
-     // if (!this.auth.checkLogin) {
-     //   this.router.navigateByUrl('login');
-     // }
+     if (!this.auth.checkLogin) {
+       this.router.navigateByUrl('login');
+     }
      return this.http.delete<Dog>(this.url + '/' + thisdogId + '/' + thatDogId, this.getHttp())
      .pipe(
            catchError((err: any) => {
@@ -60,9 +60,9 @@ export class MatchService {
    }
 
    addMatch(thisdogId: number, thatDogId) {
-     // if (!this.auth.checkLogin) {
-     //   this.router.navigateByUrl('login');
-     // }
+     if (!this.auth.checkLogin) {
+       this.router.navigateByUrl('login');
+     }
      return this.http.post<Dog>(this.url + '/' + thisdogId + '/' + thatDogId, this.getHttp())
      .pipe(
            catchError((err: any) => {

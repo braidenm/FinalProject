@@ -13,9 +13,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
+
   user: User;
   dogs: Dog[];
   dog: Dog;
+  selectedDog = new Dog();
 
   constructor(
     private auth: AuthService,
@@ -26,7 +28,7 @@ export class NavigationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getUser();
+    this.reload();
 
   }
 
@@ -38,6 +40,14 @@ export class NavigationComponent implements OnInit {
   //     }
   //   );
   // }
+  reload() {
+    this.getUser();
+    this.getSelectedDog();
+  }
+
+  getSelectedDog() {
+    this.selectedDog = this.dogS.getSelectedDog();
+  }
 
   getUser() {
     this.userS.getLoggedInUser().subscribe(data => {

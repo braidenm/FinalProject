@@ -38,7 +38,7 @@ DROP TABLE IF EXISTS `user` ;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(500) NOT NULL,
   `role` VARCHAR(45) NOT NULL DEFAULT 'standard',
   `email` VARCHAR(100) NOT NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
@@ -186,13 +186,13 @@ DROP TABLE IF EXISTS `preferences` ;
 CREATE TABLE IF NOT EXISTS `preferences` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `dog_id` INT NOT NULL,
-  `min_weight` INT NULL,
-  `max_weight` INT NULL,
-  `min_energy` INT NULL,
-  `max_energy` INT NULL,
-  `min_age` INT NULL,
-  `max_age` INT NULL,
-  `sex` VARCHAR(45) NULL,
+  `min_weight` INT NULL DEFAULT 1,
+  `max_weight` INT NULL DEFAULT 500,
+  `min_energy` INT NULL DEFAULT 1,
+  `max_energy` INT NULL DEFAULT 10,
+  `min_age` INT NULL DEFAULT 0,
+  `max_age` INT NULL DEFAULT 100,
+  `sex` VARCHAR(45) NULL DEFAULT 'Any',
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_to_dog`
     FOREIGN KEY (`dog_id`)
@@ -408,22 +408,22 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `doggytinderdb`;
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (1, 1, 0, 200, 0, 10, 0, 30, 'Male');
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (3, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (4, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (5, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (6, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (7, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (8, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (9, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (10, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (11, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (12, 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (13, 13, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (14, 14, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (15, 15, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (16, 16, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (1, 1, 0, 500, 1, 10, 0, 100, 'Male');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (2, 2, 0, 30, 1, 10, 0, 100, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (3, 3, 0, 500, 1, 10, 0, 100, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (4, 4, 0, 500, 1, 10, 0, 100, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (5, 5, 0, 500, 1, 10, 0, 100, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (6, 6, 0, 500, 1, 10, 0, 100, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (7, 7, 0, 500, 1, 10, 0, 100, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (8, 8, 0, 500, 1, 10, 0, 100, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (9, 9, 45, 500, 1, 10, 0, 100, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (10, 10, 0, 25, 1, 10, 0, 100, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (11, 11, 0, 500, 1, 10, 0, 100, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (12, 12, 0, 500, 1, 10, 0, 100, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (13, 13, 0, 500, 1, 10, 0, 100, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (14, 14, 65, 500, 1, 10, 0, 100, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (15, 15, 0, 500, 1, 5, 8, 100, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (16, 16, 0, 500, 1, 10, 0, 100, 'Any');
 
 COMMIT;
 

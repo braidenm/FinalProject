@@ -43,7 +43,6 @@ export class ProfileViewComponent implements OnInit {
         this.editUser = null;
         this.addDog = false;
         this.addNewPhoto = false;
-
       },
       error => console.log(error)
     );

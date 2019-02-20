@@ -8,7 +8,12 @@ import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./main-page-carousel.component.css']
 })
 export class MainPageCarouselComponent implements OnInit {
-  images: string[] = ['src/assets/photos/dogChasing.jpg','dog','frog'];
+  images: string[] = [
+    'assets/photos/dogsChasing.jpg',
+    'assets/photos/dogsInField.jpg',
+    'assets/photos/dogsInHammock.jpg',
+    'assets/photos/dogsInTheSnow.jpg'
+  ];
   @Input() dog: Dog;
   @Input() dogs: Dog[];
   @Input() possibleMatches: Dog[];
@@ -16,9 +21,7 @@ export class MainPageCarouselComponent implements OnInit {
   showNavigationIndicators = false;
   interval = 1000000;
 
-   constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -39,9 +39,9 @@ export class MessageService {
    }
 
    add(text: string, senderId: number, receiverId: number) {
-     // if (!this.auth.checkLogin) {
-     //   this.router.navigateByUrl('login');
-     // }
+     if (!this.auth.checkLogin) {
+       this.router.navigateByUrl('login');
+     }
      return this.http.post<Message>(this.url + '/' + text + '/' + senderId + '/' + receiverId, this.getHttp())
      .pipe(
            catchError((err: any) => {
@@ -52,9 +52,9 @@ export class MessageService {
    }
 
    getConversation(senderId: number, receiverId: number) {
-     // if (!this.auth.checkLogin) {
-     //   this.router.navigateByUrl('login');
-     // }
+     if (!this.auth.checkLogin) {
+       this.router.navigateByUrl('login');
+     }
      return this.http.get<Message[]>(this.url + '/' + senderId + '/' + receiverId, this.getHttp())
      .pipe(
            catchError((err: any) => {
@@ -65,9 +65,9 @@ export class MessageService {
    }
 
    findByReceiver(receiverId: number) {
-     // if (!this.auth.checkLogin) {
-     //   this.router.navigateByUrl('login');
-     // }
+     if (!this.auth.checkLogin) {
+       this.router.navigateByUrl('login');
+     }
      return this.http.get<Message[]>(this.url + '/receiver/' + receiverId, this.getHttp())
      .pipe(
            catchError((err: any) => {
@@ -78,9 +78,9 @@ export class MessageService {
    }
 
    findBySender(senderId: number) {
-     // if (!this.auth.checkLogin) {
-     //   this.router.navigateByUrl('login');
-     // }
+     if (!this.auth.checkLogin) {
+       this.router.navigateByUrl('login');
+     }
      return this.http.get<Message[]>(this.url + '/sender/' + senderId, this.getHttp())
      .pipe(
            catchError((err: any) => {
@@ -90,9 +90,9 @@ export class MessageService {
       );
    }
    update(message: Message) {
-     // if (!this.auth.checkLogin) {
-     //   this.router.navigateByUrl('login');
-     // }
+     if (!this.auth.checkLogin) {
+       this.router.navigateByUrl('login');
+     }
      return this.http.put<Message[]>(this.url, message, this.getHttp())
      .pipe(
            catchError((err: any) => {

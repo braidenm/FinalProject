@@ -33,6 +33,7 @@ export class NavigationComponent implements OnInit {
   }
 
   // isLoggedin() {
+  //   if( )
   //   this.auth.checkLogin().subscribe(
   //     data => {
   //       this.user = data;

@@ -56,6 +56,25 @@
         <button (click)="this.selectEditUser()" class="btn btn-outline-primary">Edit User</button>
         <button (click)="this.deleteUser()" class="btn btn-outline-danger">Delete User</button>
       </div>
+      <div *ngIf='addDog && !editUser' >
+          <form>
+            <h4>Add Dog</h4>
+            Name <input type='text' name='name' [(ngModel)]='dog.name'/><br>
+            Breed <input type='text' name='breed' [(ngModel)]='dog.breed'/><br>
+            Weight <input type='number' name='weight' [(ngModel)]='dog.weight'/><br>
+            Energy Level (1-10) <input type='energy' name='energy' [(ngModel)]='dog.energy'/><br>
+            Age <input type='number' name='age' [(ngModel)]='dog.age'/><br>
+            Sex <input type='radio' name='sex' value='Male' [(ngModel)]='dog.sex'/> Male
+            <input type='radio' name='sex' value='Female' [(ngModel)]='dog.sex'/> Female<br>
+            <!-- About <input type='text' name='about' [(ngModel)]='dog.about'/> -->
+            <textarea name='about' >Tell us about yourself...</textarea><br>
+            Profile Picture URL <input type='text' name='url' [(ngModel)]='photo.url'/><br>
+            <!-- <input type='submit' (click)='submitAddDog()' value='Register'> -->
+            <button (click)="submitAddDog()" class="btn btn-outline-primary">Submit</button>
+            <button (click)="reload()" class="btn btn-outline-primary">Cancel</button>
+
+          </form>
+        </div>
       <div *ngIf='editUser'>
           <form>
             Username <input type='text' name='username' value='{{user.username}}'[(ngModel)]='user.username'/><br>
@@ -69,13 +88,14 @@
             State <input type='text' name='state' value='{{user.address.state}}' [(ngModel)]='user.address.state'/><br>
             Zip Code <input type='text' name='zip' value='{{user.address.zip}}' [(ngModel)]='user.address.zip'/><br>
             Profile Picture URL <input type='text' value='{{user.url}}' name='url' [(ngModel)]='user.url'/><br>
-            <input type='submit' (click)='submitEditUser()' value='Submit Changes'>
+            <!-- <input type='submit' (click)='submitEditUser()' value='Submit Changes'> -->
+            <button (click)="submitEditUser()" class="btn btn-outline-primary">Submit</button>
+            <button (click)="reload()" class="btn btn-outline-primary">Cancel</button>
           </form>
       </div>
     </div>
 
-  <div id="dogs" class="col-sm-4">
-
+  <div id="dogs" class="col-sm-4" *ngIf='!addDog'>
       <div *ngIf='!editUser && !addDog'>
         <h4>User Dogs</h4>
         <ul>
@@ -101,22 +121,12 @@
       <div *ngIf='addNewPhoto && !addDog && !editUser'>
         <form>
           New Picture Url <input type='text' name='url' [(ngModel)]='photo.url'/>
-          <input type='submit' (click)='addPhoto()' value='Add Photo'>
+          <!-- <input type='submit' (click)='addPhoto()' value='Add Photo'> -->
+          <button (click)="addPhoto()" class="btn btn-outline-primary">Add Photo</button>
+          <button (click)="reload()" class="btn btn-outline-primary">Cancel</button>
         </form>
       </div>
-      <div *ngIf='addDog && !editUser' >
-        <form>
-          Name <input type='text' name='name' [(ngModel)]='dog.name'/>
-          Breed <input type='text' name='breed' [(ngModel)]='dog.breed'/>
-          Weight <input type='number' name='weight' [(ngModel)]='dog.weight'/>
-          Energy Level (1-10) <input type='energy' name='energy' [(ngModel)]='dog.energy'/>
-          Age <input type='number' name='age' [(ngModel)]='dog.age'/>
-          Sex <input type='radio' name='sex' value='Male' [(ngModel)]='dog.sex'/> Male
-          <input type='radio' name='sex' value='Female' [(ngModel)]='dog.sex'/> Female
-          About <input type='text' name='about' [(ngModel)]='dog.about'/>
-          Profile Picture URL <input type='text' name='url' [(ngModel)]='photo.url'/>            <input type='submit' (click)='submitAddDog()' value='Register'>
-        </form>
-      </div>
+
     </div>
   </div>
 <br>

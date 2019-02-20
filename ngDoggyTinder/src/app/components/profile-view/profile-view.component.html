@@ -81,9 +81,9 @@
         <ul>
           <li *ngFor='let dog of userDogs'>
             <a (click)='viewDogProfile(dog.id)'>
-              <div *ngIf='dog.photos.length > 0'>
-                <img src="{{dog.photos[0].url}}" id="thumbnail">
-              </div>{{dog.name}}
+              <!-- <div *ngIf='dog.photos.length > 0'> -->
+                <img *ngIf='dog.photos.length > 0' src="{{dog.photos[0].url}}" id="thumbnail">{{dog.name}}
+              <!-- </div>{{dog.name}} -->
             </a>
           </li>
         </ul>

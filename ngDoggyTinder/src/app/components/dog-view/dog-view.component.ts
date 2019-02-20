@@ -21,7 +21,7 @@ export class DogViewComponent implements OnInit {
   editDog: Dog;
   isUserDog = false;
   preferences: Preferences;
-  active = false;
+  active = true;
   photos;
   isMatch = false;
   selectedDog = new Dog();

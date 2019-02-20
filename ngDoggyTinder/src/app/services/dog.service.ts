@@ -63,7 +63,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at getOneDog');
           })
      );
   }
@@ -76,7 +76,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at show preferences');
           })
      );
   }
@@ -89,7 +89,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at delete');
           })
      );
   }
@@ -102,7 +102,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at create');
           })
      );
   }
@@ -114,7 +114,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at update dog');
           })
      );
   }
@@ -126,7 +126,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at getallbyuser');
           })
      );
   }
@@ -138,7 +138,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at findbyname');
           })
      );
   }
@@ -150,7 +150,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at findByBreed');
           })
      );
   }
@@ -162,7 +162,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at updatePref');
           })
      );
   }
@@ -174,7 +174,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken addPhoto');
           })
      );
   }
@@ -186,7 +186,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at deletePhoto');
           })
      );
   }
@@ -198,7 +198,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at getPhotos');
           })
      );
   }

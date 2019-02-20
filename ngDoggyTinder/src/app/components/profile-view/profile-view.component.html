@@ -52,6 +52,13 @@
     <button (click)="this.selectEditUser()" class="btn btn-outline-primary">Edit User</button>
     <button (click)="this.deleteUser()" class="btn btn-outline-danger">Delete User</button>
   </div>
+  <br>
+  <div *ngIf='!editUser && !addDog'>
+    <h4>User Dogs</h4>
+    <ul>
+      <li *ngFor='let dog of userDogs'><a (click)='viewDogProfile(dog.id)'>{{dog.name}}</a></li>
+    </ul>
+  </div>
   <div *ngIf='editUser'>
     <form>
       Username <input type='text' name='username' value='{{user.username}}'[(ngModel)]='user.username'/><br>
@@ -71,8 +78,12 @@
 </div>
 <div class="col-sm-6">
   <div *ngIf="!addDog && !editUser">
+
+  </div>
+  <div *ngIf="!addDog && !editUser">
     Selected Dog: {{selectedDog.name}}
-    <img src='{{selectedDog.photos[0].url}}'>
+
+    <!-- <img src="{{selectedDog.photos[0].url}}"><br> -->
     <button type="button" (click)="selectAddNewPhoto()" class="btn btn-outline-primary">Add Photo for {{selectedDog.name}}</button>
   </div>
   <div *ngIf='addNewPhoto && !addDog && !editUser'>
@@ -83,10 +94,10 @@
   </div>
   <div *ngIf='addDog && !editUser' >
     <form>
-      Name <input type='text' name='username' [(ngModel)]='dog.name'/>
-      Breed <input type='text' name='password' [(ngModel)]='dog.breed'/>
+      Name <input type='text' name='name' [(ngModel)]='dog.name'/>
+      Breed <input type='text' name='breed' [(ngModel)]='dog.breed'/>
       Weight <input type='number' name='weight' [(ngModel)]='dog.weight'/>
-      Energy Level (1-10) <input type='number' name='energy' [(ngModel)]='dog.energy'/>
+      Energy Level (1-10) <input type='energy' name='energy' [(ngModel)]='dog.energy'/>
       Age <input type='number' name='age' [(ngModel)]='dog.age'/>
       Sex <input type='radio' name='sex' value='Male' [(ngModel)]='dog.sex'/> Male
           <input type='radio' name='sex' value='Female' [(ngModel)]='dog.sex'/> Female

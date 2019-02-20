@@ -25,11 +25,12 @@ export class ProfileViewComponent implements OnInit {
   dog = new Dog();
   photo = new Photo();
   addNewPhoto = false;
+  userDogs: Dog[];
 
 
   ngOnInit() {
     this.reload();
-    this.getSelectedDog();
+    // this.getSelectedDog();
   }
 
   reload() {
@@ -37,10 +38,16 @@ export class ProfileViewComponent implements OnInit {
       userData => {
         this.user = userData;
         console.log(this.user.dogs);
+        this.userDogs = this.user.dogs;
+        this.getSelectedDog();
 
       },
       error => console.log(error)
     );
+  }
+
+  viewDogProfile(dogId: number) {
+    this.router.navigateByUrl('/dogView/' + dogId);
   }
 
   getSelectedDog() {
@@ -85,9 +92,11 @@ export class ProfileViewComponent implements OnInit {
   }
 
   addPhoto() {
-    this.dogService.addPhoto(this.dog.id, this.photo).subscribe(
+    this.dogService.addPhoto(this.selectedDog.id, this.photo).subscribe(
       data => {
         this.addNewPhoto = false;
+        console.log(this.photo.url);
+        this.reload();
       },
       error => console.log(error)
     );

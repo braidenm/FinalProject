@@ -1,6 +1,6 @@
 <div class="row">
 
-  <div class="col-sm-9" *ngIf="active && !editDog && !preferences">
+  <div class="col-sm-7 profile" *ngIf="active && !editDog && !preferences">
 
     <div>
       <ngb-carousel >
@@ -23,8 +23,10 @@
       <button type="button" *ngIf="isUserDog" (click)="deactivateDog()" class="btn btn-outline-danger">Deactivate Dog</button>
     </div>
   </div>
-  <div class="col-sm-3" *ngIf="active && !editDog && !isUserDog && !preferences && isMatch">
-    <app-message></app-message>
+  <div *ngIf="active && !editDog && !isUserDog && !preferences && isMatch">
+    <div class="col-sm-4 message" >
+      <app-message></app-message>
+    </div>
   </div>
   <div *ngIf="editDog && !preferences">
     <form>

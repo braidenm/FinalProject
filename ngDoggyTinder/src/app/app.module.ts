@@ -29,6 +29,7 @@ import { FilterDogsByDislikePipe } from './pipes/filter-dogs-by-dislike.pipe';
 import { FilterDogsByActivePipe } from './pipes/filter-dogs-by-active.pipe';
 import { FilterDogsByYourPreferencesPipe } from './pipes/filter-dogs-by-your-preferences.pipe';
 import { MainPageCarouselComponent } from './components/main-page-carousel/main-page-carousel.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { MainPageCarouselComponent } from './components/main-page-carousel/main-
     MatchService,
     MessageService,
     UserService,
+    DatePipe,
 
   ],
   bootstrap: [AppComponent]

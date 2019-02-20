@@ -72,6 +72,7 @@ import { FilterDogMatchesPipe } from './pipes/filter-dog-matches.pipe';
     MessageService,
     UserService,
     DatePipe,
+    FilterDogMatchesPipe,
 
   ],
   bootstrap: [AppComponent]

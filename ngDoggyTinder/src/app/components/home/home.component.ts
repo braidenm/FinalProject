@@ -35,12 +35,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getAllDogs();
 
-
-
-
-
-
-
   }
 // this is working properly
   getUser() {
@@ -143,19 +137,19 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  getDogsThatLikeThisDog(thisDogid: number) {
+  getDogsThatLikeThisDog() {
     this.likeService.getByThatDog(this.selectedDog.id).subscribe(
       data => {
         for (const like of data) {
             this.dogService.getOneDog(like.thisDog.id).subscribe(
               data1 => {
                 console.log(data1);
-                this.dog
                 this.possibleMatches.push(data1);
               },
               error => console.log(error)
-            );
+              );
         }
+        this.possibleMatches = this.matchpipe.transform(this.possibleMatches, this.selectedDog);
         console.log(this.possibleMatches);
       }
     );

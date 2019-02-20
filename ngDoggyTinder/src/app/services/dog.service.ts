@@ -26,7 +26,6 @@ export class DogService {
 
   setSelectedDog(dog: Dog) {
         this.selectedDog = dog;
-        console.log(dog);
   }
 
   getSelectedDog() {
@@ -47,10 +46,6 @@ export class DogService {
     // if (!this.auth.checkLogin) {
     //   this.router.navigateByUrl('login');
     // }
-    console.log('************** url');
-
-    console.log(this.url);
-
     return this.http.get<Dog[]>(this.url, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -68,7 +63,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at getOneDog');
           })
      );
   }
@@ -81,7 +76,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at show preferences');
           })
      );
   }
@@ -94,7 +89,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at delete');
           })
      );
   }
@@ -103,11 +98,11 @@ export class DogService {
     // if (!this.auth.checkLogin) {
     //   this.router.navigateByUrl('login');
     // }
-    return this.http.post<Dog>(this.url + '/users/' + userId, dog, this.getHttp())
+    return this.http.post<Dog>(this.url + '/' + userId, dog, this.getHttp())
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at create');
           })
      );
   }
@@ -119,7 +114,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at update dog');
           })
      );
   }
@@ -131,7 +126,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at getallbyuser');
           })
      );
   }
@@ -143,7 +138,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at findbyname');
           })
      );
   }
@@ -155,7 +150,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at findByBreed');
           })
      );
   }
@@ -167,7 +162,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at updatePref');
           })
      );
   }
@@ -179,7 +174,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken addPhoto');
           })
      );
   }
@@ -191,7 +186,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at deletePhoto');
           })
      );
   }
@@ -203,7 +198,7 @@ export class DogService {
     .pipe(
           catchError((err: any) => {
             console.log(err);
-            return throwError('KABOOM broken at todo service index');
+            return throwError('KABOOM broken at getPhotos');
           })
      );
   }

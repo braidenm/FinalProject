@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +13,10 @@ import { Dog } from 'src/app/models/dog';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private userService: UserService, private dogService: DogService) { }
+  constructor(private userService: UserService,
+              private dogService: DogService,
+              private authService: AuthService,
+              private router: Router) { }
 
   dogs: Dog[];
   users: User[];
@@ -19,8 +24,22 @@ export class AdminComponent implements OnInit {
   user = new User();
   userDetailView = false;
   dogDetailView = false;
+  thisUser = new User();
 
   ngOnInit() {
+    this.getLoggedInUser();
+    if (this.thisUser.role !== 'admin') {
+      this.router.navigateByUrl('/home');
+    }
+  }
+
+  getLoggedInUser() {
+    this.userService.getLoggedInUser().subscribe(
+      data => {
+        this.thisUser = data;
+      },
+      error => console.log(error)
+    );
   }
 
   loadUsers() {

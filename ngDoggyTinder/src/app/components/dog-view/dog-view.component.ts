@@ -6,7 +6,6 @@ import { UserService } from './../../services/user.service';
 import { Dog } from 'src/app/models/dog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Preferences } from 'src/app/models/preferences';
-import { Photo } from 'src/app/models/photo';
 import { MatchService } from 'src/app/services/match.service';
 
 
@@ -44,7 +43,6 @@ export class DogViewComponent implements OnInit {
           userData => {
             this.user = userData;
             this.messServe.setThatDog(this.dog);
-            console.log(this.user);
             this.getDogPhotos(dogId);
             this.checkIfMatch();
             for (const dog of this.user.dogs) {
@@ -66,25 +64,20 @@ export class DogViewComponent implements OnInit {
     this.dogServe.getPhotos(dogId).subscribe(
       data => {
         this.photos = data;
-        console.log(data);
       }
     );
   }
   checkIfMatch() {
       this.matchServe.index(this.dogServe.getSelectedDog().id).subscribe(
         data => {
-          console.log(this.isMatch);
           for (const match of data) {
             if (this.dog.id === match.thatDog.id || this.dog.id === match.thisDog.id) {
               this.isMatch = true;
               break;
             }
           }
-          console.log(this.isMatch);
-
         },
         err => {
-          console.log(this.dogServe.getSelectedDog());
         console.log('in err for get all matches in dog view comp');
 
       }

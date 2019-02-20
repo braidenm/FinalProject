@@ -1,8 +1,25 @@
 .sender {
   background-color: lightblue;
+  text-align: right;
+  border-radius: 25px;
+  padding: 5%;
+  margin: 5%;
 }
 
 .receiver {
+  margin: 5%;
+  padding: 5%;
   background-color: green;
+  text-align: left;
+  border-radius: 25px;
 
 }
+
+.messages {
+  max-height: 500px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+/* .overflow {
+} */

@@ -420,6 +420,10 @@ INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_ener
 INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (10, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (11, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (12, 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (13, 13, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (14, 14, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (15, 15, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (16, 16, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 COMMIT;
 

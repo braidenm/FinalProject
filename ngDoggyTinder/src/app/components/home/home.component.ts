@@ -35,20 +35,21 @@ export class HomeComponent implements OnInit {
     this.getAllDogs();
 
 
-    // this.getDogsThatLikeThisDog(this.selectedDog.id);
-    // console.log(this.possibleMatches);
-    // this.loadMatches(this.selectedDog.id);
+
+
+   this.loadMatches(this.selectedDog.id);
     // this.loadLikes(this.selectedDog.id);
     // this.loadDislikes(this.selectedDog.id);
 
   }
-
+// this is working properly
   getUser() {
     this.userS.getLoggedInUser().subscribe(data => {
       this.user = data;
       console.log(this.user);
       this.selectedDog = this.dogService.getSelectedDog();
       console.log(this.selectedDog);
+      this.getDogsThatLikeThisDog(this.selectedDog.id);
 
     });
   }
@@ -151,6 +152,7 @@ export class HomeComponent implements OnInit {
               error => console.log(error)
             );
         }
+        console.log(this.possibleMatches);
       }
     );
   }

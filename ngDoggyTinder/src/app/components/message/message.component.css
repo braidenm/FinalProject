@@ -1,6 +1,6 @@
 .sender {
   background-color: tan;
-  /* text-align: right; */
+  text-align: right;
   border-radius: 25px;
   padding: 5%;
   margin: 5%;
@@ -16,7 +16,7 @@
 }
 
 input {
-  width: 90%;
+  width: 70%;
 }
 
 .receiver {
@@ -32,15 +32,24 @@ input {
 
 }
 
-.messages {
+.messages{
   /* white-space: nowrap; */
   max-height: 500px;
   word-wrap: break-word;
   overflow: hidden;
   overflow-y: scroll;
   overflow-x: none;
-  width: 100%;
+  max-width: 100%;
+  /* border: solid;
+  border-width: thin; */
+  display: inline-block;
 }
+
+
+.dropdown-menu {
+  width: 250%;
+}
+
 
 
 /* .overflow {

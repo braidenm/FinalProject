@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Preferences {
 	
@@ -15,8 +17,8 @@ public class Preferences {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
 	@OneToOne
+	@JsonIgnore
 	@JoinColumn(name="dog_id")
 	private Dog	dog;
 	@Column(name="min_weight")

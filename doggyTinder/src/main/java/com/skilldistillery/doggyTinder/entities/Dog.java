@@ -32,22 +32,19 @@ public class Dog {
 	private Integer energy;
 	private Integer age;
 	private String about;
-	@JsonIgnore
 	@OneToOne(mappedBy="dog")
 	private Preferences preferences;
-	@JsonIgnore
+	
 	@OneToMany(mappedBy="thisDog")
 	private List<Likes> likes;
-	@JsonIgnore
+	
 	@OneToMany(mappedBy="thisDog")
 	private List<Message> messages;
 
 	@OneToMany(mappedBy="dog")
 	private List<Photo> photos;
-	@JsonIgnore
 	@OneToMany(mappedBy="thisDog")
 	private List<Dislike> dislikes;
-	@JsonIgnore
 	@OneToMany(mappedBy="thisDog")
 	private List<Matches> matches;
 	private Boolean active;

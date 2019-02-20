@@ -1,7 +1,8 @@
 
-  <div>
+  <div class="container" id="doggyView">
     <!-- <app-main-page-carousel [dogs]='dogs' [possibleMatches]='possibleMatches'>
     </app-main-page-carousel> -->
+
     <div *ngIf="!user">
     <img [src]="dogs[0].photos[0].url" alt="no photo">
   </div>

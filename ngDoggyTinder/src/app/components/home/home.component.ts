@@ -140,8 +140,9 @@ export class HomeComponent implements OnInit {
       data => {
         for (const like of data) {
             this.dogService.getOneDog(like.thisDog.id).subscribe(
-              info => {
-                this.possibleMatches.push(info);
+              data1 => {
+                console.log(data1);
+                this.possibleMatches.push(data1);
               },
               error => console.log(error)
             );

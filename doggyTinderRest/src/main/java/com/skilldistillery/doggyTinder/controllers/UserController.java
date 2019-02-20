@@ -43,7 +43,7 @@ public class UserController {
 		try {
 			res.setStatus(201);
 			//TODO: hard coded for now
-			return uServ.findByUserName("thedogabides");
+			return uServ.findByUserName("principal");
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(404);

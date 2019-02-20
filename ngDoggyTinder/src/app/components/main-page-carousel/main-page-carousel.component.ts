@@ -8,7 +8,7 @@ import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./main-page-carousel.component.css']
 })
 export class MainPageCarouselComponent implements OnInit {
-  // images: string[] = ['cat','dog','frog'];
+  images: string[] = ['src/assets/photos/dogChasing.jpg','dog','frog'];
   @Input() dog: Dog;
   @Input() dogs: Dog[];
   @Input() possibleMatches: Dog[];

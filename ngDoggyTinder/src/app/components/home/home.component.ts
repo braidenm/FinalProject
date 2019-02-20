@@ -32,32 +32,36 @@ export class HomeComponent implements OnInit {
               private userS: UserService) { }
 
   ngOnInit() {
-    this.getUser();
     this.getAllDogs();
-    this.selectedDog = this.dogService.getSelectedDog();
-    this.getDogsThatLikeThisDog(this.selectedDog.id);
-    this.loadMatches(this.selectedDog.id);
-    this.loadLikes(this.selectedDog.id);
-    this.loadDislikes(this.selectedDog.id);
-    console.log(this.possibleMatches);
+
+
+    // this.getDogsThatLikeThisDog(this.selectedDog.id);
+    // console.log(this.possibleMatches);
+    // this.loadMatches(this.selectedDog.id);
+    // this.loadLikes(this.selectedDog.id);
+    // this.loadDislikes(this.selectedDog.id);
 
   }
 
   getUser() {
     this.userS.getLoggedInUser().subscribe(data => {
       this.user = data;
+      console.log(this.user);
+      this.selectedDog = this.dogService.getSelectedDog();
+      console.log(this.selectedDog);
+
     });
   }
-
+// this is working properly
   getAllDogs() {
     console.log('hellllo');
     this.dogService.index().subscribe(
       data => {
         console.log('hey i got something');
-        console.log(data);
 
         this.dogs = data;
         console.log(this.dogs);
+        this.getUser();
       },
       error => {
         console.log('hey i got an error');
@@ -142,9 +146,7 @@ export class HomeComponent implements OnInit {
             this.dogService.getOneDog(like.thisDog.id).subscribe(
               data1 => {
                 console.log(data1);
-
                 this.possibleMatches.push(data1);
-
               },
               error => console.log(error)
             );

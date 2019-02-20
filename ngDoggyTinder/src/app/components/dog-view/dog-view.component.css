@@ -1,18 +1,29 @@
 img {
-  width: 80%;
+  width: 100%;
   height: 600px;
   background-repeat: no-repeat;
   margin-left: 10%;
+  float: right;
 }
 
 /* .carousel-control-next-icon {
   background-image:
 } */
-ngb-carousel {
-  content: center;
+
+.message {
+  margin: 5px;
+  width: 100%;
+  padding: 0%;
 }
-.col {
-  margin: none;
-  padding: none;
+
+.profile {
+  margin: 5px;
+  border: solid;
+  border-width: medium;
+  background-color: lightgray;
+  display: inline-block;
+}
+.row {
+  text-align: center;
 }
 

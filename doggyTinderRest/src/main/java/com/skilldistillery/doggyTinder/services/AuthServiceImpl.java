@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.doggyTinder.entities.User;
+import com.skilldistillery.doggyTinder.repositories.AddressRepo;
 import com.skilldistillery.doggyTinder.repositories.UserRepo;
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -14,6 +15,8 @@ public class AuthServiceImpl implements AuthService {
 	
 	@Autowired
 	private UserRepo uRepo;
+	@Autowired
+	private AddressRepo aRepo;
 	
 	@Override
 	public User register(User user) {
@@ -21,6 +24,8 @@ public class AuthServiceImpl implements AuthService {
 		user.setActive(true);
 		user.setRole("standard");
 		user.setBanned(false);
+		aRepo.saveAndFlush(user.getAddress());
+		
 		uRepo.saveAndFlush(user);
 		return user;
 	}

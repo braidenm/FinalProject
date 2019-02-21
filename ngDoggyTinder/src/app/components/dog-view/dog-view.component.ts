@@ -1,3 +1,4 @@
+import { MessageComponent } from './../message/message.component';
 import { MessageService } from './../../services/message.service';
 import { DogService } from './../../services/dog.service';
 import { Component, OnInit } from '@angular/core';
@@ -30,7 +31,8 @@ export class DogViewComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private userve: UserService,
               private dogServe: DogService, private router: Router,
-              private messServe: MessageService, private matchServe: MatchService) { }
+              private messServe: MessageService, private matchServe: MatchService,
+              private messComp: MessageComponent) { }
 
   ngOnInit() {
     console.log('dogView Component.ngOnInit');
@@ -47,7 +49,7 @@ export class DogViewComponent implements OnInit {
       dogId = this.superId;
       this.superId = null;
     }
-    // this.getSelectedDog();
+    this.getSelectedDog();
     this.dogServe.getOneDog(dogId).subscribe(
       dogData => {
         this.dog = dogData;
@@ -59,7 +61,7 @@ export class DogViewComponent implements OnInit {
         this.userve.getLoggedInUser().subscribe(
           userData => {
             this.user = userData;
-            this.messServe.setThatDog(this.dog);
+            // this.messServe.setThatDog(this.dog);
             this.getDogPhotos(dogId);
             this.checkIfMatch();
             for (const dog of this.user.dogs) {
@@ -67,12 +69,17 @@ export class DogViewComponent implements OnInit {
                   this.isUserDog = true;
                 }
             }
+            if (!this.isUserDog) {
+              console.log('in if statement for is user dog at dog view');
+              console.log(this.dog);
+
+
+              this.messServe.setThatDog(this.dog);
+              this.messComp.ngOnInit();
+            }
           }
         );
 
-        if (!this.isUserDog) {
-          this.messServe.setThatDog(this.dog);
-        }
       }
     );
   }
@@ -159,4 +166,6 @@ export class DogViewComponent implements OnInit {
   windowReload() {
     window.location.reload();
   }
+
+
 }

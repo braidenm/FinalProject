@@ -11,13 +11,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: 'admin', component: AdminComponent },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileViewComponent },
   { path: 'dogView/:id', component: DogViewComponent },
   { path: 'dogRegister', component: DogRegisterComponent },
-  { path: 'admin', component: AdminComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

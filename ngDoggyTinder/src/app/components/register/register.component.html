@@ -1,24 +1,74 @@
-<h1>Register User</h1>
-
-<form>
-  Username <input type='text' name='username' [(ngModel)]='user.username'/><br>
-  Password <input type='password' name='password' [(ngModel)]='user.password'/><br>
-  Email <input type='text' name='email' [(ngModel)]='user.email'/><br>
-  First Name <input type='text' name='firstName' [(ngModel)]='user.firstName'/><br>
-  Last Name <input type='text' name='lastName' [(ngModel)]='user.lastName'/><br>
-  Gender <input type='text' name='gender' [(ngModel)]='user.gender'/><br>
-  Age <input type='number' name='age' [(ngModel)]='user.age'/><br>
-  Street Address <input type='text' name='street' [(ngModel)]='address.street'/><br>
-  City <input type='text' name='city' [(ngModel)]='address.city'/><br>
-  State <input type='text' name='state' [(ngModel)]='address.state'/><br>
-  Zip Code <input type='text' name='zip' [(ngModel)]='address.zip'/><br>
-  Profile Picture URL <input type='text' name='url' [(ngModel)]='user.url'/><br>
-  <input type='submit' (click)='addUser()' value='Register'>
-</form>
-<br>
-<br>
-<br>
-<br>
-<br>
+<div [ngStyle]=“{background: ‘url(../../../assets/photos/greenGrass.jpg)’}“>
+<div class="container">
 
 
+<div class="row">
+  <div class="col-sm-5"></div>
+<div class="registerDiv">
+
+  <h1>Register User</h1>
+  <form >
+      <table class="table table-striped">
+        <tbody>
+
+          <tr>
+            <td>Username:</td>
+            <td><input type='text' name='username' [(ngModel)]='user.username'/></td>
+          </tr>
+          <tr>
+            <td>Password:</td>
+            <td><input type='text' name='password' [(ngModel)]='user.password'/></td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td><input type='text' name='email' [(ngModel)]='user.email'/></td>
+        </tr>
+        <tr>
+          <td>First Name:</td>
+          <td><input type='text' name='firstName' [(ngModel)]='user.firstName'/></td>
+        </tr>
+        <tr>
+          <td>Last Name:</td>
+          <td><input type='text' name='lastName' [(ngModel)]='user.lastName'/></td>
+        </tr>
+        <tr>
+          <td>Gender:</td>
+          <td><input type='text' name='gender' [(ngModel)]='user.gender'/></td>
+        </tr>
+        <tr>
+          <td>Age:</td>
+          <td><input type='number' name='age' [(ngModel)]='user.age'/></td>
+        </tr>
+        <tr>
+          <td>Street Address:</td>
+          <td><input type='text' name='street' [(ngModel)]='address.street'/></td>
+        </tr>
+        <tr>
+          <td>City:</td>
+          <td><input type='text' name='city' [(ngModel)]='address.city'/></td>
+        </tr>
+        <tr>
+          <td>State:</td>
+          <td><input type='text' name='state' [(ngModel)]='address.state'/></td>
+        </tr>
+        <tr>
+          <td>Zip Code:</td>
+          <td><input type='text' name='zip' [(ngModel)]='address.zip'/></td>
+        </tr>
+        <tr>
+          <td>Profile Picture URL:</td>
+          <td><input type='text' name='url' [(ngModel)]='user.url'/></td>
+        </tr>
+      </tbody>
+    </table>
+    <input type='submit' (click)='addUser()' value='Register'>
+  </form>
+</div>
+</div>
+  <br>
+  <br>
+  <br>
+<br>
+<br>
+</div>
+</div>

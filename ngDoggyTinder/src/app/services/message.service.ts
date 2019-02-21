@@ -102,6 +102,8 @@ export class MessageService {
       );
    }
    setThatDog(dog: Dog) {
+     console.log('in set that dog');
+     console.log(dog);
      this.thatDog = dog;
    }
    setThisDog(dog: Dog) {

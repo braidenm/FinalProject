@@ -67,6 +67,7 @@ import { FilterOutOwnersDogsPipe } from './pipes/filter-out-owners-dogs.pipe';
   ],
 
   providers: [
+    MessageComponent,
     AuthService,
     DisLikeService,
     DogService,

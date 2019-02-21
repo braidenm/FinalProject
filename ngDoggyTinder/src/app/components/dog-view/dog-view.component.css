@@ -2,7 +2,7 @@ img {
   width: 50%;
   height: 50%;
   background-repeat: no-repeat;
-  margin-left: 10%;
+  margin-left: 25%;
   float: center;
 }
 
@@ -25,10 +25,21 @@ img {
 .profile {
   margin: 30px;
   margin-left: 50px;
-  border: solid;
-  border-width: medium;
+  /* border: solid;
+  border-width: medium; */
   background-color: rgba(51, 51, 51, .1);
   /* display: inline-block; */
   /* float: right; */
 }
 
+h3 {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.about {
+  font-family: 'Questrial', sans-serif;
+}
+
+i.fas {
+  color: #3d0080;
+}

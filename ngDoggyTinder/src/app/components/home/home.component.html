@@ -18,14 +18,16 @@
           </div>
           <div class="col">
             <div class="container">
-
-                <h1>About {{filteredDogs[0].name}}</h1>
-                <h3>{{filteredDogs[0].about}}</h3>
-                <button class="btn btn-primary"  [routerLink] = "['/dogView/filteredDogs[0].id']">See Profile</button>
-                <img [src] = "filteredDogs[0].photos[0].url" alt="dog photo"  height="450" width="450">
                 <h2>{{filteredDogs[0].name}} ,  Age: {{filteredDogs[0].age}}</h2>
                 <button class="btn btn-primary"  (click)="dislikeDog(filteredDogs[0].id)">Nope</button>
                 <button class="btn btn-primary"  (click)="likeDog(filteredDogs[0].id)">Like</button>
+
+                <img [src] = "filteredDogs[0].photos[0].url" alt="dog photo"  class="rounded" height="450" width="450">
+                <div class="caption post-content">
+                    <h3>{{filteredDogs[0].about}}</h3>
+                    <button class="btn btn-primary"  [routerLink] = "['/dogView/' + filteredDogs[0].id]">See Profile</button>
+                </div>
+
             </div>
           </div>
           <div class="col" id="sideBorder">

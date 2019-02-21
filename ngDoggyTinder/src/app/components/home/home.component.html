@@ -10,11 +10,29 @@
     <!-- <img [src]="dogs[0].photos[0].url" alt="no photo"> -->
 
     <div *ngIf="user" >
-      <div *ngFor="let pm of filteredDogs">
+      <div class="container-fluid" >
+        <div class="row">
+          <div class="col">
+            <div class="container">
+                <img [src] = "" alt="dog photo"  height="500" width="500">
+                <h2>filteredDogs[0].name ,  filteredDogs[0].age</h2>
+                <button class="btn btn-primary"  (click)="dislikeDog(filteredDogs[0].id)">Nope</button>
+                <button class="btn btn-primary"  (click)="likeDog(filteredDogs[0].id)">Like</button>
+            </div>
+          </div>
+          <div class="col">
+            <h1>About {{filteredDogs[0].name}}</h1>
+              <h3>{{filteredDogs[0].about}}</h3>
+              <button class="btn btn-primary"  [routerLink] = "['/profile/filteredDogs[0].id']">See Profile</button>
+          </div>
+        </div>
+
+      </div>
+      <!-- <div *ngFor="let pm of filteredDogs">
     <img [src]="pm.photos[0].url" alt="no photo" height="500" width="500">
     <button class="btn btn-primary" *ngIf="user" (click)="dislikeDog(pm.id)">Nope</button>
     <button class="btn btn-primary" *ngIf="user" (click)="likeDog(pm.id)">Like</button>
-  </div>
+  </div> -->
   </div>
 
 

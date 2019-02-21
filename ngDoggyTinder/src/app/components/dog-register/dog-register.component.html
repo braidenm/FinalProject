@@ -1,14 +1,17 @@
-<h1>Register a Dog</h1>
+<div class="container">
 
-<form>
-  Name <input type='text' name='username' [(ngModel)]='dog.name'/>
-  Breed <input type='text' name='password' [(ngModel)]='dog.breed'/>
-  Weight <input type='number' name='weight' [(ngModel)]='dog.weight'/>
-  Energy Level (1-10) <input type='number' name='energy' [(ngModel)]='dog.energy'/>
-  Age <input type='number' name='age' [(ngModel)]='dog.age'/>
-  Sex <input type='radio' name='sex' value='Male' [(ngModel)]='dog.sex'/>
-      <input type='radio' name='sex' value='Female' [(ngModel)]='dog.sex'/>
-  About <input type='text' name='about' [(ngModel)]='dog.about'/>
-  Profile Picture URL <input type='text' name='url' [(ngModel)]='photo.url'/>
-  <input type='submit' (click)='addDog()' value='Register'>
-</form>
+  <h1>Register a Dog</h1>
+
+  <form>
+    Name <input type='text' name='username' [(ngModel)]='dog.name'/>
+    Breed <input type='text' name='password' [(ngModel)]='dog.breed'/>
+    Weight <input type='number' name='weight' [(ngModel)]='dog.weight'/>
+    Energy Level (1-10) <input type='number' name='energy' [(ngModel)]='dog.energy'/>
+    Age <input type='number' name='age' [(ngModel)]='dog.age'/>
+    Sex <input type='radio' name='sex' value='Male' [(ngModel)]='dog.sex'/>
+    <input type='radio' name='sex' value='Female' [(ngModel)]='dog.sex'/>
+    About <input type='text' name='about' [(ngModel)]='dog.about'/>
+    Profile Picture URL <input type='text' name='url' [(ngModel)]='photo.url'/>
+    <input type='submit' (click)='addDog()' value='Register'>
+  </form>
+</div>

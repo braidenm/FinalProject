@@ -273,6 +273,7 @@ public class DogServiceImpl implements DogService {
 			results = filterByLikes(likes, allDogs);
 			results = filterByDisLikes(disLikes, results);
 			results = filterByPrefs(selectedDog, results);
+			System.out.println(results);
 			return results;
 		}
 		return null;
@@ -290,6 +291,7 @@ public class DogServiceImpl implements DogService {
 			results.add(dog);
 		}
 
+		System.out.println(results);
 		return results;
 	}
 
@@ -304,6 +306,7 @@ public class DogServiceImpl implements DogService {
 			results.add(dog);
 		}
 
+		System.out.println(results);
 		return results;
 	}
 
@@ -313,15 +316,20 @@ public class DogServiceImpl implements DogService {
 		System.out.println(pref);
 		for (Dog dog : allDogs) {
 			if (pref.getMinWeight() < dog.getWeight() && pref.getMaxWeight() > dog.getWeight()) {
+				System.out.println("in first filter");
 				if (pref.getMinAge() < dog.getAge() && pref.getMaxAge() > dog.getAge()) {
+					System.out.println("in second filter");
 					if (pref.getMinEnergy() < dog.getEnergy() && pref.getMaxEnergy() > dog.getEnergy()) {
-						if (pref.getSex().equals(dog.getSex())) {
+						System.out.println("in 3rd filter");
+						if (pref.getSex().equals(dog.getSex()) || pref.getSex().equals("Any")) {
+							System.out.println("in final filter");
 							results.add(dog);
 						}
 					}
 				}
 			}
 		}
+		System.out.println(results);
 		return results;
 	}
 

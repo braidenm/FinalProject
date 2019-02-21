@@ -6,6 +6,11 @@
   margin-left: 5px;
   margin-right: 5px;
   background-color: #3d0080;
+  border-color: #3d0080;
   outline: #3d0080;
+}
+
+#sideBorder {
+  background-image: url("../../../assets/logo/borderDesign2.jpg")
 }
 

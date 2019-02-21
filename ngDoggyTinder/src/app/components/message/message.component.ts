@@ -22,12 +22,18 @@ export class MessageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.thatDog = null;
+    this.thisDog = null;
     this.thisDog = this.messageS.getThisDog();
     this.thatDog = this.messageS.getThatDog();
+    console.log(this.thisDog);
+    console.log(this.thatDog);
+
     this.getConversation();
   }
 
   getConversation() {
+    this.convo = [];
     this.messageS
       .getConversation(this.thisDog.id, this.thatDog.id)
       .subscribe(data => {

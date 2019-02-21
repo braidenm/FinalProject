@@ -20,6 +20,7 @@ public class AuthServiceImpl implements AuthService {
     
     @Override
     public User register(User user) {
+    	System.out.println(user);
         user.setPassword(pwEncoder.encode(user.getPassword()));
         user.setActive(true);
         user.setRole("standard");

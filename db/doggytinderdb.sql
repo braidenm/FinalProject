@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `address_id` INT NULL,
   `age` INT NULL,
   `url` VARCHAR(500) NULL,
-  `enabled` TINYINT NULL DEFAULT 1,
+  `enabled` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
   INDEX `fk_user_to_address_idx` (`address_id` ASC),

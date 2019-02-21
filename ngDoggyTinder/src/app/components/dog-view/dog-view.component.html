@@ -39,7 +39,7 @@
                     </div>
                   </div>
                   <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box mt-5 mx-auto">
+                    <div class="service-box mt-5 mx-auto" *ngIf="dog">
                       <i *ngIf="dog.sex=='Male'"   class="fas fa-4x fa-mars text-primary mb-3 sr-icon-3"></i>
                       <i *ngIf="dog.sex=='Female'"   class="fas fa-4x fa-venus text-primary mb-3 sr-icon-3"></i>
                       <h3 class="text-muted mb-3">{{dog.sex}}</h3>

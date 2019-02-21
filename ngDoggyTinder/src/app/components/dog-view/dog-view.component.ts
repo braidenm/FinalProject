@@ -25,22 +25,37 @@ export class DogViewComponent implements OnInit {
   photos;
   isMatch = false;
   selectedDog = new Dog();
+  reloadFlag = false;
+  superId = null;
 
   constructor(private route: ActivatedRoute, private userve: UserService,
               private dogServe: DogService, private router: Router,
               private messServe: MessageService, private matchServe: MatchService) { }
 
   ngOnInit() {
+    console.log('dogView Component.ngOnInit');
     this.reload();
   }
+
   reload() {
+    console.log('dogView Component.reload');
     let dogId;
     dogId = this.route.snapshot.paramMap.get('id');
-    this.getSelectedDog();
+    console.log('dogId:');
+    console.log(dogId);
+    if (this.superId) {
+      dogId = this.superId;
+      this.superId = null;
+    }
+    // this.getSelectedDog();
     this.dogServe.getOneDog(dogId).subscribe(
       dogData => {
         this.dog = dogData;
         this.active = this.dog.active;
+        // if (this.reloadFlag) {
+        //   this.reloadFlag = false;
+        //   window.location.reload();
+        // }
         this.userve.getLoggedInUser().subscribe(
           userData => {
             this.user = userData;
@@ -141,4 +156,7 @@ export class DogViewComponent implements OnInit {
     this.preferences = null;
   }
 
+  windowReload() {
+    window.location.reload();
+  }
 }

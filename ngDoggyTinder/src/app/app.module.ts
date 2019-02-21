@@ -83,6 +83,7 @@ import { FilterOutOwnersDogsPipe } from './pipes/filter-out-owners-dogs.pipe';
     HomeComponent,
     LoginComponent,
     NavigationComponent,
+    DogViewComponent
 
   ],
   bootstrap: [AppComponent]

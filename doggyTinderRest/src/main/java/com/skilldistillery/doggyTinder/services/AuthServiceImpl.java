@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.doggyTinder.entities.User;
 import com.skilldistillery.doggyTinder.repositories.AddressRepo;
+import com.skilldistillery.doggyTinder.repositories.DogRepo;
 import com.skilldistillery.doggyTinder.repositories.UserRepo;
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -17,6 +18,10 @@ public class AuthServiceImpl implements AuthService {
 	private UserRepo uRepo;
 	@Autowired
 	private AddressRepo aRepo;
+	@Autowired
+	private DogRepo dRepo;
+	
+	
 	
 	@Override
 	public User register(User user) {

@@ -20,6 +20,7 @@ public class DislikeServiceImpl implements DislikeService {
 	private DislikeRepo dRepo;
 	@Autowired
 	private DogRepo dogRepo;
+
 	
 	@Override
 	public Dog addDislike(Integer thisDog, Integer thatDog) {

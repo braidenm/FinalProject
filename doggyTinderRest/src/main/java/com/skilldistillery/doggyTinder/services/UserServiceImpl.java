@@ -57,6 +57,7 @@ public class UserServiceImpl implements UserService{
 				managed.setAge(user.getAge());
 				managed.setUrl(user.getUrl());
 				managed.setAddress(user.getAddress());
+				managed.setBanned(user.getBanned());
 				uRepo.saveAndFlush(managed);
 				return managed;
 			}

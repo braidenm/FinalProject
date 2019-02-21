@@ -15,6 +15,7 @@ export class User {
   age: number;
   dogs: Dog[];
   url: string;
+  enabled: boolean;
 
   constructor(
     id?: number,

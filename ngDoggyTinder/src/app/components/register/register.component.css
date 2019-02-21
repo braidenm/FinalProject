@@ -1,4 +1,6 @@
 .registerDiv {
   border: solid;
   display: inline-block;
+  background-color: aliceblue;
+  margin-top: 5%;
 }

@@ -1,27 +1,35 @@
-<h1>Admin</h1>
+<div class="container">
+<div class="row">
 
-<span (click)= 'loadUsers()'>List all Users</span><br>
-<span (click)= 'loadDogs()'>List all Dogs</span>
+  <div class="col-sm-4">
+    <h1>Admin</h1>
+    <br>
 
-<div *ngIf='users && !dogs'>
-  <ul>
-    <li *ngFor='let user of users'><a (click)='selectUserDetailView(user)'>{{user.username}}</a></li>
-  </ul>
-</div>
-<div *ngIf='userDetailView && !dogDetailView'>
+    <button (click)= 'loadUsers()'>List all Users</button>
+    <button (click)= 'loadDogs()'>List all Dogs</button>
+
+    <div *ngIf='users && !dogs && !userDetailView'>
+      <ul>
+        <li *ngFor='let user of users'><a (click)='selectUserDetailView(user)'>{{user.username}}</a></li>
+    </ul>
+  </div>
+  <div *ngIf='userDetailView && !dogDetailView'>
     <span>{{user.username}}</span>
     <button *ngIf='user.active' type="button" (click)="deactivateUser()" class='btn btn-outline-primary'>De-Activate</button>
     <button *ngIf='!user.active' type="button" (click)="activateUser()" class='btn btn-outline-primary'>Re-Activate</button>
     <button *ngIf='user.banned' type="button" (click)="unban()" class='btn btn-outline-primary'>Unban</button>
     <button *ngIf='!user.banned' type="button" (click)="ban()" class='btn btn-outline-primary'>Ban</button>
   </div>
-<div *ngIf='!users && dogs && !dogDetailView'>
-  <ul>
-    <li *ngFor='let dog of dogs'><a (click)='selectDogDetailView(dog)'>{{dog.name}}</a></li>
-  </ul>
-</div>
-<div *ngIf='!userDetailView && dogDetailView'>
+  <div *ngIf='!users && dogs && !dogDetailView'>
+    <ul>
+      <li *ngFor='let dog of dogs'><a (click)='selectDogDetailView(dog)'>{{dog.name}}</a></li>
+    </ul>
+  </div>
+  <div *ngIf='!userDetailView && dogDetailView'>
     <span>{{dog.name}}</span>
     <button *ngIf='dog.active' type="button" (click)="deactivateDog()" class='btn btn-outline-primary'>De-Activate</button>
     <button *ngIf='!dog.active' type="button" (click)="activateDog()" class='btn btn-outline-primary'>Re-Activate</button>
+  </div>
+</div>
+</div>
 </div>

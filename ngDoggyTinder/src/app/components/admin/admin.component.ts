@@ -27,16 +27,17 @@ export class AdminComponent implements OnInit {
   thisUser = new User();
 
   ngOnInit() {
+
     this.getLoggedInUser();
-    if (this.thisUser.role !== 'admin') {
-      this.router.navigateByUrl('/home');
-    }
   }
 
   getLoggedInUser() {
     this.userService.getLoggedInUser().subscribe(
       data => {
         this.thisUser = data;
+        if (this.thisUser.role !== 'admin') {
+          this.router.navigateByUrl('/home');
+        }
       },
       error => console.log(error)
     );
@@ -102,12 +103,12 @@ export class AdminComponent implements OnInit {
   }
 
   ban() {
-    this.user.banned = true;
+    this.user.enabled = false;
     this.userService.update(this.user);
   }
 
   unban() {
-    this.user.banned = false;
+    this.user.enabled = true;
     this.userService.update(this.user);
   }
 

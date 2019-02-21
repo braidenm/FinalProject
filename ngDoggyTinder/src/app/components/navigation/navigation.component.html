@@ -30,7 +30,7 @@
       </li>
       <div *ngFor="let dog of dogs">
         <li class="nav-item">
-          <a class="nav-link " (click)="setDog(dog)">{{ dog.name }}</a>
+          <a class="nav-link " [routerLink]="['/dogView/' + dog.id]">{{ dog.name }}</a>
         </li>
       </div>
       <!-- <li class="nav-item dropdown" >

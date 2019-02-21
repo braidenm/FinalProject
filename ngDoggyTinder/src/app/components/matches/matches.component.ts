@@ -1,3 +1,4 @@
+import { DogViewComponent } from './../dog-view/dog-view.component';
 import { MatchService } from './../../services/match.service';
 import { DogService } from './../../services/dog.service';
 import { Matches } from './../../models/matches';
@@ -14,32 +15,45 @@ import { Router } from '@angular/router';
 export class MatchesComponent implements OnInit {
   matches: Matches[] = [];
   selectedDog: Dog;
-  dogs: Dog[];
+  dogs: Dog[] = [];
+  dogId: number;
 
-  constructor(private dogServe: DogService, private matchServe: MatchService, private router: Router) { }
+  constructor(private dogServe: DogService, private matchServe: MatchService, private router: Router, private dvComp: DogViewComponent) { }
 
   ngOnInit() {
+    this.reload();
+  }
+  reload() {
+    console.log('matches has started');
     this.selectedDog = this.dogServe.getSelectedDog();
+    console.log(this.selectedDog + ' has been grabbed');
     this.matchServe.index(this.selectedDog.id).subscribe(
       data => {
         this.matches = data;
         this.filterMatches();
         console.log(data);
+        if (this.dogId) {
+          this.router.navigateByUrl('/dogView/' + this.dogId);
+          // this.dvComp.reloadFlag = true;
+          this.dvComp.superId = this.dogId;
+          this.dvComp.reload();
+        }
       },
       err => {
         return this.matches = null;
       }
     );
-    if (this.matches) {
-      for (const match of this.matches) {
-        this.dogServe.getPhotos(match.id).subscribe(
-          data => match.photos = data,
-        );
-      }
-    }
+    // if (this.matches) {
+    //   for (const match of this.matches) {
+    //     this.dogServe.getPhotos(match.id).subscribe(
+    //       data => match.photos = data,
+    //     );
+    //   }
+    // }
   }
 
   filterMatches() {
+    this.dogs = [];
     for (const match of this.matches) {
       if (this.selectedDog.id !== match.thatDog.id) {
         this.dogs.push(match.thatDog);
@@ -50,9 +64,9 @@ export class MatchesComponent implements OnInit {
     }
   }
 
-  viewDogProfile(dogId: number) {
-    this.router.navigateByUrl('/dogView/' + dogId);
+  viewDogProfile(dogid: number) {
+    this.dogId = dogid;
+    this.reload();
   }
-
 
 }

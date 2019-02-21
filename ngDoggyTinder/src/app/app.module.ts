@@ -63,6 +63,7 @@ import { FilterOutOwnersDogsPipe } from './pipes/filter-out-owners-dogs.pipe';
     FormsModule,
     HttpClientModule,
     NgbModule,
+
   ],
 
   providers: [

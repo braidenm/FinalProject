@@ -19,6 +19,7 @@ import { FilterDogsByYourPreferencesPipe } from 'src/app/pipes/filter-dogs-by-yo
 import { FilterDogsByLikedPipe } from 'src/app/pipes/filter-dogs-by-liked.pipe';
 import { Route, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -36,6 +37,9 @@ export class HomeComponent implements OnInit {
   possibleMatches: Dog[] = [];
   filteredDogs: Dog[] = [];
 
+  closeResult: string;
+  dogId: number;
+
   constructor(
     private matchService: MatchService,
     private dogService: DogService,
@@ -43,7 +47,8 @@ export class HomeComponent implements OnInit {
     private disLikeService: DisLikeService,
     private userS: UserService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal,
   ) // private route: Route,
   // private matchpipe: FilterDogMatchesPipe,
   // private prefPipe: FilterDogsByYourPreferencesPipe,
@@ -221,38 +226,67 @@ export class HomeComponent implements OnInit {
     window.location.reload();
   }
 
-  likeDog(thatDogId: number) {
+  likeDog(thatDogId: number, content: any) {
     this.likeService.addLike(this.selectedDog.id, thatDogId).subscribe(data => {
       this.filteredDogs = null;
       this.dogService
         .getFilteredDogs(this.selectedDog.id)
         .subscribe(filtered => {
           this.filteredDogs = filtered;
-          this.checkForMatch(thatDogId);
+          this.checkForMatch(thatDogId, content);
         });
     });
   }
 
-  matchPopUp(dogId: number) {
-    if (confirm('You Matched!!')) {
-      this.router.navigateByUrl('dogView/' + dogId);
-    }
+  matchPopUp(dogId: number, content) {
+    this.dogId = dogId;
+
+    this.open(content);
+
+    // if (confirm('You Matched!!')) {
+    //   this.router.navigateByUrl('dogView/' + dogId);
+    // }
     // document.getElementById('demo').innerHTML = txt;
   }
 
-  checkForMatch(thatdogId: number) {
+  checkForMatch(thatdogId: number, content) {
     this.likeService.getByThisDog(thatdogId).subscribe(likes => {
       for (const like of likes) {
         if (this.selectedDog.id === like.thatDog.id) {
           this.matchService
             .addMatch(this.selectedDog.id, thatdogId)
             .subscribe(data => {
-              this.matchPopUp(thatdogId);
+              this.matchPopUp(thatdogId, content);
               // this.popUpDog = like.thisDog;
             });
         }
       }
     });
+  }
+
+
+
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  route() {
+    this.router.navigateByUrl('dogView/' + this.dogId);
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
 

@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 	
@@ -20,10 +22,12 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String username;
+	@JsonIgnore
 	private String password;
 	private String role;
 	private String email;
 	private Boolean active;
+	private Boolean enabled;
 	private Boolean banned;
 	@Column(name="first_name")
 	private String firstName;
@@ -132,6 +136,14 @@ public class User {
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	public Boolean getBanned() {
 		return banned;
 	}

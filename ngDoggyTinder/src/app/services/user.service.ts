@@ -59,6 +59,7 @@ export class UserService {
     if (!this.auth.checkLogin) {
       this.router.navigateByUrl('login');
     }
+
     return this.http.get<User>(this.url + '/username', this.getHttp())
     .pipe(
           catchError((err: any) => {

@@ -81,6 +81,7 @@ export class NavigationComponent implements OnInit {
   logout() {
     this.auth.logout();
     if (this.auth.getCredentials() == null) {
+      this.user = null;
       console.log(
         'LogoutComponent.logout(): user logged out, routing to /home.'
       );

@@ -1,3 +1,4 @@
+import { DogRegisterComponent } from './components/dog-register/dog-register.component';
 import { AboutComponent } from './components/about/about.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { DogViewComponent } from './components/dog-view/dog-view.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileViewComponent },
   { path: 'dogView/:id', component: DogViewComponent },
+  { path: 'dogRegister', component: DogRegisterComponent },
   { path: 'admin', component: AdminComponent },
   { path: '**', component: NotFoundComponent },
 ];

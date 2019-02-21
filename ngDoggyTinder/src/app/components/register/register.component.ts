@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   addUser() {
     this.user.address = this.address;
     this.authService.register(this.user).subscribe(
-      data => {this.router.navigateByUrl('home');
+      data => {this.router.navigateByUrl('dogRegister');
     },
       error => console.log(error)
     );

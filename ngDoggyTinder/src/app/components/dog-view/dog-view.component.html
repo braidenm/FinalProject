@@ -30,26 +30,26 @@
       <div class="row">
         <div class="col-lg-3 col-md-6 text-center">
           <div class="service-box mt-5 mx-auto">
-            <i class="fas fa-4x fa-balance-scale text-primary mb-3 sr-icon-1"></i>
+            <i class="fas fa-4x fa-balance-scale  mb-3 sr-icon-1"></i>
             <h3 class=" mb-3">{{dog.weight}} lbs</h3>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 text-center">
           <div class="service-box mt-5 mx-auto">
-            <i class="fas fa-4x fa-dog text-primary mb-3 sr-icon-2"></i>
+            <i class="fas fa-4x fa-dog mb-3 sr-icon-2"></i>
             <h3 class="   mb-3">{{dog.breed}}</h3>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 text-center">
           <div class="service-box mt-5 mx-auto">
-            <i *ngIf="dog.sex=='Male'"   class="fas fa-4x fa-mars text-primary mb-3 sr-icon-3"></i>
-            <i *ngIf="dog.sex=='Female'"   class="fas fa-4x fa-venus text-primary mb-3 sr-icon-3"></i>
+            <i *ngIf="dog.sex=='Male'"   class="fas fa-4x fa-mars mb-3 sr-icon-3"></i>
+            <i *ngIf="dog.sex=='Female'"   class="fas fa-4x fa-venus mb-3 sr-icon-3"></i>
             <h3 class=" mb-3">{{dog.sex}}</h3>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 text-center">
           <div class="service-box mt-5 mx-auto">
-            <i class="fas fa-4x fa-bolt text-primary mb-3 sr-icon-4"></i>
+            <i class="fas fa-4x fa-bolt mb-3 sr-icon-4"></i>
             <h3 class=" mb-3">{{dog.energy}}</h3>
           </div>
         </div>
@@ -67,11 +67,12 @@
       <h3 class="about">About</h3>
       <p>{{dog.about}}</p>
       <button type="button" *ngIf="isUserDog" (click)="setEditDog()" class="btn btn-outline-primary">Edit Dog</button>
+      <button type="button" *ngIf="isUserDog" (click)="setEditPref()" class="btn btn-outline-primary">Edit Preferences</button>
       <button type="button" *ngIf="isUserDog" (click)="deactivateDog()" class="btn btn-outline-danger">Deactivate Dog</button>
       </div>
       <br>
     </div>
-      <div *ngIf="isMatch && isUserDog">
+      <div class="matches" *ngIf="isMatch && isUserDog">
         <app-matches></app-matches>
       </div>
 
@@ -103,7 +104,9 @@
       <button *ngIf="isUserDog" class="btn btn-primary" (click)="reactivateDog()">Re-activate Dog</button>
     </div>
     <div *ngIf="preferences">
+      <div class="row">
       <form>
+        <table class="table-striped">
         <input type="number" name="minWeight" min="0" [(ngModel)]="preferences.minWeight">
         <input type="number" name="maxWeight" min="0" [(ngModel)]="preferences.maxWeight">
         <input type="number" name="minEnergy" min="0" [(ngModel)]="preferences.minEnergy">
@@ -111,11 +114,13 @@
         <input type="number" name="minAge" min="0" [(ngModel)]="preferences.minAge">
         <input type="number" name="maxAge" min="0" [(ngModel)]="preferences.maxAge">
         Gender: <br>
-        <input type="radio" name="sex" value="Male" [(ngModel)]="preferences.sex"> Male<br>
-        <input type="radio" name="sex" value="Female" [(ngModel)]="preferences.sex"> Female <br>
-        <button type="button" class="btn btn-secondary" (click)="cancelEditPref()">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="confirmEditPref()">Submit</button>
+        <input class="radio" type="radio" name="sex" value="Male" [(ngModel)]="preferences.sex"> Male<br>
+        <input class="radio" type="radio" name="sex" value="Female" [(ngModel)]="preferences.sex"> Female <br>
+        <button type="button" class="btn btn-outline-secondary" (click)="cancelEditPref()">Cancel</button>
+        <button type="button" class="btn btn-outline-primary" (click)="confirmEditPref()">Submit</button>
+      </table>
       </form>
+    </div>
     </div>
     <br>
     <br>

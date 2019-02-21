@@ -1,4 +1,20 @@
 #theNavBar{
-  background-color: #6740E4;
-  color: white;
+  color: #6504b5;
 }
+
+.navbar.navbar-expand-lg.navbar-light.bg-light a{
+  color: #6504b5;
+}
+.navbar.navbar-expand-lg.navbar-light.bg-light a:hover{
+  color: #a3a0a7;
+}
+.navbar.navbar-expand-lg.navbar-light.bg-light button{
+  color: #a3a0a7;
+}
+.navbar.navbar-expand-lg.navbar-light.bg-light div{
+  color: #a3a0a7;
+}
+.navbar.navbar-expand-lg.navbar-light.bg-light app-login{
+  color: #a3a0a7;
+}
+

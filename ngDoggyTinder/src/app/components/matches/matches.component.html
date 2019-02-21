@@ -1,11 +1,9 @@
 <div *ngIf="selectedDog">
   <h4>Matches</h4>
-  <div *ngFor="let match of matches" >
-    <div *ngIf='match.thatDog.id != selectedDog.id'>
-      <img src='match.thatDog.photos[0].url' alt="No Picture">
-      <h4>{{match.thatDog.name}}</h4>
+  <div *ngFor="let dog of dogs" >
+      <img src='dog.photos[0].url' alt="No Picture">
+      <h4>{{dog.name}}</h4>
       <!-- <a [routerLink]="['/dogView/'[match.thatDog.id]]"><button>View Dog</button></a> -->
-      <a (click)='viewDogProfile(match.thatDog.id)'><button>View Dog</button></a>
-    </div>
+      <a (click)='viewDogProfile(dog.id)'><button>View Dog</button></a>
   </div>
 </div>

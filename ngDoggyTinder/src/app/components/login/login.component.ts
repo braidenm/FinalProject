@@ -32,12 +32,13 @@ export class LoginComponent implements OnInit {
           userData => {
             console.log(userData);
             this.user = userData;
-            this.h.user = this.user;
             this.nav.reload();
-            this.router.navigateByUrl('home');
-            this.h.reloadPage();
             console.error('login succeeded');
             this.invalid = null;
+            this.h.user = this.user;
+            this.h.reloadPage();
+            this.router.navigateByUrl('home');
+
           },
           userErr => {
             console.error('Error retrieving logged in user');

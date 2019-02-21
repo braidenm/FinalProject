@@ -71,7 +71,7 @@ export class AuthService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.post(this.baseUrl + 'register', user, httpOptions)
+    return this.http.post<User>(this.baseUrl + 'register', user, httpOptions)
     .pipe(
         catchError((err: any) => {
           console.log(err);

@@ -32,8 +32,9 @@ img {
   /* float: right; */
 }
 
-h3 {
+h3, p {
   font-family: 'Source Sans Pro', sans-serif;
+  color: white;
 }
 
 .about {
@@ -43,3 +44,5 @@ h3 {
 i.fas {
   color: #3d0080;
 }
+
+

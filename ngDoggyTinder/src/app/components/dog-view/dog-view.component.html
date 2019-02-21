@@ -33,52 +33,6 @@
             <h3 class="text-muted mb-3">{{dog.weight}} lbs</h3>
           </div>
         </div>
-<<<<<<< HEAD
-        <div class="section">
-            <!-- Anchor link to: navigation -->
-            <div class="container">
-                <div class="row">
-                  <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box mt-5 mx-auto">
-                       <i class="fas fa-4x fa-balance-scale text-primary mb-3 sr-icon-1"></i>
-                      <h3 class="text-muted mb-3">{{dog.weight}} lbs</h3>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box mt-5 mx-auto">
-                      <i class="fas fa-4x fa-dog text-primary mb-3 sr-icon-2"></i>
-                      <h3 class=" text-muted  mb-3">{{dog.breed}}</h3>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box mt-5 mx-auto" *ngIf="dog">
-                      <i *ngIf="dog.sex=='Male'"   class="fas fa-4x fa-mars text-primary mb-3 sr-icon-3"></i>
-                      <i *ngIf="dog.sex=='Female'"   class="fas fa-4x fa-venus text-primary mb-3 sr-icon-3"></i>
-                      <h3 class="text-muted mb-3">{{dog.sex}}</h3>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box mt-5 mx-auto">
-                      <i class="fas fa-4x fa-bolt text-primary mb-3 sr-icon-4"></i>
-                      <h3 class="text-muted mb-3">{{dog.energy}}</h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        <hr>
-        <!-- <h3>Name: {{dog.name}}</h3><br>
-        <h5>Breed: {{dog.breed}}</h5><br>
-        <h5>Age: {{dog.age}}</h5>
-        <h5>Gender: {{dog.sex}}</h5>
-        <h5>Weight: {{dog.weight}} lbs</h5>
-        <h5>Energy Level: {{dog.energy}}</h5>
-        <hr> -->
-        <h3 class="about">About</h3>
-        <p>{{dog.about}}</p>
-        <button type="button" *ngIf="isUserDog" (click)="setEditDog()" class="btn btn-outline-primary">Edit Dog</button>
-        <button type="button" *ngIf="isUserDog" (click)="deactivateDog()" class="btn btn-outline-danger">Deactivate Dog</button>
-        <br>
-=======
         <div class="col-lg-3 col-md-6 text-center">
           <div class="service-box mt-5 mx-auto">
             <i class="fas fa-4x fa-dog text-primary mb-3 sr-icon-2"></i>
@@ -115,7 +69,6 @@
       <br>
     </div>
       <div *ngIf="isMatch">
->>>>>>> 0bcbfcc5ee826fd89280d3b69e772937d89b2e00
         <app-matches></app-matches>
       </div>
 
@@ -168,7 +121,7 @@
     <div class="col-sm-1"></div>
 
   <div class="message" *ngIf="active && !editDog && !isUserDog && !preferences && isMatch" >
-    <app-message></app-message>
   </div>
 </div>
+<app-message></app-message>
 

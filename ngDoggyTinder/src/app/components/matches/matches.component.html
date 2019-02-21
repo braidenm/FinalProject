@@ -2,6 +2,7 @@
   <h4>Matches</h4>
   <div class="row">
     <div *ngFor="let dog of dogs">
+        <div class="col-sm">
       <img
         [src]="dog.photos[0].url"
         [routerLink]="['/dogView/' + dog.id]"
@@ -10,6 +11,7 @@
       />
       <h4>{{ dog.name }}</h4>
       <a (click)="viewDogProfile(dog.id)"><button>View Dog</button></a>
+    </div>
     </div>
   </div>
 </div>

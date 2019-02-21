@@ -28,6 +28,9 @@
       <li class="nav-item" *ngIf="user">
         <a class="nav-link " [routerLink]="['/profile']">Profile</a>
       </li>
+      <li class="nav-item" *ngIf="user.role == 'admin'">
+        <a class="nav-link " [routerLink]="['/admin']">Admin Profile</a>
+      </li>
       <div *ngFor="let dog of dogs">
         <li class="nav-item">
           <a class="nav-link " [routerLink]="['/dogView/' + dog.id]">{{ dog.name }}</a>

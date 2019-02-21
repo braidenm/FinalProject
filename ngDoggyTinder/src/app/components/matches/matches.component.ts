@@ -14,13 +14,18 @@ import { Router } from '@angular/router';
 export class MatchesComponent implements OnInit {
   matches: Matches[] = [];
   selectedDog: Dog;
+  dogs: Dog[];
 
   constructor(private dogServe: DogService, private matchServe: MatchService, private router: Router) { }
 
   ngOnInit() {
     this.selectedDog = this.dogServe.getSelectedDog();
     this.matchServe.index(this.selectedDog.id).subscribe(
-      data => this.matches = data,
+      data => {
+        this.matches = data;
+        this.filterMatches();
+        console.log(data);
+      },
       err => {
         return this.matches = null;
       }
@@ -33,6 +38,18 @@ export class MatchesComponent implements OnInit {
       }
     }
   }
+
+  filterMatches() {
+    for (const match of this.matches) {
+      if (this.selectedDog.id !== match.thatDog.id) {
+        this.dogs.push(match.thatDog);
+      }
+      if (this.selectedDog.id !== match.thisDog.id) {
+        this.dogs.push(match.thisDog);
+      }
+    }
+  }
+
   viewDogProfile(dogId: number) {
     this.router.navigateByUrl('/dogView/' + dogId);
   }

@@ -1,1 +1,4 @@
-
+.registerDiv {
+  border: solid;
+  display: inline-block;
+}

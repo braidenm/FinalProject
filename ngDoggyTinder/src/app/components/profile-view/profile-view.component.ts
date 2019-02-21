@@ -116,6 +116,7 @@ export class ProfileViewComponent implements OnInit {
       console.log(
         'LogoutComponent.logout(): user logged out, routing to /home.'
       );
+      this.h.setUserToNull();
       this.router.navigateByUrl('/home');
     } else {
       console.error('LogoutComponent.logout(): error logging out.');

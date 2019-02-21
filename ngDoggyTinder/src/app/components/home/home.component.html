@@ -2,12 +2,13 @@
 
     <!-- <app-main-page-carousel [dogs]='dogs' [possibleMatches]='possibleMatches'>
     </app-main-page-carousel> -->
+    <div *ngIf="!user">
     <app-main-page-carousel>
     </app-main-page-carousel>
-
-    <div *ngIf="!user">
-    <!-- <img [src]="dogs[0].photos[0].url" alt="no photo"> -->
   </div>
+
+    <!-- <img [src]="dogs[0].photos[0].url" alt="no photo"> -->
+
     <div *ngIf="user" >
       <div *ngFor="let pm of filteredDogs">
     <img [src]="pm.photos[0].url" alt="no photo" height="500" width="500">

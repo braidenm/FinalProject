@@ -8,32 +8,36 @@
    </ng-template>
    </ngb-carousel> -->
    <ngb-carousel >
-      <ng-template ngbSlide>
-        <img [src]="images[0]" height="900px" alt="Random first slide">
+      <ng-template class="photo" ngbSlide>
+        <img [src]="images[0]" height="900px"  alt="Random first slide">
         <div class="carousel-caption">
-          <h3>Puppy Love</h3>
-          <p>This carousel uses customized default values.</p>
+          <h2>More Pups, Less Worries</h2>
+          <h3>Find a Play Pal</h3>
+          <button class="btn btn-primary"  type="button" [routerLink]="['/register']" type="submit" >Register</button>
         </div>
       </ng-template>
       <ng-template ngbSlide>
-        <img [src]="images[1]" height="900px" alt="Random second slide">
-        <div class="carousel-caption">
-          <h3>Dogs Love Too</h3>
-          <p>This carousel doesn't pause or resume on mouse events</p>
+        <img [src]="images[1]" height="900px"  alt="Random second slide">
+        <div class="carousel-caption" id="two">
+          <h2 class="header-image-two">Dogs Love Too</h2>
+          <h3>Find a Partner For Your Partner</h3>
+          <button class="btn btn-primary" type="button" [routerLink]="['/register']" type="submit" >Register</button>
         </div>
       </ng-template>
       <ng-template ngbSlide>
-        <img [src]="images[2]" height="900px"  alt="Random third slide">
+        <img [src]="images[2]" height="900px" alt="Random third slide">
         <div class="carousel-caption">
-          <h3>More Pups, Less Worries</h3>
-          <p>This carousel uses customized default values.</p>
+          <h2>Puppy Love</h2>
+          <h3>Help Them Find a Life-Long Friend</h3>
+          <button class="btn btn-primary" type="button" [routerLink]="['/register']" type="submit" >Register</button>
         </div>
       </ng-template>
       <ng-template ngbSlide>
-        <img [src]="images[3]" height="900px" alt="Random fourth slide">
+        <img [src]="images[3]" height="900px"  alt="Random fourth slide">
         <div class="carousel-caption">
-          <h3>Find Love</h3>
-          <p>This carousel uses customized default values.</p>
+          <h2>Find Love</h2>
+          <h3>Life is Better in Pairs</h3>
+          <button class="btn btn-primary" type="button" [routerLink]="['/register']" type="submit" >Register</button>
         </div>
       </ng-template>
     </ngb-carousel>

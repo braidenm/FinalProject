@@ -23,8 +23,13 @@
         <p>{{dog.about}}</p>
         <button type="button" *ngIf="isUserDog" (click)="setEditDog()" class="btn btn-outline-primary">Edit Dog</button>
         <button type="button" *ngIf="isUserDog" (click)="deactivateDog()" class="btn btn-outline-danger">Deactivate Dog</button>
+        <br>
+        <app-matches></app-matches>
+
       </div>
     </div>
+
+
 
     <div *ngIf="editDog && !preferences">
       <form>

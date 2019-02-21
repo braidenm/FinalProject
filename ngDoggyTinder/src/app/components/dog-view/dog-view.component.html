@@ -1,77 +1,80 @@
-<div class="row">
-  <div class="col-sm-10 profile" *ngIf="active && !editDog && !preferences">
+<div class="container">
 
-    <div>
-      <ngb-carousel >
-        <ng-template *ngFor="let image of photos" ngbSlide>
-          <img [src]="image.url" alt="no photo">
-        </ng-template>
-      </ngb-carousel>
-    </div>
-    <div>
-      <hr>
-      <h3>Name: {{dog.name}}</h3>
-      <h5>Breed: {{dog.breed}}</h5>
-      <h5>Age: {{dog.age}}</h5>
-      <h5>Gender: {{dog.sex}}</h5>
-      <h5>Weight: {{dog.weight}} lbs</h5>
-      <h5>Energy Level: {{dog.energy}}</h5>
-      <hr>
-      <h3>About</h3>
-      <p>{{dog.about}}</p>
-      <button type="button" *ngIf="isUserDog" (click)="setEditDog()" class="btn btn-outline-primary">Edit Dog</button>
-      <button type="button" *ngIf="isUserDog" (click)="deactivateDog()" class="btn btn-outline-danger">Deactivate Dog</button>
-    </div>
-  </div>
+  <div class="row">
+    <div class="col-sm-10 profile" *ngIf="active && !editDog && !preferences">
 
-  <div *ngIf="editDog && !preferences">
-    <form>
-      Name: <input type="text" name="name" required [(ngModel)]="editDog.name">
-      <br>
-      Breed: <input type="text" name="breed" required [(ngModel)]="editDog.breed">
-      <br>
-      Age: <input type="number" name="age" min="0" required [(ngModel)]="editDog.age">
-      <br>
-      Gender: <br>
-      <input type="radio" name="sex" value="Male" required [(ngModel)]="editDog.sex">Male <br>
-      <input type="radio" name="sex" value="Female" required [(ngModel)]="editDog.sex">Female <br>
-      Weight: <input type="number" name="weigth" min="0" required [(ngModel)]="editDog.weight">lbs
-      <br>
-      Energy Level: <input type="text" name="energy" min="0" max="10" required [(ngModel)]="editDog.energy">
-      <br>
-      About: <br>
-      <textarea type="text" name="about" maxlength="500" rows="4" cols="50" [(ngModel)]="editDog.about"></textarea>
-      <br>
-      <button type="button" class="btn btn-outline-secondary" (click)="cancelEditDog()">Cancel</button>
-      <button type="button" class="btn btn-outline-primary" (click)="confirmEditDog()">Submit</button>
-    </form>
+      <div>
+        <ngb-carousel >
+          <ng-template *ngFor="let image of photos" ngbSlide>
+            <img [src]="image.url" alt="no photo">
+          </ng-template>
+        </ngb-carousel>
+      </div>
+      <div>
+        <hr>
+        <h3>Name: {{dog.name}}</h3>
+        <h5>Breed: {{dog.breed}}</h5>
+        <h5>Age: {{dog.age}}</h5>
+        <h5>Gender: {{dog.sex}}</h5>
+        <h5>Weight: {{dog.weight}} lbs</h5>
+        <h5>Energy Level: {{dog.energy}}</h5>
+        <hr>
+        <h3>About</h3>
+        <p>{{dog.about}}</p>
+        <button type="button" *ngIf="isUserDog" (click)="setEditDog()" class="btn btn-outline-primary">Edit Dog</button>
+        <button type="button" *ngIf="isUserDog" (click)="deactivateDog()" class="btn btn-outline-danger">Deactivate Dog</button>
+      </div>
+    </div>
+
+    <div *ngIf="editDog && !preferences">
+      <form>
+        Name: <input type="text" name="name" required [(ngModel)]="editDog.name">
+        <br>
+        Breed: <input type="text" name="breed" required [(ngModel)]="editDog.breed">
+        <br>
+        Age: <input type="number" name="age" min="0" required [(ngModel)]="editDog.age">
+        <br>
+        Gender: <br>
+        <input type="radio" name="sex" value="Male" required [(ngModel)]="editDog.sex">Male <br>
+        <input type="radio" name="sex" value="Female" required [(ngModel)]="editDog.sex">Female <br>
+        Weight: <input type="number" name="weigth" min="0" required [(ngModel)]="editDog.weight">lbs
+        <br>
+        Energy Level: <input type="text" name="energy" min="0" max="10" required [(ngModel)]="editDog.energy">
+        <br>
+        About: <br>
+        <textarea type="text" name="about" maxlength="500" rows="4" cols="50" [(ngModel)]="editDog.about"></textarea>
+        <br>
+        <button type="button" class="btn btn-outline-secondary" (click)="cancelEditDog()">Cancel</button>
+        <button type="button" class="btn btn-outline-primary" (click)="confirmEditDog()">Submit</button>
+      </form>
+    </div>
+    <div *ngIf="!active">
+      <h1>Dog is not found or not Active</h1>
+      <button *ngIf="isUserDog" class="btn btn-outline-primary" (click)="reactivateDog()">Re-activate Dog</button>
+    </div>
+    <div *ngIf="preferences">
+      <form>
+        <input type="number" name="minWeight" min="0" [(ngModel)]="preferences.minWeight">
+        <input type="number" name="maxWeight" min="0" [(ngModel)]="preferences.maxWeight">
+        <input type="number" name="minEnergy" min="0" [(ngModel)]="preferences.minEnergy">
+        <input type="number" name="maxEnergy" min="0" [(ngModel)]="preferences.maxEnergy">
+        <input type="number" name="minAge" min="0" [(ngModel)]="preferences.minAge">
+        <input type="number" name="maxAge" min="0" [(ngModel)]="preferences.maxAge">
+        Gender: <br>
+        <input type="radio" name="sex" value="Male" [(ngModel)]="preferences.sex"> Male<br>
+        <input type="radio" name="sex" value="Female" [(ngModel)]="preferences.sex"> Female <br>
+        <button type="button" class="btn btn-outline-secondary" (click)="cancelEditPref()">Cancel</button>
+        <button type="button" class="btn btn-outline-primary" (click)="confirmEditPref()">Submit</button>
+      </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="col-sm-1"></div>
   </div>
-  <div *ngIf="!active">
-    <h1>Dog is not found or not Active</h1>
-    <button *ngIf="isUserDog" class="btn btn-outline-primary" (click)="reactivateDog()">Re-activate Dog</button>
+  <div class="message" *ngIf="active && !editDog && !isUserDog && !preferences && isMatch" >
+    <app-message></app-message>
   </div>
-  <div *ngIf="preferences">
-    <form>
-      <input type="number" name="minWeight" min="0" [(ngModel)]="preferences.minWeight">
-      <input type="number" name="maxWeight" min="0" [(ngModel)]="preferences.maxWeight">
-      <input type="number" name="minEnergy" min="0" [(ngModel)]="preferences.minEnergy">
-      <input type="number" name="maxEnergy" min="0" [(ngModel)]="preferences.maxEnergy">
-      <input type="number" name="minAge" min="0" [(ngModel)]="preferences.minAge">
-      <input type="number" name="maxAge" min="0" [(ngModel)]="preferences.maxAge">
-      Gender: <br>
-      <input type="radio" name="sex" value="Male" [(ngModel)]="preferences.sex"> Male<br>
-      <input type="radio" name="sex" value="Female" [(ngModel)]="preferences.sex"> Female <br>
-      <button type="button" class="btn btn-outline-secondary" (click)="cancelEditPref()">Cancel</button>
-      <button type="button" class="btn btn-outline-primary" (click)="confirmEditPref()">Submit</button>
-    </form>
-  </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <div class="col-sm-1"></div>
-</div>
-<div class="message" *ngIf="active && !editDog && !isUserDog && !preferences && isMatch" >
-  <app-message></app-message>
 </div>
 

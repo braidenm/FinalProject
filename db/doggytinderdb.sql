@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `address_id` INT NULL,
   `age` INT NULL,
   `url` VARCHAR(500) NULL,
+  `enabled` TINYINT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
   INDEX `fk_user_to_address_idx` (`address_id` ASC),
@@ -186,13 +187,13 @@ DROP TABLE IF EXISTS `preferences` ;
 CREATE TABLE IF NOT EXISTS `preferences` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `dog_id` INT NOT NULL,
-  `min_weight` INT NULL DEFAULT 1,
-  `max_weight` INT NULL DEFAULT 500,
-  `min_energy` INT NULL DEFAULT 1,
-  `max_energy` INT NULL DEFAULT 10,
-  `min_age` INT NULL DEFAULT 0,
-  `max_age` INT NULL DEFAULT 100,
-  `sex` VARCHAR(45) NULL DEFAULT 'Any',
+  `min_weight` INT NULL,
+  `max_weight` INT NULL,
+  `min_energy` INT NULL,
+  `max_energy` INT NULL,
+  `min_age` INT NULL,
+  `max_age` INT NULL,
+  `sex` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_to_dog`
     FOREIGN KEY (`dog_id`)
@@ -265,18 +266,18 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `doggytinderdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`) VALUES (1, 'admin', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'admin', 'admin@admin.com', 1, 0, 'Administrius', 'Diggy', 'Male', 1, 40, 'https://cdn3.iconfinder.com/data/icons/gray-user-toolbar/512/oficcial-512.png');
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`) VALUES (2, 'doglover', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'doglover@paws.com', 1, 0, 'Joan', 'Bayez', 'Female', 2, 78, 'https://d279m997dpfwgl.cloudfront.net/wp/2018/09/0910_baez-1000x743.jpg');
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`) VALUES (3, 'thedogabides', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'thedogabides@dude.com', 1, 0, 'Jeff \"The Dude\"', 'Lebowski', 'Male', 3, 65, 'https://uproxx.files.wordpress.com/2019/02/the-dude-the-big-lebowski.jpg?w=300&h=210&crop=1&quality=100');
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`) VALUES (4, 'number44', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', '44@whitehouse.gov', 1, 0, 'Barack', 'Obama', 'Male', 4, 57, 'https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTE4MDAzNDEwNzg5ODI4MTEw/barack-obama-12782369-1-402.jpg');
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`) VALUES (5, 'doggonecrazy', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'crazyfordogs@dog.com', 1, 0, 'Sarah', 'Parker', 'Female', 5, 52, 'https://timedotcom.files.wordpress.com/2014/11/sarah-jessica-parker.jpg');
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`) VALUES (6, 'puppermintpatty', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'puppermintpatty@dog.com', 1, 0, 'Patty', 'Peppermint', 'Female', 6, 39, 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a0/Peppermint_Patty.png/170px-Peppermint_Patty.png');
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`) VALUES (7, 'danceswithdogs', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'runswithdogs@dog.com', 1, 0, 'Kevin', 'Costner', 'Male', 7, 64, 'https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTE5NDg0MDU0OTMzNTA1NTUx/kevin-costner-9258776-1-402.jpg');
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`) VALUES (8, 'thedogwhisperer', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'dogwhisperer@dog.com', 1, 0, 'Cesar', 'Millan', 'Male', 8, 49, 'https://pbs.twimg.com/profile_images/1028109745356304384/QAttxEQ1_400x400.jpg');
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`) VALUES (9, 'snoopdogg', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'snoopdiggitydogg@dwestcoast.com', 1, 0, 'Snoop', 'Dogg', 'Male', 9, 47, 'https://pbs.twimg.com/profile_images/943933166015803392/jvjasD7v_400x400.jpg');
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`) VALUES (10, '50cent', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', '50cent@gunit.com', 1, 0, 'Curtis', 'Jackson', 'Male', 10, 43, 'https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTE5NDg0MDU1NDExNDU5NTk5/after-earth-new-york-premiere---inside-arrivals.jpg');
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`) VALUES (11, 'usher', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'usher@sings.com', 1, 0, 'Usher', 'Raymond', 'Male', 11, 40, 'https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTIwNjA4NjMzNDczNzYyODI4/95-106-capital-fm-summertime-ball-2012---media-run.jpg');
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`) VALUES (12, 'wizkid', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'wizkid@music.com', 1, 0, 'Wiz', 'Khalifa', 'Male', 12, 31, 'https://www.billboard.com/files/media/Wiz-Khalifa-vanity-fair-2018-billboard-1548.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`, `enabled`) VALUES (1, 'admin', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'admin', 'admin@admin.com', 1, 0, 'Administrius', 'Diggy', 'Male', 1, 40, 'https://cdn3.iconfinder.com/data/icons/gray-user-toolbar/512/oficcial-512.png', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`, `enabled`) VALUES (2, 'doglover', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'doglover@paws.com', 1, 0, 'Joan', 'Bayez', 'Female', 2, 78, 'https://d279m997dpfwgl.cloudfront.net/wp/2018/09/0910_baez-1000x743.jpg', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`, `enabled`) VALUES (3, 'thedogabides', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'thedogabides@dude.com', 1, 0, 'Jeff \"The Dude\"', 'Lebowski', 'Male', 3, 65, 'https://uproxx.files.wordpress.com/2019/02/the-dude-the-big-lebowski.jpg?w=300&h=210&crop=1&quality=100', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`, `enabled`) VALUES (4, 'number44', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', '44@whitehouse.gov', 1, 0, 'Barack', 'Obama', 'Male', 4, 57, 'https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTE4MDAzNDEwNzg5ODI4MTEw/barack-obama-12782369-1-402.jpg', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`, `enabled`) VALUES (5, 'doggonecrazy', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'crazyfordogs@dog.com', 1, 0, 'Sarah', 'Parker', 'Female', 5, 52, 'https://timedotcom.files.wordpress.com/2014/11/sarah-jessica-parker.jpg', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`, `enabled`) VALUES (6, 'puppermintpatty', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'puppermintpatty@dog.com', 1, 0, 'Patty', 'Peppermint', 'Female', 6, 39, 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a0/Peppermint_Patty.png/170px-Peppermint_Patty.png', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`, `enabled`) VALUES (7, 'danceswithdogs', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'runswithdogs@dog.com', 1, 0, 'Kevin', 'Costner', 'Male', 7, 64, 'https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTE5NDg0MDU0OTMzNTA1NTUx/kevin-costner-9258776-1-402.jpg', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`, `enabled`) VALUES (8, 'thedogwhisperer', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'dogwhisperer@dog.com', 1, 0, 'Cesar', 'Millan', 'Male', 8, 49, 'https://pbs.twimg.com/profile_images/1028109745356304384/QAttxEQ1_400x400.jpg', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`, `enabled`) VALUES (9, 'snoopdogg', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'snoopdiggitydogg@dwestcoast.com', 1, 0, 'Snoop', 'Dogg', 'Male', 9, 47, 'https://pbs.twimg.com/profile_images/943933166015803392/jvjasD7v_400x400.jpg', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`, `enabled`) VALUES (10, '50cent', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', '50cent@gunit.com', 1, 0, 'Curtis', 'Jackson', 'Male', 10, 43, 'https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTE5NDg0MDU1NDExNDU5NTk5/after-earth-new-york-premiere---inside-arrivals.jpg', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`, `enabled`) VALUES (11, 'usher', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'usher@sings.com', 1, 0, 'Usher', 'Raymond', 'Male', 11, 40, 'https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTIwNjA4NjMzNDczNzYyODI4/95-106-capital-fm-summertime-ball-2012---media-run.jpg', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `email`, `active`, `banned`, `first_name`, `last_name`, `gender`, `address_id`, `age`, `url`, `enabled`) VALUES (12, 'wizkid', '$2a$10$RAAguk2wumgGSSHMm9rPoOLDkKx.lmsJcl1GWcFtKfb7MDU703Pdu', 'standard', 'wizkid@music.com', 1, 0, 'Wiz', 'Khalifa', 'Male', 12, 31, 'https://www.billboard.com/files/media/Wiz-Khalifa-vanity-fair-2018-billboard-1548.jpg', 1);
 
 COMMIT;
 
@@ -408,22 +409,18 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `doggytinderdb`;
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (1, 1, 0, 500, 1, 10, 0, 100, 'Male');
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (2, 2, 0, 30, 1, 10, 0, 100, 'Any');
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (3, 3, 0, 500, 1, 10, 0, 100, 'Any');
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (4, 4, 0, 500, 1, 10, 0, 100, 'Any');
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (5, 5, 0, 500, 1, 10, 0, 100, 'Any');
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (6, 6, 0, 500, 1, 10, 0, 100, 'Any');
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (7, 7, 0, 500, 1, 10, 0, 100, 'Any');
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (8, 8, 0, 500, 1, 10, 0, 100, 'Any');
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (9, 9, 45, 500, 1, 10, 0, 100, 'Any');
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (10, 10, 0, 25, 1, 10, 0, 100, 'Any');
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (11, 11, 0, 500, 1, 10, 0, 100, 'Any');
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (12, 12, 0, 500, 1, 10, 0, 100, 'Any');
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (13, 13, 0, 500, 1, 10, 0, 100, 'Any');
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (14, 14, 65, 500, 1, 10, 0, 100, 'Any');
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (15, 15, 0, 500, 1, 5, 8, 100, 'Any');
-INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (16, 16, 0, 500, 1, 10, 0, 100, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (1, 1, 0, 200, 1, 10, 0, 30, 'Male');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (2, 2, 0, 500, 1, 10, 0, 30, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (3, 3, 0, 500, 1, 10, 0, 30, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (4, 4, 0, 500, 1, 10, 0, 30, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (5, 5, 0, 500, 1, 10, 0, 30, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (6, 6, 0, 500, 1, 10, 0, 30, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (7, 7, 0, 500, 1, 10, 0, 30, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (8, 8, 0, 500, 1, 10, 0, 30, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (9, 9, 0, 500, 1, 10, 0, 30, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (10, 10, 0, 500, 1, 10, 0, 30, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (11, 11, 0, 500, 1, 10, 0, 30, 'Any');
+INSERT INTO `preferences` (`id`, `dog_id`, `min_weight`, `max_weight`, `min_energy`, `max_energy`, `min_age`, `max_age`, `sex`) VALUES (12, 12, 0, 500, 1, 10, 0, 30, 'Any');
 
 COMMIT;
 

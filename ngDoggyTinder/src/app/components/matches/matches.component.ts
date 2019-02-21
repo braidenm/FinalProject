@@ -4,6 +4,7 @@ import { Matches } from './../../models/matches';
 import { Dog } from './../../models/dog';
 import { Component, OnInit } from '@angular/core';
 import { Photo } from 'src/app/models/photo';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-matches',
@@ -14,7 +15,7 @@ export class MatchesComponent implements OnInit {
   matches: Matches[] = [];
   selectedDog: Dog;
 
-  constructor(private dogServe: DogService, private matchServe: MatchService) { }
+  constructor(private dogServe: DogService, private matchServe: MatchService, private router: Router) { }
 
   ngOnInit() {
     this.selectedDog = this.dogServe.getSelectedDog();
@@ -31,6 +32,9 @@ export class MatchesComponent implements OnInit {
         );
       }
     }
+  }
+  viewDogProfile(dogId: number) {
+    this.router.navigateByUrl('/dogView/' + dogId);
   }
 
 

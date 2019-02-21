@@ -1,3 +1,4 @@
+import { HomeComponent } from './../home/home.component';
 import { NavigationComponent } from './../navigation/navigation.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/models/user';
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   invalid: string;
 
   constructor(private auth: AuthService, private userS: UserService, private router: Router,
-              private nav: NavigationComponent){}
+              private nav: NavigationComponent, private h: HomeComponent) {}
 
   ngOnInit() {
     this.invalid = null;
@@ -31,11 +32,12 @@ export class LoginComponent implements OnInit {
           userData => {
             console.log(userData);
             this.user = userData;
+            this.h.user = this.user;
             this.nav.reload();
-
+            this.router.navigateByUrl('home');
+            this.h.reloadPage();
             console.error('login succeeded');
             this.invalid = null;
-            this.router.navigateByUrl('home');
           },
           userErr => {
             console.error('Error retrieving logged in user');

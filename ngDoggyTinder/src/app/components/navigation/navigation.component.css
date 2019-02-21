@@ -1,20 +1,31 @@
 #theNavBar{
-  color: #6504b5;
+  color: #3d0080;
+  /* color: #6504b5; */
 }
 
 .navbar.navbar-expand-lg.navbar-light.bg-light a{
-  color: #6504b5;
+  color: #3d0080;
 }
 .navbar.navbar-expand-lg.navbar-light.bg-light a:hover{
   color: #a3a0a7;
 }
-.navbar.navbar-expand-lg.navbar-light.bg-light button{
-  color: #a3a0a7;
-}
+/* .navbar.navbar-expand-lg.navbar-light.bg-light button{
+  color: #3d0080;
+} */
 .navbar.navbar-expand-lg.navbar-light.bg-light div{
-  color: #a3a0a7;
+  color: #3d0080;
 }
 .navbar.navbar-expand-lg.navbar-light.bg-light app-login{
-  color: #a3a0a7;
+  color: #3d0080;
+}
+button{
+  background-color: #3d0080;
+  border-color: #3d0080;
+  color: white;
+}
+button:hover{
+  color: #3d0080;
+  background-color: #a3a0a7;
+  border-color: #3d0080
 }
 

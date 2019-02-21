@@ -79,7 +79,8 @@ import { FilterOutOwnersDogsPipe } from './pipes/filter-out-owners-dogs.pipe';
     FilterDogsByActivePipe,
     FilterDogsByYourPreferencesPipe,
     FilterDogMatchesPipe,
-    FilterOutOwnersDogsPipe
+    FilterOutOwnersDogsPipe,
+    HomeComponent,
 
   ],
   bootstrap: [AppComponent]

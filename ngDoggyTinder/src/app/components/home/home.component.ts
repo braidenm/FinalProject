@@ -1,26 +1,28 @@
-import { FilterOutOwnersDogsPipe } from "./../../pipes/filter-out-owners-dogs.pipe";
-import { FilterDogsByActivePipe } from "./../../pipes/filter-dogs-by-active.pipe";
-import { FilterDogsByDislikePipe } from "./../../pipes/filter-dogs-by-dislike.pipe";
-import { FilterDogMatchesPipe } from "./../../pipes/filter-dog-matches.pipe";
-import { UserService } from "./../../services/user.service";
-import { DisLike } from "./../../models/dis-like";
-import { Likes } from "./../../models/likes";
-import { DisLikeService } from "./../../services/dis-like.service";
-import { LikeService } from "./../../services/like.service";
-import { DogService } from "./../../services/dog.service";
-import { Component, OnInit } from "@angular/core";
-import { Dog } from "src/app/models/dog";
-import { forEach } from "@angular/router/src/utils/collection";
-import { MatchService } from "src/app/services/match.service";
-import { Matches } from "src/app/models/matches";
-import { User } from "src/app/models/user";
-import { FilterDogsByYourPreferencesPipe } from "src/app/pipes/filter-dogs-by-your-preferences.pipe";
-import { FilterDogsByLikedPipe } from "src/app/pipes/filter-dogs-by-liked.pipe";
+import { AuthService } from 'src/app/services/auth.service';
+import { FilterOutOwnersDogsPipe } from './../../pipes/filter-out-owners-dogs.pipe';
+import { FilterDogsByActivePipe } from './../../pipes/filter-dogs-by-active.pipe';
+import { FilterDogsByDislikePipe } from './../../pipes/filter-dogs-by-dislike.pipe';
+import { FilterDogMatchesPipe } from './../../pipes/filter-dog-matches.pipe';
+import { UserService } from './../../services/user.service';
+import { DisLike } from './../../models/dis-like';
+import { Likes } from './../../models/likes';
+import { DisLikeService } from './../../services/dis-like.service';
+import { LikeService } from './../../services/like.service';
+import { DogService } from './../../services/dog.service';
+import { OnInit, Component } from '@angular/core';
+import { Dog } from 'src/app/models/dog';
+import { forEach } from '@angular/router/src/utils/collection';
+import { MatchService } from 'src/app/services/match.service';
+import { Matches } from 'src/app/models/matches';
+import { User } from 'src/app/models/user';
+import { FilterDogsByYourPreferencesPipe } from 'src/app/pipes/filter-dogs-by-your-preferences.pipe';
+import { FilterDogsByLikedPipe } from 'src/app/pipes/filter-dogs-by-liked.pipe';
+import { Route } from '@angular/router';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
   user: User = null;
@@ -39,16 +41,20 @@ export class HomeComponent implements OnInit {
     private likeService: LikeService,
     private disLikeService: DisLikeService,
     private userS: UserService,
-    private matchpipe: FilterDogMatchesPipe,
-    private prefPipe: FilterDogsByYourPreferencesPipe,
-    private likedPipe: FilterDogsByLikedPipe,
-    private dislikedPipe: FilterDogsByDislikePipe,
-    private activePipe: FilterDogsByActivePipe,
-    private filterOutOwner: FilterOutOwnersDogsPipe
+    private auth: AuthService,
+    // private route: Route,
+    // private matchpipe: FilterDogMatchesPipe,
+    // private prefPipe: FilterDogsByYourPreferencesPipe,
+    // private likedPipe: FilterDogsByLikedPipe,
+    // private dislikedPipe: FilterDogsByDislikePipe,
+    // private activePipe: FilterDogsByActivePipe,
+    // private filterOutOwner: FilterOutOwnersDogsPipe
   ) {}
 
   ngOnInit() {
-    this.getAllDogs();
+    if (this.auth.checkLogin()) {
+      this.getAllDogs();
+    }
   }
   // this is working properly
   getUser() {
@@ -62,24 +68,24 @@ export class HomeComponent implements OnInit {
           this.filteredDogs = dogList;
           console.log(dogList);
 
-          this.getDogsThatLikeThisDog();
+          // this.getDogsThatLikeThisDog();
         });
     });
   }
 
   // this is working properly
   getAllDogs() {
-    console.log("hellllo");
+    console.log('hellllo');
     this.dogService.index().subscribe(
       data => {
-        console.log("hey i got something");
+        console.log('hey i got something');
 
         this.dogs = data;
         console.log(this.dogs);
         this.getUser();
       },
       error => {
-        console.log("hey i got an error");
+        console.log('hey i got an error');
 
         console.log(error);
       }
@@ -89,7 +95,7 @@ export class HomeComponent implements OnInit {
   loadMatches(selectedDogId: number) {
     this.matchService.index(selectedDogId).subscribe(
       data => {
-        console.log("yoooooo");
+        console.log('yoooooo');
         this.matches = data;
       },
       error => console.log(error)
@@ -169,22 +175,22 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  getDogsThatLikeThisDog() {
-    this.likeService.getByThatDog(this.selectedDog.id).subscribe(data => {
-      this.possibleMatches = [];
-      for (const like of data) {
-        this.dogService.getOneDog(like.thisDog.id).subscribe(
-          data1 => {
-            console.log(data1);
-            this.possibleMatches.push(data1);
-          },
-          error => console.log(error)
-        );
-      }
-      this.loadMatches(this.selectedDog.id);
-      console.log(this.possibleMatches);
-    });
-  }
+  // getDogsThatLikeThisDog() {
+  //   this.likeService.getByThatDog(this.selectedDog.id).subscribe(data => {
+  //     this.possibleMatches = [];
+  //     for (const like of data) {
+  //       this.dogService.getOneDog(like.thisDog.id).subscribe(
+  //         data1 => {
+  //           console.log(data1);
+  //           this.possibleMatches.push(data1);
+  //         },
+  //         error => console.log(error)
+  //       );
+  //     }
+  //     this.loadMatches(this.selectedDog.id);
+  //     console.log(this.possibleMatches);
+  //   });
+  // }
 
   // getDogsByFilter() {
   //   // this.filteredDogs =  this.prefPipe.transform(this.dogs, this.selectedDog);
@@ -202,4 +208,17 @@ export class HomeComponent implements OnInit {
   //     }
   //   );
   // }
+
+  setUserToNull() {
+    console.log('in set user to null in home comp');
+
+    this.user = null;
+    // this.getAllDogs();
+    window.location.reload();
+
+  }
+  reloadPage() {
+    window.location.reload();
+
+  }
 }

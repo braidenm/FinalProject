@@ -9,25 +9,25 @@ import com.skilldistillery.doggyTinder.repositories.AddressRepo;
 import com.skilldistillery.doggyTinder.repositories.UserRepo;
 @Service
 public class AuthServiceImpl implements AuthService {
-	
-	@Autowired
-	private PasswordEncoder pwEncoder;
-	
-	@Autowired
-	private UserRepo uRepo;
-	@Autowired
-	private AddressRepo aRepo;
-	
-	@Override
-	public User register(User user) {
-		user.setPassword(pwEncoder.encode(user.getPassword()));
-		user.setActive(true);
-		user.setRole("standard");
-		user.setBanned(false);
-		aRepo.saveAndFlush(user.getAddress());
-		
-		uRepo.saveAndFlush(user);
-		return user;
-	}
+    
+    @Autowired
+    private PasswordEncoder pwEncoder;
+    
+    @Autowired
+    private UserRepo uRepo;
+    @Autowired
+    private AddressRepo aRepo;
+    
+    @Override
+    public User register(User user) {
+        user.setPassword(pwEncoder.encode(user.getPassword()));
+        user.setActive(true);
+        user.setRole("standard");
+        user.setBanned(false);
+        aRepo.saveAndFlush(user.getAddress());
+        
+        uRepo.saveAndFlush(user);
+        return user;
+    }
 
 }

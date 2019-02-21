@@ -30,6 +30,7 @@ export class AuthService {
 
     // Make credentials
     const credentials = this.generateBasicAuthCredentials(username, password);
+    console.log(atob(credentials));
     console.log(credentials);
 
     // Send credentials as Authorization header (this is spring security convention for basic auth)
@@ -39,9 +40,13 @@ export class AuthService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
+    console.log(httpOptions);
+
     // create request to authenticate credentials
     return this.http.get(this.baseUrl + 'authenticate', httpOptions).pipe(
       tap(res => {
+        console.log(res);
+
         localStorage.setItem('credentials', credentials);
         return res;
       }),

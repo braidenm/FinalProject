@@ -1,3 +1,4 @@
+import { LoginComponent } from './../login/login.component';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,15 +16,20 @@ export class RegisterComponent implements OnInit {
   user = new User();
   address = new Address();
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router,
+              private login: LoginComponent) { }
 
   ngOnInit() {
   }
 
   addUser() {
     this.user.address = this.address;
+    this.login.user = this.user;
     this.authService.register(this.user).subscribe(
-      data => {this.router.navigateByUrl('dogRegister');
+      data => {
+        this.user = data;
+        this.login.login();
+        this.router.navigateByUrl('dogRegister');
     },
       error => console.log(error)
     );

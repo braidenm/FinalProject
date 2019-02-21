@@ -62,6 +62,9 @@ export class HomeComponent implements OnInit {
   getUser() {
     this.userS.getLoggedInUser().subscribe(data => {
       this.user = data;
+      if (this.user.dogs.length === 0) {
+        this.router.navigateByUrl('dogRegister');
+      }
       this.selectedDog = this.dogService.getSelectedDog();
       this.dogService
         .getFilteredDogs(this.selectedDog.id)

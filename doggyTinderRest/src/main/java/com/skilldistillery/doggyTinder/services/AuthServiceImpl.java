@@ -25,6 +25,7 @@ public class AuthServiceImpl implements AuthService {
         user.setActive(true);
         user.setRole("standard");
         user.setBanned(false);
+        user.setEnabled(true);
         aRepo.saveAndFlush(user.getAddress());
         
         uRepo.saveAndFlush(user);

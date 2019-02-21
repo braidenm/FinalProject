@@ -125,6 +125,13 @@ public class DogServiceImpl implements DogService {
 				dRepo.saveAndFlush(dog);
 				Preferences pref = new Preferences();
 				pref.setDog(dog);
+				pref.setSex("Any");
+				pref.setMaxAge(100);
+				pref.setMinAge(0);
+				pref.setMaxEnergy(10);
+				pref.setMinEnergy(0);
+				pref.setMaxWeight(500);
+				pref.setMinWeight(0);
 				prefRepo.saveAndFlush(pref);
 				dog.setPreferences(pref);
 				dRepo.saveAndFlush(dog);

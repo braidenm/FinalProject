@@ -1,1 +1,30 @@
 
+.carousel-inner {
+  max-height: 100%;
+}
+
+.carousel-caption {
+  padding-bottom: 400px;
+}
+
+#two {
+  padding-bottom: 500px;
+  padding-left:400px;
+}
+
+.btn {
+  background-color: #6740E4;
+}
+
+h2 {
+  font-family: 'Encode Sans Condensed', sans-serif;
+  font-size: 55px;
+}
+
+h3 {
+  font-family: 'Saira Extra Condensed', sans-serif;
+}
+
+img {
+  opacity:  ;
+}

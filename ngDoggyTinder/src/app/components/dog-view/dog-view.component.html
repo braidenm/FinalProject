@@ -71,7 +71,7 @@
       </div>
       <br>
     </div>
-      <div *ngIf="isMatch">
+      <div *ngIf="isMatch && isUserDog">
         <app-matches></app-matches>
       </div>
 
@@ -124,7 +124,7 @@
     <div class="col-sm-1"></div>
 
   <div class="message" *ngIf="active && !editDog && !isUserDog && !preferences && isMatch" >
+    <app-message></app-message>
   </div>
-  <app-message></app-message>
 </div>
 </div>

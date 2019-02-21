@@ -1,0 +1,14 @@
+#matchPhoto {
+  max-width: 120px;
+  max-height: 120px;
+}
+
+#matchesDiv {
+  margin: 0 auto;
+  position: center;
+}
+
+#dogDivs {
+  margin: 10px;
+  padding: 10px;
+}

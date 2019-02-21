@@ -2,14 +2,23 @@
   background-color: #b6e0ec
 } */
 
+app-matches {
+  align-content: center;
+}
+
 #box{
   background-color: #C8B8FA;
   margin: 10px;
-  padding: 10px
+  padding: 10px;
+  border: medium;
+  border-color: #40364a;
+  color: #40364a;
+  border-radius: 15px;
+
 }
 
 #element{
-  background-color: #cdc5e2;
+  /* background-color: #cdc5e2; */
   margin: 0 auto;
   padding: 10px
 }

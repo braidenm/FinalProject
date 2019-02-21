@@ -1,14 +1,13 @@
-<div *ngIf="selectedDog">
+<div id="matchesDiv" *ngIf="selectedDog">
   <h4>Matches</h4>
   <div class="row">
-    <div *ngFor="let dog of dogs">
-      <img
+    <div id="dogDivs" *ngFor="let dog of dogs">
+      <img id="matchPhoto"
         [src]="dog.photos[0].url"
         [routerLink]="['/dogView/' + dog.id]"
-        width="200px"
         alt="dog.name"
       />
-      <h4>{{ dog.name }}</h4>
+      <h5>{{ dog.name }}</h5>
       <a (click)="viewDogProfile(dog.id)"><button>View Dog</button></a>
     </div>
   </div>

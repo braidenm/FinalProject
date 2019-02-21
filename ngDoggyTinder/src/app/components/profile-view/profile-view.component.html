@@ -6,15 +6,13 @@
         <div id="element" *ngIf="!editUser && !addDog">
           <h4>Profile</h4>
           <img src='{{user.url}}' style='max-height:250px; max-width:250px'><br>
-          <span>Profile Picture</span>
+          <!-- <span>Profile Picture</span> -->
+          <!-- <br> -->
+          <br>
           <table>
             <tr>
               <td>Username</td>
               <td>{{user.username}}</td>
-            </tr>
-            <tr>
-              <td>Password</td>
-              <td>{{user.password}}</td>
             </tr>
             <tr>
               <td>First Name</td>
@@ -58,8 +56,8 @@
           <button (click)="this.deleteUser()" class="btn btn-outline-danger">Delete User</button>
         </div>
         <div id="element" *ngIf='addDog && !editUser' >
-            <form>
-              <h4>Add Dog</h4>
+          <form>
+            <h4>Add Dog</h4>
               Name <input type='text' name='name' [(ngModel)]='dog.name'/><br>
               Breed <input type='text' name='breed' [(ngModel)]='dog.breed'/><br>
               Weight <input type='number' name='weight' [(ngModel)]='dog.weight'/><br>
@@ -76,7 +74,7 @@
 
             </form>
           </div>
-        <div id="element" *ngIf='editUser'>
+          <div id="element" *ngIf='editUser'>
             <form>
               Username <input type='text' name='username' value='{{user.username}}'[(ngModel)]='user.username'/><br>
               Password <input type='text' name='password' value='{{user.password}}' [(ngModel)]='user.password'/><br>
@@ -93,11 +91,11 @@
               <button (click)="submitEditUser()" class="btn btn-outline-primary">Submit</button>
               <button (click)="reload()" class="btn btn-outline-primary">Cancel</button>
             </form>
+          </div>
         </div>
-      </div>
 
-    <div id="box" class="col-sm-4" *ngIf='!addDog'>
-        <div *ngIf='!editUser && !addDog'>
+        <div id="box" class="col-sm-4" *ngIf='!addDog && !editUser'>
+          <div *ngIf='!editUser && !addDog'>
           <h4>User Dogs</h4>
           <ul>
             <li *ngFor='let dog of userDogs'>
@@ -108,15 +106,15 @@
               </a>
             </li>
           </ul>
-          <button (click)="this.selectAddDog()" class="btn btn-outline-primary">Add Dog</button>
+          <!-- <button (click)="this.selectAddDog()" class="btn btn-outline-primary">Add Dog</button> -->
         </div>
-          <!-- <div *ngIf="!addDog && !editUser">
+        <!-- <div *ngIf="!addDog && !editUser">
 
-          </div> -->
+        </div> -->
         <div *ngIf="!addDog && !editUser">
-          Selected Dog: {{selectedDog.name}}
+          <!-- Selected Dog: {{selectedDog.name}} -->
 
-            <!-- <img src="{{selectedDog.photos[0].url}}"><br> -->
+          <!-- <img src="{{selectedDog.photos[0].url}}"><br> -->
           <button type="button" (click)="selectAddNewPhoto()" class="btn btn-outline-primary">Add Photo for {{selectedDog.name}}</button>
         </div>
         <div *ngIf='addNewPhoto && !addDog && !editUser'>
@@ -130,12 +128,17 @@
 
       </div>
     </div>
+    <div class="row" id="matchRow">
+      <div class="col-sm-2"></div>
+      <div class="col-lg-8">
+        <app-matches></app-matches>
+      </div>
+    </div>
   <br>
     <br>
       <br>
         <br>
           <br>
   </div>
-  <app-matches></app-matches>
 </body>
 

@@ -75,6 +75,7 @@ import { FilterOutOwnersDogsPipe } from './pipes/filter-out-owners-dogs.pipe';
     MessageService,
     UserService,
     DatePipe,
+    DogViewComponent,
     FilterDogsByLikedPipe,
     FilterDogsByDislikePipe,
     FilterDogsByActivePipe,

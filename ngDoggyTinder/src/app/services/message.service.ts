@@ -42,7 +42,7 @@ export class MessageService {
      if (!this.auth.checkLogin) {
        this.router.navigateByUrl('login');
      }
-     return this.http.post<Message>(this.url + '/' + text + '/' + senderId + '/' + receiverId, this.getHttp())
+     return this.http.get<Message>(this.url + '/' + text + '/' + senderId + '/' + receiverId, this.getHttp())
      .pipe(
            catchError((err: any) => {
              console.log(err);

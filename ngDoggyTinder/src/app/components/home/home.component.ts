@@ -17,7 +17,8 @@ import { Matches } from 'src/app/models/matches';
 import { User } from 'src/app/models/user';
 import { FilterDogsByYourPreferencesPipe } from 'src/app/pipes/filter-dogs-by-your-preferences.pipe';
 import { FilterDogsByLikedPipe } from 'src/app/pipes/filter-dogs-by-liked.pipe';
-import { Route } from '@angular/router';
+import { Route, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -42,14 +43,15 @@ export class HomeComponent implements OnInit {
     private disLikeService: DisLikeService,
     private userS: UserService,
     private auth: AuthService,
-    // private route: Route,
-    // private matchpipe: FilterDogMatchesPipe,
-    // private prefPipe: FilterDogsByYourPreferencesPipe,
-    // private likedPipe: FilterDogsByLikedPipe,
-    // private dislikedPipe: FilterDogsByDislikePipe,
-    // private activePipe: FilterDogsByActivePipe,
-    // private filterOutOwner: FilterOutOwnersDogsPipe
-  ) {}
+    private router: Router
+  ) // private route: Route,
+  // private matchpipe: FilterDogMatchesPipe,
+  // private prefPipe: FilterDogsByYourPreferencesPipe,
+  // private likedPipe: FilterDogsByLikedPipe,
+  // private dislikedPipe: FilterDogsByDislikePipe,
+  // private activePipe: FilterDogsByActivePipe,
+  // private filterOutOwner: FilterOutOwnersDogsPipe
+  {}
 
   ngOnInit() {
     if (this.auth.checkLogin()) {
@@ -60,14 +62,11 @@ export class HomeComponent implements OnInit {
   getUser() {
     this.userS.getLoggedInUser().subscribe(data => {
       this.user = data;
-      console.log(this.user);
       this.selectedDog = this.dogService.getSelectedDog();
-      console.log(this.selectedDog);
-      this.dogService.getFilteredDogs(this.selectedDog.id)
+      this.dogService
+        .getFilteredDogs(this.selectedDog.id)
         .subscribe(dogList => {
           this.filteredDogs = dogList;
-          console.log(dogList);
-
           // this.getDogsThatLikeThisDog();
         });
     });
@@ -75,18 +74,12 @@ export class HomeComponent implements OnInit {
 
   // this is working properly
   getAllDogs() {
-    console.log('hellllo');
     this.dogService.index().subscribe(
       data => {
-        console.log('hey i got something');
-
         this.dogs = data;
-        console.log(this.dogs);
         this.getUser();
       },
       error => {
-        console.log('hey i got an error');
-
         console.log(error);
       }
     );
@@ -123,57 +116,62 @@ export class HomeComponent implements OnInit {
   //   );
   // }
 
-  likeDog(thatDogId: number) {
-    this.likeService.addLike(this.selectedDog.id, thatDogId).subscribe(
-      data => {
-        this.likeService.getByThisDog(thatDogId).subscribe(
-          likeList => {
-            for (const like of likeList) {
-              if (like.thatDog.id === this.selectedDog.id) {
-                this.matchService.addMatch(like.thatDog.id, thatDogId);
+  // likeDog(thatDogId: number) {
+  //   this.likeService.addLike(this.selectedDog.id, thatDogId).subscribe(
+  //     data => {
+  //       this.likeService.getByThisDog(thatDogId).subscribe(
+  //         likeList => {
+  //           for (const like of likeList) {
+  //             if (like.thatDog.id === this.selectedDog.id) {
+  //               this.matchService.addMatch(like.thatDog.id, thatDogId);
 
-                this.dogService
-                  .getFilteredDogs(this.selectedDog.id)
-                  .subscribe(dogList => {
-                    this.filteredDogs = dogList;
-                    this.loadMatches(this.selectedDog.id);
-                    this.popUpCaller(thatDogId);
-                  });
-              }
-            }
-            this.ngOnInit();
-            // likeList.forEach(like => {
-            //   if (like.thatDog.id === this.selectedDog.id) {
-            //     this.matchService.addMatch(like.thatDog.id, thatDogId);
-            //     this.loadMatches(this.selectedDog.id);
-            //     this.popUpCaller(thatDogId);
-            //   }
-          },
-          error => console.log(error)
-        );
-        this.loadMatches(this.selectedDog.id);
-      },
-      error => console.log(error)
-    );
-  }
+  //               this.dogService
+  //                 .getFilteredDogs(this.selectedDog.id)
+  //                 .subscribe(dogList => {
+  //                   this.filteredDogs = dogList;
+  //                   this.loadMatches(this.selectedDog.id);
+  //                   this.popUpCaller(thatDogId);
+  //                 });
+  //             }
+  //           }
+  //           this.getAllDogs();
+  //           // likeList.forEach(like => {
+  //           //   if (like.thatDog.id === this.selectedDog.id) {
+  //           //     this.matchService.addMatch(like.thatDog.id, thatDogId);
+  //           //     this.loadMatches(this.selectedDog.id);
+  //           //     this.popUpCaller(thatDogId);
+  //           //   }
+  //         },
+  //         error => console.log(error)
+  //       );
+  //       this.loadMatches(this.selectedDog.id);
+  //     },
+  //     error => console.log(error)
+  //   );
+  // }
 
   dislikeDog(thatDogId: number) {
     this.disLikeService.addDislike(this.selectedDog.id, thatDogId).subscribe(
       data => {
-        this.loadMatches(this.selectedDog.id);
+        this.filteredDogs = null;
+        this.dogService
+        .getFilteredDogs(this.selectedDog.id)
+        .subscribe(filtered => {
+          this.filteredDogs = filtered;
+        });
       },
       error => console.log(error)
     );
   }
 
-  popUpCaller(thatDogId: number) {
-    this.dogService.getOneDog(thatDogId).subscribe(
-      data => {
-        this.popUpDog = data;
-      },
-      error => console.log(error)
-    );
-  }
+  // popUpCaller(thatDogId: number) {
+  //   this.dogService.getOneDog(thatDogId).subscribe(
+  //     data => {
+  //       this.popUpDog = data;
+  //     },
+  //     error => console.log(error)
+  //   );
+  // }
 
   // getDogsThatLikeThisDog() {
   //   this.likeService.getByThatDog(this.selectedDog.id).subscribe(data => {
@@ -215,10 +213,44 @@ export class HomeComponent implements OnInit {
     this.user = null;
     // this.getAllDogs();
     window.location.reload();
-
   }
   reloadPage() {
     window.location.reload();
-
   }
+
+  likeDog(thatDogId: number) {
+    this.likeService.addLike(this.selectedDog.id, thatDogId).subscribe(data => {
+      this.filteredDogs = null;
+      this.dogService
+        .getFilteredDogs(this.selectedDog.id)
+        .subscribe(filtered => {
+          this.filteredDogs = filtered;
+          this.checkForMatch(thatDogId);
+        });
+    });
+  }
+
+  matchPopUp(dogId: number) {
+    if (confirm('You Matched!!')) {
+      this.router.navigateByUrl('dogView/' + dogId);
+    }
+    // document.getElementById('demo').innerHTML = txt;
+  }
+
+  checkForMatch(thatdogId: number) {
+    this.likeService.getByThisDog(thatdogId).subscribe(likes => {
+      for (const like of likes) {
+        if (this.selectedDog.id === like.thatDog.id) {
+          this.matchService
+            .addMatch(this.selectedDog.id, thatdogId)
+            .subscribe(data => {
+              this.matchPopUp(thatdogId);
+              // this.popUpDog = like.thisDog;
+            });
+        }
+      }
+    });
+  }
+
+
 }

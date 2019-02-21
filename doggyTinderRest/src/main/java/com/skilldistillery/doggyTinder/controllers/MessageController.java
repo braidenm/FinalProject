@@ -25,7 +25,7 @@ public class MessageController {
 	@Autowired
 	MessageService mServ;
 	
-	@PostMapping("messages/{text}/{dogIdS}/{dogIdR}")
+	@GetMapping("messages/{text}/{dogIdS}/{dogIdR}")
 	public Message add(HttpServletResponse res, @PathVariable String text, 
 						@PathVariable Integer dogIdS, @PathVariable Integer dogIdR) {
 

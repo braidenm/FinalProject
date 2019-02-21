@@ -25,7 +25,7 @@ public class DislikeController {
 	@Autowired
 	private DislikeService dServ;
 
-	@PostMapping("dogs/dislikes/{id1}/{id2}")
+	@GetMapping("dogs/dislikes/{id1}/{id2}")
 	public Dog addDislike(HttpServletResponse res, @PathVariable Integer id1, @PathVariable Integer id2) {
 
 		try {

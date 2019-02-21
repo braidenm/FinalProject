@@ -1,7 +1,12 @@
- body {
-   max-width: 100%;
-   max-height: 100%;
+ /* body {
+   min-width: 100%;
+   min-height: 100%;
+ } */
+
+ .carousel {
+  min-width: 100%;
  }
+
 .btn {
   margin-left: 5px;
   margin-right: 5px;

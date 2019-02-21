@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +24,7 @@ public class MatchController {
 	@Autowired
 	private MatchService mServ;
 
-	@PostMapping("matches/{thisId}/{thatId}")
+	@GetMapping("matches/{thisId}/{thatId}")
 	public Dog addMatch(HttpServletResponse res, @PathVariable Integer thisId,@PathVariable Integer thatId) {
 		try {
 			res.setStatus(201);

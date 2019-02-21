@@ -23,6 +23,7 @@ export class LikeService {
  // Methods
  getHttp() {
    const credentials = this.auth.getCredentials();
+   console.log(credentials);
    return {
      headers: {
        Authorization: `Basic ${credentials}`,
@@ -72,8 +73,10 @@ export class LikeService {
  addLike(thisDogId: number, thatDogId: number) {
    if (!this.auth.checkLogin) {
      this.router.navigateByUrl('login');
-   }
-   return this.http.post<Dog>(this.url + '/' + thisDogId + '/' + thatDogId, this.getHttp())
+     console.log('in addLikeIfStatement');
+    }
+   console.log(this.getHttp());
+   return this.http.get<Dog>(this.url + '/' + thisDogId + '/' + thatDogId, this.getHttp())
    .pipe(
          catchError((err: any) => {
            console.log(err);

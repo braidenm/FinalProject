@@ -284,7 +284,7 @@ public class DogServiceImpl implements DogService {
 		outterLoop: 
 		for (Dog dog : allDogs) {
 			for (Likes like : likes) {
-				if (dog.getId() == like.getThisDog().getId() || dog.getId() == like.getThatDog().getId()) {
+				if (dog.getId() == like.getThatDog().getId()) {
 					continue outterLoop;
 				}
 			}

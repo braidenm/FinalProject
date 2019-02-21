@@ -63,7 +63,7 @@ export class MatchService {
      if (!this.auth.checkLogin) {
        this.router.navigateByUrl('login');
      }
-     return this.http.post<Dog>(this.url + '/' + thisdogId + '/' + thatDogId, this.getHttp())
+     return this.http.get<Dog>(this.url + '/' + thisdogId + '/' + thatDogId, this.getHttp())
      .pipe(
            catchError((err: any) => {
              console.log(err);

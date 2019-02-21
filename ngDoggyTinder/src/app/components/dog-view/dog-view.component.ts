@@ -166,4 +166,6 @@ export class DogViewComponent implements OnInit {
   windowReload() {
     window.location.reload();
   }
+
+
 }

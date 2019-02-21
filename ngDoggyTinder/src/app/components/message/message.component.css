@@ -50,7 +50,9 @@ input {
   width: 250%;
 }
 
-
+.btn {
+  background-color: white;
+}
 
 /* .overflow {
 } */

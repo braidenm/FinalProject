@@ -1,3 +1,4 @@
+import { HomeComponent } from './../home/home.component';
 import { AuthService } from './../../services/auth.service';
 import { UserService } from './../../services/user.service';
 import { User } from 'src/app/models/user';
@@ -16,7 +17,7 @@ import { Router } from '@angular/router';
 export class ProfileViewComponent implements OnInit {
 
   constructor(private userService: UserService, private dogService: DogService,
-              private router: Router, private auth: AuthService) { }
+              private router: Router, private auth: AuthService, private homeComp: HomeComponent) { }
 
   user = new User();
   selectedDog = new Dog();
@@ -116,7 +117,7 @@ export class ProfileViewComponent implements OnInit {
       console.log(
         'LogoutComponent.logout(): user logged out, routing to /home.'
       );
-      this.h.setUserToNull();
+      this.homeComp.setUserToNull();
       this.router.navigateByUrl('/home');
     } else {
       console.error('LogoutComponent.logout(): error logging out.');

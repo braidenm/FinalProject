@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class MatchesComponent implements OnInit {
   matches: Matches[] = [];
   selectedDog: Dog;
-  dogs: Dog[];
+  dogs: Dog[] = [];
 
   constructor(private dogServe: DogService, private matchServe: MatchService, private router: Router) { }
 

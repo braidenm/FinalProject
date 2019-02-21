@@ -20,7 +20,7 @@
             <div class="container">
                 <h2>{{filteredDogs[0].name}} ,  Age: {{filteredDogs[0].age}}</h2>
                 <button class="btn btn-primary"  (click)="dislikeDog(filteredDogs[0].id)">Nope</button>
-                <button class="btn btn-primary"  (click)="likeDog(filteredDogs[0].id)">Like</button>
+                <button class="btn btn-primary"  (click)="likeDog(filteredDogs[0].id, content)">Like</button>
 
                 <img [src] = "filteredDogs[0].photos[0].url" alt="dog photo"  class="rounded" height="450" width="450">
                 <div class="caption post-content">
@@ -42,4 +42,14 @@
   </div> -->
   </div>
 
-
+  <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">It's A Match!</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="route(); modal.close('save click')">Go to Profile</button>
+      </div>
+    </ng-template>

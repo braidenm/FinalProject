@@ -32,6 +32,7 @@ import { MainPageCarouselComponent } from './components/main-page-carousel/main-
 import { DatePipe } from '@angular/common';
 import { FilterDogMatchesPipe } from './pipes/filter-dog-matches.pipe';
 import { FilterOutOwnersDogsPipe } from './pipes/filter-out-owners-dogs.pipe';
+import { NgbdModalBasic } from './modal-basic/modal-basic.component';
 
 @NgModule({
   declarations: [

@@ -48,6 +48,9 @@ public class UserServiceImpl implements UserService{
 		try {
 			if (op.isPresent()) {
 				User managed = op.get();
+				System.out.println("*******************************");
+				System.out.println(user);
+				System.out.println(managed);
 				managed.setUsername(user.getUsername());
 				managed.setPassword(user.getPassword());
 				managed.setEmail(user.getEmail());

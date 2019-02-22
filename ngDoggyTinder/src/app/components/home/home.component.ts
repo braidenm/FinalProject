@@ -29,7 +29,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class HomeComponent implements OnInit {
   user: User = null;
   // likes: Likes[];
-  dogs: Dog[] = null; // [];
+  dogs: Dog[] = []; // [];
   selectedDog = new Dog();
   matches: Matches[];
   popUpDog = new Dog();
@@ -67,7 +67,8 @@ export class HomeComponent implements OnInit {
   getUser() {
     this.userS.getLoggedInUser().subscribe(data => {
       this.user = data;
-      if (this.user.dogs.length === 0) {
+      //CHANGE THIS IF ALLOWING MORE THAN ONE DOG
+      if (this.user.dogs.length === 0 || !this.user.dogs[0].active) {
         this.router.navigateByUrl('dogRegister');
       }
       this.selectedDog = this.dogService.getSelectedDog();

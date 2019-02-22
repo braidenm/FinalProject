@@ -107,7 +107,9 @@ export class ProfileViewComponent implements OnInit {
 
   deleteUser() {
     this.user.active = false;
-    this.userService.update(this.user);
+    console.log(this.user);
+
+    this.userService.update(this.user).subscribe();
     this.logout();
   }
 

@@ -31,9 +31,9 @@ export class UserService {
   }
 
   index() {
-    if (!this.auth.checkLogin) {
-      this.router.navigateByUrl('login');
-    }
+    // if (!this.auth.checkLogin()) {
+    //   this.router.navigateByUrl('register');
+    // }
     return this.http.get<User[]>(this.url, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -44,9 +44,9 @@ export class UserService {
   }
 
   getById(id: number) {
-    if (!this.auth.checkLogin) {
-      this.router.navigateByUrl('login');
-    }
+    // if (!this.auth.checkLogin()) {
+    //   this.router.navigateByUrl('register');
+    // }
     return this.http.get<User>(this.url + '/' + id, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -56,9 +56,11 @@ export class UserService {
      );
   }
   getLoggedInUser() {
-    if (!this.auth.checkLogin) {
-      this.router.navigateByUrl('login');
-    }
+    // if (!this.auth.checkLogin()) {
+    //   console.log('failed checklogin in user service line 60');
+
+    //   this.router.navigateByUrl('register');
+    // }
 
     return this.http.get<User>(this.url + '/username', this.getHttp())
     .pipe(
@@ -70,9 +72,11 @@ export class UserService {
   }
 
   update(user: User) {
-    if (!this.auth.checkLogin) {
-      this.router.navigateByUrl('login');
-    }
+    console.log('in update user');
+    console.log(user);
+    // if (!this.auth.checkLogin()) {
+    //   this.router.navigateByUrl('register');
+    // }
     return this.http.put<User>(this.url , user, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -83,8 +87,8 @@ export class UserService {
   }
 
   delete(id: number) {
-    if (!this.auth.checkLogin) {
-      this.router.navigateByUrl('login');
+    if (!this.auth.checkLogin()) {
+      this.router.navigateByUrl('register');
     }
     return this.http.delete<User>(this.url + '/' + id, this.getHttp())
     .pipe(

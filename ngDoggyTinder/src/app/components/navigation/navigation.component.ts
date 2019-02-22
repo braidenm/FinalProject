@@ -16,7 +16,7 @@ import { HomeComponent } from '../home/home.component';
 export class NavigationComponent implements OnInit {
 
   user: User;
-  dogs: Dog[];
+  dogs: Dog[] = [];
   dog: Dog;
   selectedDog = new Dog();
   isAdmin = false;
@@ -73,7 +73,11 @@ export class NavigationComponent implements OnInit {
   getUserDogs() {
     this.dogS.getAllByUser(this.user.id).subscribe(data => {
       console.log(data);
-      this.dogs = data;
+      for (const dog of data) {
+       if (dog.active) {
+         this.dogs.push(dog);
+        }
+      }
       if (!this.dogS.getSelectedDog()) {
         this.setDog(this.dogs[0]);
       }

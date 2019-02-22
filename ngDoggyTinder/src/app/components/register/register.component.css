@@ -1,4 +1,5 @@
-.registerDiv {
+.preferencesDiv {
   border: solid;
   display: inline-block;
+  color: white;
 }

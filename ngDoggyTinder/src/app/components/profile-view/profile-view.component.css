@@ -54,6 +54,7 @@ td {
 }
 #element .profilePic {
   max-width: 98%;
+  min-width: 95%;
   max-height: 25%;
 
 }

@@ -60,3 +60,9 @@ i.fas {
 .nonActiveDog {
   background-color: rgba(223, 223, 223, 0.431)
 }
+
+.registerDiv {
+  border: solid;
+  display: inline-block;
+  color: white;
+}

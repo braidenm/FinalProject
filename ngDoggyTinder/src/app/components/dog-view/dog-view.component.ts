@@ -61,14 +61,15 @@ export class DogViewComponent implements OnInit {
         this.userve.getLoggedInUser().subscribe(
           userData => {
             this.user = userData;
+            console.log(this.user);
             // this.messServe.setThatDog(this.dog);
+            for (const dog of this.user.dogs) {
+              if (this.dog.id === dog.id) {
+                this.isUserDog = true;
+              }
+            }
             this.getDogPhotos(dogId);
             this.checkIfMatch();
-            for (const dog of this.user.dogs) {
-                if (this.dog.id === dog.id) {
-                  this.isUserDog = true;
-                }
-            }
             if (!this.isUserDog) {
               console.log('in if statement for is user dog at dog view');
               console.log(this.dog);
@@ -77,6 +78,10 @@ export class DogViewComponent implements OnInit {
               this.messServe.setThatDog(this.dog);
               this.messComp.ngOnInit();
             }
+          },
+          err => {
+            console.log('in get logged in user error');
+
           }
         );
 

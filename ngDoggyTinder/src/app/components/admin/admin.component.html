@@ -16,8 +16,8 @@
     <span>{{user.username}}</span>
     <button *ngIf='user.active' type="button" (click)="deactivateUser()" class='btn btn-outline-primary'>De-Activate</button>
     <button *ngIf='!user.active' type="button" (click)="activateUser()" class='btn btn-outline-primary'>Re-Activate</button>
-    <button *ngIf='user.banned' type="button" (click)="unban()" class='btn btn-outline-primary'>Unban</button>
-    <button *ngIf='!user.banned' type="button" (click)="ban()" class='btn btn-outline-primary'>Ban</button>
+    <!-- <button *ngIf='user.banned' type="button" (click)="unban()" class='btn btn-outline-primary'>Unban</button>
+    <button *ngIf='!user.banned' type="button" (click)="ban()" class='btn btn-outline-primary'>Ban</button> -->
   </div>
   <div *ngIf='!users && dogs && !dogDetailView'>
     <ul>

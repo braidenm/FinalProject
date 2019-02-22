@@ -178,11 +178,11 @@
         </button>
       </form>
     </div>
-    <div *ngIf="!active">
+    <div class="nonActiveDog" *ngIf="!active">
       <h1>Dog is not found or not Active</h1>
       <button
         *ngIf="isUserDog"
-        class="btn btn-primary"
+        class="btn"
         (click)="reactivateDog()"
       >
         Re-activate Dog

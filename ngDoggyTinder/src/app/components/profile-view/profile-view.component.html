@@ -1,61 +1,95 @@
 <body>
   <div class='container'>
     <div class="row">
-      <div class="col-sm-2"></div>
-      <div id="box" class="col-sm-4">
+      <div class="col-sm-3"></div>
+      <div id="box" class="col-sm-7">
         <div id="element" *ngIf="!editUser && !addDog">
           <h4>Profile</h4>
-          <img src='{{user.url}}' style='max-height:250px; max-width:250px'><br>
+          <img src='{{user.url}}' class="profilePic"><br>
           <!-- <span>Profile Picture</span> -->
           <!-- <br> -->
           <br>
-          <table>
+          <table class="table table-striped">
             <tr>
-              <td>Username</td>
-              <td>{{user.username}}</td>
+              <td>Username: </td>
+              <td class="rightTable">{{user.username}}</td>
             </tr>
             <tr>
-              <td>First Name</td>
-              <td>{{user.firstName}}</td>
+              <td>First Name: </td>
+              <td class="rightTable">{{user.firstName}}</td>
             </tr>
             <tr>
-              <td>Last Name</td>
-              <td>{{user.lastName}}</td>
+              <td>Last Name: </td>
+              <td class="rightTable">{{user.lastName}}</td>
             </tr>
             <tr>
-              <td>Gender</td>
-              <td>{{user.gender}}</td>
+              <td>Gender: </td>
+              <td class="rightTable">{{user.gender}}</td>
             </tr>
             <tr>
-              <td>Age</td>
-              <td>{{user.age}}</td>
+              <td>Age: </td>
+              <td class="rightTable">{{user.age}}</td>
             </tr>
             <tr>
-              <td>Street</td>
-              <td>{{user.address.street}}</td>
+              <td>Street: </td>
+              <td class="rightTable">{{user.address.street}}</td>
             </tr>
             <tr>
-              <td>City</td>
-              <td>{{user.address.city}}</td>
+              <td>City: </td>
+              <td class="rightTable">{{user.address.city}}</td>
             </tr>
             <tr>
-              <td>State</td>
-              <td>{{user.address.state}}</td>
+              <td>State: </td>
+              <td class="rightTable">{{user.address.state}}</td>
             </tr>
             <tr>
-              <td>Zip Code</td>
-              <td>{{user.address.zip}}</td>
+              <td>Zip Code: </td>
+              <td class="rightTable">{{user.address.zip}}</td>
             </tr>
             <!-- <tr>
               <td>Profile Picture</td>
               <td><img src='{{user.url}}'></td>
             </tr> -->
           </table>
+          <div *ngIf='!editUser && !addDog'>
+              <h4>User Dogs</h4>
+              <ul>
+                <li *ngFor='let dog of userDogs'>
+                  <a (click)='viewDogProfile(dog.id)'>
+                    <!-- <div *ngIf='dog.photos.length > 0'> -->
+                      <img *ngIf='dog.photos.length > 0' src="{{dog.photos[0].url}}" id="thumbnail">{{dog.name}}
+                    <!-- </div>{{dog.name}} -->
+                  </a>
+                </li>
+              </ul>
+              <!-- <button (click)="this.selectAddDog()" class="btn btn-outline-primary">Add Dog</button> -->
+            </div>
+            <!-- <div *ngIf="!addDog && !editUser">
+
+            </div> -->
+            <div *ngIf="!addDog && !editUser">
+              <!-- Selected Dog: {{selectedDog.name}} -->
+
+              <!-- <img src="{{selectedDog.photos[0].url}}"><br> -->
+              <button type="button" (click)="selectAddNewPhoto()" class="btn btn-outline-primary">Add Photo for {{selectedDog.name}}</button>
+            </div>
+            <br>
+
+
+            <div *ngIf='addNewPhoto && !addDog && !editUser'>
+              <form>
+                New Picture Url <input type='text' name='url' [(ngModel)]='photo.url'/>
+                <!-- <input type='submit' (click)='addPhoto()' value='Add Photo'> -->
+                <button (click)="addPhoto()" class="btn btn-outline-primary">Add Photo</button>
+                <button (click)="reload()" class="btn btn-outline-primary">Cancel</button>
+              </form>
+            </div>
+
 
           <button (click)="selectEditUser()" class="btn btn-outline-primary">Edit User</button>
           <button (click)="deleteUser()" class="btn btn-outline-danger">Delete User</button>
         </div>
-        <div id="element" *ngIf='addDog && !editUser' >
+        <!-- <div id="element" *ngIf='addDog && !editUser' >
           <form>
             <h4>Add Dog</h4>
               Name <input type='text' name='name' [(ngModel)]='dog.name'/><br>
@@ -65,28 +99,85 @@
               Age <input type='number' name='age' [(ngModel)]='dog.age'/><br>
               Sex <input type='radio' name='sex' value='Male' [(ngModel)]='dog.sex'/> Male
               <input type='radio' name='sex' value='Female' [(ngModel)]='dog.sex'/> Female<br>
-              <!-- About <input type='text' name='about' [(ngModel)]='dog.about'/> -->
+              About <input type='text' name='about' [(ngModel)]='dog.about'/>
               <textarea name='about' >Tell us about yourself...</textarea><br>
               Profile Picture URL <input type='text' name='url' [(ngModel)]='photo.url'/><br>
-              <!-- <input type='submit' (click)='submitAddDog()' value='Register'> -->
+              <input type='submit' (click)='submitAddDog()' value='Register'>
               <button (click)="submitAddDog()" class="btn btn-outline-primary">Submit</button>
               <button (click)="reload()" class="btn btn-outline-primary">Cancel</button>
 
             </form>
-          </div>
+          </div> -->
           <div id="element" *ngIf='editUser'>
             <form>
-              Username <input type='text' name='username' value='{{user.username}}'[(ngModel)]='user.username'/><br>
-              Password <input type='text' name='password' value='{{user.password}}' [(ngModel)]='user.password'/><br>
-              Email <input type='text' name='email' value='{{user.email}}' [(ngModel)]='user.email'/><br>
-              First Name <input type='text' name='firstName' value='{{user.firstName}}' [(ngModel)]='user.firstName'/><br>
-              Gender <input type='text' name='gender' value='{{user.gender}}' [(ngModel)]='user.gender'/><br>
-              Age <input type='number' name='age' value='{{user.age}}' [(ngModel)]='user.age'/><br>
-              Street Address <input type='text' name='street' value='{{user.address.street}}' [(ngModel)]='user.address.street'/><br>
-              City <input type='text' name='city' value='{{user.address.city}}' [(ngModel)]='user.address.city'/><br>
-              State <input type='text' name='state' value='{{user.address.state}}' [(ngModel)]='user.address.state'/><br>
-              Zip Code <input type='text' name='zip' value='{{user.address.zip}}' [(ngModel)]='user.address.zip'/><br>
-              Profile Picture URL <input type='text' value='{{user.url}}' name='url' [(ngModel)]='user.url'/><br>
+              <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <td>Username:</td>
+                     <td><input type='text' name='username' value='{{user.username}}'[(ngModel)]='user.username'/></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Password:
+                    </td>
+                    <td><input type='text' name='password' value='{{user.password}}' [(ngModel)]='user.password'/></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Email:
+                    </td>
+                    <td><input type='text' name='email' value='{{user.email}}' [(ngModel)]='user.email'/></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      First Name:
+                    </td>
+                    <td><input type='text' name='firstName' value='{{user.firstName}}' [(ngModel)]='user.firstName'/></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Gender:
+                    </td>
+                    <td><input type='text' name='gender' value='{{user.gender}}' [(ngModel)]='user.gender'/></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Age:
+                    </td>
+                    <td><input type='number' name='age' value='{{user.age}}' [(ngModel)]='user.age'/></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Street Address:
+                    </td>
+                    <td><input type='text' name='street' value='{{user.address.street}}' [(ngModel)]='user.address.street'/></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      City:
+                    </td>
+                    <td><input type='text' name='city' value='{{user.address.city}}' [(ngModel)]='user.address.city'/></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      State:
+                    </td>
+                    <td><input type='text' name='state' value='{{user.address.state}}' [(ngModel)]='user.address.state'/></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Zip Code:
+                    </td>
+                    <td><input type='text' name='zip' value='{{user.address.zip}}' [(ngModel)]='user.address.zip'/></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Profile Picture URL:
+                    </td>
+                    <td><input type='text' value='{{user.url}}' name='url' [(ngModel)]='user.url'/></td>
+                  </tr>
+                </tbody>
+            </table>
               <!-- Avtivation Status:
               active <input type='radio' checked="checked" value='true' name='active' [(ngModel)]='user.active'/><br>
               De-activate <input type='radio' value='false' name='active' [(ngModel)]='user.active'/><br> -->
@@ -97,39 +188,9 @@
           </div>
         </div>
 
-        <div id="box" class="col-sm-4" *ngIf='!addDog && !editUser'>
-          <div *ngIf='!editUser && !addDog'>
-          <h4>User Dogs</h4>
-          <ul>
-            <li *ngFor='let dog of userDogs'>
-              <a (click)='viewDogProfile(dog.id)'>
-                <!-- <div *ngIf='dog.photos.length > 0'> -->
-                  <img *ngIf='dog.photos.length > 0' src="{{dog.photos[0].url}}" id="thumbnail">{{dog.name}}
-                <!-- </div>{{dog.name}} -->
-              </a>
-            </li>
-          </ul>
-          <!-- <button (click)="this.selectAddDog()" class="btn btn-outline-primary">Add Dog</button> -->
-        </div>
-        <!-- <div *ngIf="!addDog && !editUser">
+        <!-- <div id="box" class="col-sm-4" *ngIf='!addDog && !editUser'>
 
-        </div> -->
-        <div *ngIf="!addDog && !editUser">
-          <!-- Selected Dog: {{selectedDog.name}} -->
-
-          <!-- <img src="{{selectedDog.photos[0].url}}"><br> -->
-          <button type="button" (click)="selectAddNewPhoto()" class="btn btn-outline-primary">Add Photo for {{selectedDog.name}}</button>
-        </div>
-        <div *ngIf='addNewPhoto && !addDog && !editUser'>
-          <form>
-            New Picture Url <input type='text' name='url' [(ngModel)]='photo.url'/>
-            <!-- <input type='submit' (click)='addPhoto()' value='Add Photo'> -->
-            <button (click)="addPhoto()" class="btn btn-outline-primary">Add Photo</button>
-            <button (click)="reload()" class="btn btn-outline-primary">Cancel</button>
-          </form>
-        </div>
-
-      </div>
+      </div> -->
     </div>
     <div class="row" id="matchRow">
       <div class="col-sm-2"></div>

@@ -66,3 +66,7 @@ i.fas {
   display: inline-block;
   color: white;
 }
+
+.preferencesDiv {
+    background-color: rgba(223, 223, 223, 0.637)
+}

@@ -190,6 +190,7 @@
     </div>
     <div *ngIf="preferences">
       <div class="row">
+        <div class="col-sm-4"></div>
         <div class="col-sm-5">
           <div class="preferencesDiv">
             <h1>Choose Your Preferences</h1>
@@ -264,9 +265,8 @@
                   </tr>
                   <tr>
                     <td>Gender:</td>
-                  </tr>
-                  <tr>
                     <td>
+                        Male:
                       <input
                         class="radio"
                         type="radio"
@@ -274,11 +274,7 @@
                         value="Male"
                         [(ngModel)]="preferences.sex"
                       />
-                      Male
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
+                      Female
                       <input
                         class="radio"
                         type="radio"
@@ -286,7 +282,7 @@
                         value="Female"
                         [(ngModel)]="preferences.sex"
                       />
-                      Female
+
                     </td>
                   </tr>
                 </tbody>
@@ -323,4 +319,10 @@
       <app-message></app-message>
     </div>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </div>

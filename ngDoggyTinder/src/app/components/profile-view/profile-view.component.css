@@ -28,9 +28,9 @@ app-matches {
   max-width: 45px
 }
 
-table{
+/* table{
   margin: 0 auto;
-}
+} */
 
 ul {
   list-style-type: none;
@@ -43,6 +43,19 @@ ul {
 
 body {
   background-color: #f3effe
+}
+td {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.rightTable {
+  text-align: right;
+}
+#element .profilePic {
+  max-width: 98%;
+  max-height: 25%;
+
 }
 
 

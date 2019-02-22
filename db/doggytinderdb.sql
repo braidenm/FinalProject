@@ -548,13 +548,13 @@ INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `o
 INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (6, 6, 5, '????', '2019-02-13 11:01:02', 0);
 INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (7, 5, 6, '!!!!!!', '2019-02-11 13:02:55', 0);
 INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (8, 3, 8, 'Oh hi am dog too you are cute', '2019-02-14 19:19:05', 0);
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (9, 2, 22, 'Arooof! Hello London. Want to play sometime?', '2019-02-14 19:19:05', 0);
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (10, 22, 2, 'Arf!  Maybe. I\'m really busy though.', '2019-02-14 19:19:05', 0);
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (11, 2, 22, 'Dog park tomorrow? Woof!', '2019-02-14 19:19:05', 0);
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (12, 22, 2, 'Ok ;)', '2019-02-14 19:19:05', 0);
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (13, 3, 2, 'Hey, that stuffed squirrel really ties the whole place together.', '2019-02-14 19:19:05', 0);
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (14, 2, 3, 'Thanks man.', '2019-02-14 19:19:05', 0);
-INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (15, 3, 2, 'Want to get some white russians and chill?', '2019-02-14 19:19:05', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (9, 2, 22, 'Arooof! Hello London. Want to play sometime?', '2019-02-14 20:01:55', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (10, 22, 2, 'Arf!  Maybe. I\'m really busy though.', '2019-02-14 20:12:13', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (11, 2, 22, 'Dog park tomorrow? Woof!', '2019-02-14 20:34:05', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (12, 22, 2, 'Ok ;)', '2019-02-14 21:41:09', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (13, 3, 2, 'Hey, that stuffed squirrel really ties the whole place together.', '2019-02-14 22:19:05', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (14, 2, 3, 'Thanks man.', '2019-02-14 22:23:57', 0);
+INSERT INTO `message` (`id`, `sender_id`, `receiver_id`, `text`, `time_sent`, `opened`) VALUES (15, 3, 2, 'Want to get some white russians and chill?', '2019-02-14 23:11:48', 0);
 
 COMMIT;
 

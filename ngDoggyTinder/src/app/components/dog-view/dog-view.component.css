@@ -61,10 +61,10 @@ i.fas {
   background-color: rgba(223, 223, 223, 0.431)
 }
 
-.registerDiv {
+.preferencesDiv{
   border: solid;
   display: inline-block;
-  color: white;
+  background-color: white;
 }
 
 .preferencesDiv {

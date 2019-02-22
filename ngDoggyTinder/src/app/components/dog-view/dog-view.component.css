@@ -76,3 +76,7 @@ i.fas {
   background-color: rgba(223, 223, 223, 0.623);
 }
 
+.deactivate {
+  color: red;
+}
+

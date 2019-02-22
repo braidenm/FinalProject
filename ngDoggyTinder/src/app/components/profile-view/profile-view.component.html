@@ -52,8 +52,8 @@
             </tr> -->
           </table>
 
-          <button (click)="this.selectEditUser()" class="btn btn-outline-primary">Edit User</button>
-          <button (click)="this.deleteUser()" class="btn btn-outline-danger">Delete User</button>
+          <button (click)="selectEditUser()" class="btn btn-outline-primary">Edit User</button>
+          <button (click)="deleteUser()" class="btn btn-outline-danger">Delete User</button>
         </div>
         <div id="element" *ngIf='addDog && !editUser' >
           <form>
@@ -87,6 +87,9 @@
               State <input type='text' name='state' value='{{user.address.state}}' [(ngModel)]='user.address.state'/><br>
               Zip Code <input type='text' name='zip' value='{{user.address.zip}}' [(ngModel)]='user.address.zip'/><br>
               Profile Picture URL <input type='text' value='{{user.url}}' name='url' [(ngModel)]='user.url'/><br>
+              <!-- Avtivation Status:
+              active <input type='radio' checked="checked" value='true' name='active' [(ngModel)]='user.active'/><br>
+              De-activate <input type='radio' value='false' name='active' [(ngModel)]='user.active'/><br> -->
               <!-- <input type='submit' (click)='submitEditUser()' value='Submit Changes'> -->
               <button (click)="submitEditUser()" class="btn btn-outline-primary">Submit</button>
               <button (click)="reload()" class="btn btn-outline-primary">Cancel</button>

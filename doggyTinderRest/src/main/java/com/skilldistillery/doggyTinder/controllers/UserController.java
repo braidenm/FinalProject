@@ -42,9 +42,11 @@ public class UserController {
 	public User getByUsername(HttpServletResponse res, Principal principal) {
 		try {
 			res.setStatus(201);
+			System.err.println("in get user byusername user controller");
 			return uServ.findByUserName(principal.getName());
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.err.println("in error for get by username");
 			res.setStatus(404);
 			return null;
 		}
@@ -55,9 +57,11 @@ public class UserController {
 
 		try {
 			res.setStatus(201);
+			System.err.println("in update user controller");
 			return uServ.updateUser(user);
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.err.println("in error for update");
 			res.setStatus(404);
 			return null;
 		}

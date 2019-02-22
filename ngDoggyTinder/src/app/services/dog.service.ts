@@ -95,9 +95,9 @@ export class DogService {
   }
 
   create(dog: Dog, userId: number) {
-    if (!this.auth.checkLogin) {
-      this.router.navigateByUrl('login');
-    }
+    // if (!this.auth.checkLogin) {
+    //   this.router.navigateByUrl('login');
+    // }
     return this.http.post<Dog>(this.url + '/' + userId, dog, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -107,9 +107,9 @@ export class DogService {
      );
   }
   update(dog: Dog) {
-    if (!this.auth.checkLogin) {
-      this.router.navigateByUrl('login');
-    }
+    // if (!this.auth.checkLogin) {
+    //   this.router.navigateByUrl('login');
+    // }
     return this.http.put<Dog>(this.url, dog, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -119,9 +119,9 @@ export class DogService {
      );
   }
   getAllByUser(userId: number) {
-    if (!this.auth.checkLogin) {
-      this.router.navigateByUrl('login');
-    }
+    // if (!this.auth.checkLogin) {
+    //   this.router.navigateByUrl('login');
+    // }
     return this.http.get<Dog[]>(this.url + '/users/' + userId, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -131,9 +131,9 @@ export class DogService {
      );
   }
   findByName(name: string) {
-    if (!this.auth.checkLogin) {
-      this.router.navigateByUrl('login');
-    }
+    // if (!this.auth.checkLogin) {
+    //   this.router.navigateByUrl('login');
+    // }
     return this.http.get<Dog[]>(this.url + '/name/' + name, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -143,9 +143,9 @@ export class DogService {
      );
   }
   findByBreed(breed: string) {
-    if (!this.auth.checkLogin) {
-      this.router.navigateByUrl('login');
-    }
+    // if (!this.auth.checkLogin) {
+    //   this.router.navigateByUrl('login');
+    // }
     return this.http.get<Dog[]>(this.url + '/breed/' + breed, this.getHttp())
     .pipe(
           catchError((err: any) => {
@@ -203,9 +203,9 @@ export class DogService {
      );
   }
   getFilteredDogs(dogId: number) {
-    if (!this.auth.checkLogin) {
-      this.router.navigateByUrl('login');
-    }
+    // if (!this.auth.checkLogin) {
+    //   this.router.navigateByUrl('login');
+    // }
     return this.http.get<Dog[]>(this.url + '/' + dogId + '/filtered', this.getHttp())
     .pipe(
           catchError((err: any) => {

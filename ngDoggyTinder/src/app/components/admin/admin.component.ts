@@ -84,32 +84,39 @@ export class AdminComponent implements OnInit {
 
   deactivateDog() {
     this.dog.active = false;
-    this.dogService.update(this.dog);
+    this.dogService.update(this.dog).subscribe();
   }
 
   activateDog() {
     this.dog.active = true;
-    this.dogService.update(this.dog);
+    this.dogService.update(this.dog).subscribe();
   }
 
   deactivateUser() {
     this.user.active = false;
-    this.userService.update(this.user);
+    console.log(this.user);
+
+    this.userService.update(this.user).subscribe();
   }
 
   activateUser() {
+
     this.user.active = true;
-    this.userService.update(this.user);
+    console.log(this.user);
+    this.userService.update(this.user).subscribe();
   }
 
   ban() {
+    this.user.banned = true;
     this.user.enabled = false;
-    this.userService.update(this.user);
+    console.log(this.user);
+    this.userService.update(this.user).subscribe();
   }
 
   unban() {
+    this.user.banned = false;
     this.user.enabled = true;
-    this.userService.update(this.user);
+    this.userService.update(this.user).subscribe();
   }
 
 

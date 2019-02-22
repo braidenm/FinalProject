@@ -11,9 +11,10 @@
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 10px;
-  background-color: #3d0080;
+  background-color: white;
   border-color: #3d0080;
   outline: #3d0080;
+  color: #3d0080;
 }
 
 #sideBorder {

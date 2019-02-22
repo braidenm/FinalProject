@@ -33,6 +33,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	providedRuntime ('org.springframework.boot:spring-boot-starter-tomcat')
 	
 	compile project(':doggyTinder')
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.7'

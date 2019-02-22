@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { invalid } from '@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-login',
@@ -32,6 +33,11 @@ export class LoginComponent implements OnInit {
           userData => {
             console.log(userData);
             this.user = userData;
+            if (!this.user.active) {
+              this.invalid = 'non-active user';
+              this.user = null;
+              return;
+            }
             this.nav.reload();
             console.error('login succeeded');
             this.invalid = null;

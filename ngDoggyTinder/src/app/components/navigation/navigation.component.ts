@@ -19,6 +19,7 @@ export class NavigationComponent implements OnInit {
   dogs: Dog[];
   dog: Dog;
   selectedDog = new Dog();
+  isAdmin = false;
 
   constructor(
     private auth: AuthService,
@@ -43,8 +44,11 @@ export class NavigationComponent implements OnInit {
   //   );
   // }
   reload() {
+    this.isAdmin = false;
     this.getUser();
     this.getSelectedDog();
+
+
   }
 
   getSelectedDog() {
@@ -58,6 +62,10 @@ export class NavigationComponent implements OnInit {
 
       if (this.user) {
         this.getUserDogs();
+        if (this.user.role === 'admin') {
+
+          this.isAdmin = true;
+        }
       }
     });
   }

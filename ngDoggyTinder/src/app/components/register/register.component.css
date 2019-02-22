@@ -1,5 +1,6 @@
 .preferencesDiv {
   border: solid;
   display: inline-block;
-  color: white;
+  background-color: aliceblue;
+  margin-top: 5%;
 }

@@ -57,6 +57,8 @@ public class UserServiceImpl implements UserService{
 				managed.setAge(user.getAge());
 				managed.setUrl(user.getUrl());
 				managed.setAddress(user.getAddress());
+				managed.setEnabled(user.getEnabled());
+				managed.setActive(user.getActive());
 				uRepo.saveAndFlush(managed);
 				return managed;
 			}

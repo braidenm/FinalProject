@@ -3,7 +3,7 @@
   <div class="row">
     <div *ngFor="let dog of dogs">
         <div id="matchesDiv" class="col-sm">
-      <img
+      <img id="matchPhoto"
         [src]="dog.photos[0].url"
         [routerLink]="['/dogView/' + dog.id]"
         alt="dog.name"

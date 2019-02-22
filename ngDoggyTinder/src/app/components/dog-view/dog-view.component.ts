@@ -40,17 +40,17 @@ export class DogViewComponent implements OnInit {
   }
 
   reload() {
-    this.user = new User();
-    this.dog = new Dog();
-    this.editDog = null;
-    this.isUserDog = false;
-    this.preferences = null;
-    this.active = true;
-    this.photos = [];
-    this.isMatch = false;
-    this.selectedDog = new Dog();
-    this.reloadFlag = false;
-    this.superId = null;
+    // this.user = new User();
+    // this.dog = new Dog();
+    // this.editDog = null;
+    // this.isUserDog = false;
+    // this.preferences = null;
+    // this.active = true;
+    // this.photos = [];
+    // this.isMatch = false;
+    // this.selectedDog = new Dog();
+    // this.reloadFlag = false;
+    // this.superId = null;
     console.log('dogView Component.reload');
     let dogId;
     dogId = this.route.snapshot.paramMap.get('id');
@@ -141,7 +141,8 @@ export class DogViewComponent implements OnInit {
     this.dogServe.update(this.dog).subscribe(
     );
     this.editDog = null;
-    this.reload();
+    // this.reload();
+    // window.location.reload();
   }
   deactivateDog() {
     this.dog.active = false;
@@ -178,6 +179,7 @@ export class DogViewComponent implements OnInit {
   confirmEditPref() {
     this.dogServe.updatePref(this.dog.id, this.preferences).subscribe();
     this.preferences = null;
+    this.reload();
   }
 
   windowReload() {

@@ -17,13 +17,13 @@ import { MatchService } from 'src/app/services/match.service';
 })
 export class DogViewComponent implements OnInit {
 
-  user: User;
-  dog: Dog;
-  editDog: Dog;
+  user: User = new User();
+  dog: Dog = new Dog();
+  editDog: Dog = null;
   isUserDog = false;
-  preferences: Preferences;
+  preferences: Preferences = null;
   active = true;
-  photos;
+  photos = [];
   isMatch = false;
   selectedDog = new Dog();
   reloadFlag = false;
@@ -40,6 +40,17 @@ export class DogViewComponent implements OnInit {
   }
 
   reload() {
+    this.user = new User();
+    this.dog = new Dog();
+    this.editDog = null;
+    this.isUserDog = false;
+    this.preferences = null;
+    this.active = true;
+    this.photos = [];
+    this.isMatch = false;
+    this.selectedDog = new Dog();
+    this.reloadFlag = false;
+    this.superId = null;
     console.log('dogView Component.reload');
     let dogId;
     dogId = this.route.snapshot.paramMap.get('id');
@@ -68,7 +79,7 @@ export class DogViewComponent implements OnInit {
                 this.isUserDog = true;
               }
             }
-            this.getDogPhotos(dogId);
+
             this.checkIfMatch();
             if (!this.isUserDog) {
               console.log('in if statement for is user dog at dog view');
@@ -109,6 +120,7 @@ export class DogViewComponent implements OnInit {
               break;
             }
           }
+          this.getDogPhotos(this.dog.id);
         },
         err => {
         console.log('in err for get all matches in dog view comp');

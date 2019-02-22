@@ -66,6 +66,7 @@ export class MatchesComponent implements OnInit {
 
   viewDogProfile(dogid: number) {
     this.dogId = dogid;
+    this.dvComp.reload();
     this.reload();
   }
 

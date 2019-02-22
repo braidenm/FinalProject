@@ -101,88 +101,146 @@
         <app-matches></app-matches>
       </div>
     </div>
-    <div *ngIf="editDog && !preferences">
+    <div class="editdog" *ngIf="editDog && !preferences">
       <form>
-        Name:
-        <input type="text" name="name" required [(ngModel)]="editDog.name" />
-        <br />
-        Breed:
-        <input type="text" name="breed" required [(ngModel)]="editDog.breed" />
-        <br />
-        Age:
-        <input
-          type="number"
-          name="age"
-          min="0"
-          required
-          [(ngModel)]="editDog.age"
-        />
-        <br />
-        Gender: <br />
-        <input
-          type="radio"
-          name="sex"
-          value="Male"
-          required
-          [(ngModel)]="editDog.sex"
-        />Male <br />
-        <input
-          type="radio"
-          name="sex"
-          value="Female"
-          required
-          [(ngModel)]="editDog.sex"
-        />Female <br />
-        Weight:
-        <input
-          type="number"
-          name="weigth"
-          min="0"
-          required
-          [(ngModel)]="editDog.weight"
-        />lbs
-        <br />
-        Energy Level:
-        <input
-          type="text"
-          name="energy"
-          min="0"
-          max="10"
-          required
-          [(ngModel)]="editDog.energy"
-        />
-        <br />
-        About: <br />
-        <textarea
-          type="text"
-          name="about"
-          maxlength="500"
-          rows="4"
-          cols="50"
-          [(ngModel)]="editDog.about"
-        ></textarea>
-        <br />
-        <button
-          type="button"
-          class="btn btn-secondary"
-          (click)="cancelEditDog()"
-        >
-          Cancel
-        </button>
-        <button
+      <table class="table table-striped">
+        <tbody>
+            <tr>
+
+              <td>
+                Name:
+
+              </td>
+              <td>
+
+                <input type="text" name="name" required [(ngModel)]="editDog.name" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Breed:
+              </td>
+              <td>
+
+                <input type="text" name="breed" required [(ngModel)]="editDog.breed" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Age:
+
+              </td>
+              <td>
+
+                <input
+                type="number"
+                name="age"
+                min="0"
+                required
+                [(ngModel)]="editDog.age"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Gender:
+
+              </td>
+              <td>
+
+                Male:
+                <input
+                type="radio"
+                name="sex"
+                value="Male"
+                required
+                [(ngModel)]="editDog.sex"
+                />
+
+                Female:
+                <input
+                type="radio"
+                name="sex"
+                value="Female"
+                required
+                [(ngModel)]="editDog.sex"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Weight:
+
+              </td>
+              <td>
+                <input
+                type="number"
+                name="weigth"
+                min="0"
+                required
+                [(ngModel)]="editDog.weight"
+                />
+                lbs
+
+              </td>
+            </tr>
+            <tr>
+
+              <td>
+                Energy Level:
+              </td>
+              <td>
+
+                <input
+                type="text"
+                name="energy"
+                min="0"
+                max="10"
+                required
+                [(ngModel)]="editDog.energy"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                About:
+
+              </td>
+              <td>
+
+                <textarea
+                type="text"
+                name="about"
+                maxlength="500"
+                rows="4"
+                cols="50"
+                [(ngModel)]="editDog.about"
+                ></textarea>
+              </td>
+            </tr>
+            <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="cancelEditDog()"
+            >
+            Cancel
+          </button>
+          <button
           type="button"
           class="btn btn-primary"
           (click)="confirmEditDog()"
-        >
+          >
           Submit
         </button>
-      </form>
-    </div>
-    <div class="nonActiveDog" *ngIf="!active">
-      <h1>Dog is not found or not Active</h1>
-      <button
-        *ngIf="isUserDog"
-        class="btn"
+      </tbody>
+    </table>
+  </form>
+</div>
+  <div class="nonActiveDog" *ngIf="!active">
+    <h1>Dog is not found or not Active</h1>
+    <button
+    *ngIf="isUserDog"
+    class="btn"
         (click)="reactivateDog()"
       >
         Re-activate Dog

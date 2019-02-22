@@ -47,6 +47,7 @@ i.fas {
 
 .btn {
   background-color: white;
+  color: blue;
 }
 
 i.fas {
@@ -70,3 +71,8 @@ i.fas {
 .preferencesDiv {
     background-color: rgba(223, 223, 223, 0.637)
 }
+
+.editdog {
+  background-color: rgba(223, 223, 223, 0.623);
+}
+
